@@ -28,5 +28,5 @@ ALTER TABLE _commande
     ADD CONSTRAINT _commande_fk__user foreign key (_user_id)  REFERENCES _user(_user_id);
 
 ALTER TABLE _commandeItems
-    ADD CONSTRAINT _commandeItems_pk_burg&comm primary key (_burger_id, _commande_id);
+    ADD CONSTRAINT _commandeItems_pk_burgcomm primary key (_burger_id, _commande_id);
 
