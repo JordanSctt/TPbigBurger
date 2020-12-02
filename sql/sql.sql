@@ -8,14 +8,14 @@ CREATE TABLE _user (
 CREATE TABLE _burger (
     _burger_id SERIAL NOT NULL PRIMARY KEY,
     _label character varying(20),
-    _price NUMERIC(4, 2),
+    _price NUMERIC(4, 2)
 );
 
 CREATE TABLE _commande (
     _commande_id SERIAL NOT NULL PRIMARY KEY,
     _user_id integer,
     _startDatePrep timestamp,
-    _EndDatePrep timestamp,
+    _EndDatePrep timestamp
 );
 
 CREATE TABLE _commandeItems (
