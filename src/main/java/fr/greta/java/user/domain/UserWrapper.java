@@ -26,6 +26,7 @@ public class UserWrapper {
 
     public User fromEntity(UserEntity entity) {
 
+
         if (entity.isAdmin()) {
             Admin model = new Admin();
             model.setId(entity.getId());

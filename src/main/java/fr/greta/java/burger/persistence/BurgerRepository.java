@@ -1,6 +1,7 @@
 package fr.greta.java.burger.persistence;
 
 import fr.greta.java.generic.exception.RepositoryException;
+
 import fr.greta.java.generic.tools.ConnectionFactory;
 import fr.greta.java.generic.tools.JdbcTool;
 
