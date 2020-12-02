@@ -12,7 +12,7 @@
 
     <!-- Bootstrap core CSS -->
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
 
     <style>
       .bd-placeholder-img {
@@ -31,7 +31,7 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="floating-labels.css" >
+    <link rel="stylesheet" href="css/floating-labels.css" >
   </head>
   <body>
   
@@ -41,7 +41,7 @@
   
     <form class="form-signin" action="ConnectionUser" method="POST">
   <div class="text-center mb-4">
-    <img class="mb-4" src="mini_png_pizza/chevre.png" alt="">
+    <img class="mb-4" src="images/mini_png_pizza/chevre.png" alt="">
     <h1 class="h3 mb-3 font-weight-normal">Se connecter à Pizza MARIO</h1>
     <p>Veuillez saisir votre login ainsi que votre mot de passe afin d'accéder aux fonctionnalités que vous offre le site</p>
   </div>
@@ -63,7 +63,7 @@
   </div>  -->
   
   <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
-  <p class="mt-5 mb-3 text-muted text-center">&copy; Famille Bros since 1998</p>
+  <p class="mt-5 mb-3 text-muted text-center">&copy; Family Bros since 1998</p>
 </form>
 </body>
 </html>

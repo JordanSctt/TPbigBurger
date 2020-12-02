@@ -12,7 +12,7 @@
 
     <!-- Bootstrap core CSS -->
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
 
     <style>
       .bd-placeholder-img {
@@ -37,7 +37,7 @@
 
     <form class="form-signin" action="InscriptionUser" method="POST">
   <div class="text-center mb-4">
-    <img class="mb-4" src="mini_png_pizza/chevre.png" alt="">
+    <img class="mb-4" src="images/mini_png_pizza/chevre.png" alt="">
     <h1 class="h3 mb-3 font-weight-normal">S'inscrire à Pizza MARIO</h1>
     <p>Veuillez saisir un login ainsi qu'un mot de passe afin de vous inscrire sur le site et d'accéder aux fonctionalités</p>
   </div>

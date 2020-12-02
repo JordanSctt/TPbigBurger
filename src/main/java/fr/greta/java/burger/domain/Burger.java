@@ -1,5 +1,7 @@
 package fr.greta.java.burger.domain;
 
+import fr.greta.java.generic.tools.StringTool;
+
 public class Burger {
 
     private int id;
@@ -29,5 +31,11 @@ public class Burger {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public boolean isValid() {
+
+        return !StringTool.isNullOrEmpty(getLabel());
+
     }
 }

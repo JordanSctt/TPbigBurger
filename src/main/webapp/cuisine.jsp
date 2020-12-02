@@ -16,7 +16,7 @@
 
     <!-- Bootstrap core CSS -->
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
 
     <style>
       .bd-placeholder-img {
@@ -35,7 +35,7 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="floating-labels.css" >
+    <link rel="stylesheet" href="css/floating-labels.css" >
   </head>
   <body>
   
@@ -47,7 +47,7 @@
  	 <div class="text-center mb-4">
     	<img class="mb-4" src="images/admin.jpg" alt="livreur pizza">
    		<h1 class="h1 mb-3 font-weight-normal">Administration</h1>
-   		<a type="button" class="btn btn-outline-primary center" href="accueil">Accueil</a>	
+   		<a type="button" class="btn btn-outline-primary center" href="accueil.jsp">Accueil</a>
  	 </div>
     <table class="table">
       <thead class="thead-dark">

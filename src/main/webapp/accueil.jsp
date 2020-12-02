@@ -16,7 +16,7 @@
 
     <!-- Bootstrap core CSS -->
     
-    <link rel="stylesheet" href="css.bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <style>
       .bd-placeholder-img {
@@ -154,7 +154,7 @@
     <div class="row">
       <div class="col-lg-4">        
           <title>Royale</title>
-          <img src="mini_png_pizza/royale.png" alt="">          
+          <img src="images/mini_png_pizza/royale.png" alt="">
         <h2>La Royale !</h2>
         <p>La pizza royale fera valser vos papilles! Fort de son experience mario vous as retravaillé cette pizza, afin que l'équilibre des gouts vous explose en bouche lors de la dégustation, n'hésitez plus, goutez là ! </p>
         <p><a class="btn btn-secondary" href="#" role="button">Commandez &raquo;</a></p>
@@ -162,7 +162,7 @@
 
       <div class="col-lg-4">        
           <title>Raclette</title>
-          <img src="mini_png_pizza/raclette.png" alt="">                  
+          <img src="images/mini_png_pizza/raclette.png" alt="">
         <h2>La Raclette !</h2>
         <p>Mario as vécu quelques années en haute Savoie et il as ramené avec lui cette recette de pizza raclette! avec son roblochon directement reçu d'un éleveur situé en haute Savoie, vous voyagerez dans les montagnes lors de la dégustation</p>
         <p><a class="btn btn-secondary" href="#" role="button">Commandez &raquo;</a></p>
@@ -170,7 +170,7 @@
 
       <div class="col-lg-4">        
           <title>Chêvre miel</title>
-          <img src="mini_png_pizza/chevre.png" alt="">                 
+          <img src="images/mini_png_pizza/chevre.png" alt="">
         <h2>La Chêvre Miel !</h2>
         <p>Succés incontournable pour cette pizza au chêvre miel, les connaisseur seront reconnaitre un vrai travail d'équilibre entre le salé et le sucré dans cette pizza qui fera danser vos papilles !</p>
         <p><a class="btn btn-secondary" href="#" role="button">Commandez &raquo;</a></p>
