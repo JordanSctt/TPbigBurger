@@ -3,6 +3,7 @@ package fr.greta.java.user.facade;
 import fr.greta.java.generic.exception.ServiceException;
 import fr.greta.java.user.domain.User;
 import fr.greta.java.user.domain.UserService;
+import fr.greta.java.user.domain.UserWrapper;
 
 
 import javax.servlet.ServletException;
@@ -24,6 +25,7 @@ public class UserConnectionServlet extends HttpServlet {
 	private static final String PASSWORD = "password_parameter";
 	
 	private static UserService userService = new UserService();
+	private static UserDTOWrapper userDTOWrapper = new UserDTOWrapper();
 
 	    @Override
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -35,7 +37,7 @@ public class UserConnectionServlet extends HttpServlet {
 				User user = userService.findByNameAndPassword(name, password);
 				if (user != null) {
 					HttpSession session = request.getSession();
-					session.setAttribute("userConnected", user);
+					session.setAttribute("userConnected", userDTOWrapper.toDTO(user));
 					//request.setAttribute("isAdmin", user instanceof Admin);
 					request.getRequestDispatcher("accueil.jsp").forward(request, response);
 					} else {
