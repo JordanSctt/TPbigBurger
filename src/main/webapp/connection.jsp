@@ -41,18 +41,18 @@
   
     <form class="form-signin" action="ConnectionUser" method="POST">
   <div class="text-center mb-4">
-    <img class="mb-4" src="images/mini_png_pizza/chevre.png" alt="">
-    <h1 class="h3 mb-3 font-weight-normal">Se connecter à Pizza MARIO</h1>
-    <p>Veuillez saisir votre login ainsi que votre mot de passe afin d'accéder aux fonctionnalités que vous offre le site</p>
+
+    <h1 class="h3 mb-3 font-weight-normal">Se connecter à BigBurger</h1>
+    <p>Veuillez saisir votre nom ainsi que votre mot de passe afin d'accéder aux fonctionnalités que vous offre le site</p>
   </div>
 
   <div class="form-label-group">
-    <input type="text" id="inputLogin" class="form-control" name="login_parameter" placeholder="Login" required autofocus>
-    <label for="inputLogin">Login :</label>
+    <input type="text" id="inputLogin" class="form-control" name="name_parameter" placeholder="Nom" required autofocus>
+    <label for="inputLogin">Nom :</label>
   </div>
 
   <div class="form-label-group">
-    <input type="password" id="inputPassword" class="form-control" name="mdp_parameter" placeholder="mot de passe" required>
+    <input type="password" id="inputPassword" class="form-control" name="password_parameter" placeholder="mot de passe" required>
     <label for="inputPassword">Mot de passe :</label>
   </div>
 

@@ -31,25 +31,30 @@
       }
     </style>
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="floating-labels.css" >
+    <link rel="stylesheet" href="css/floating-labels.css" >
   </head>
   <body>
 
     <form class="form-signin" action="InscriptionUser" method="POST">
   <div class="text-center mb-4">
-    <img class="mb-4" src="images/mini_png_pizza/chevre.png" alt="">
-    <h1 class="h3 mb-3 font-weight-normal">S'inscrire à Pizza MARIO</h1>
-    <p>Veuillez saisir un login ainsi qu'un mot de passe afin de vous inscrire sur le site et d'accéder aux fonctionalités</p>
+
+    <h1 class="h3 mb-3 font-weight-normal">S'inscrire à BigBurger</h1>
+    <p>Veuillez saisir un nom ainsi qu'un mot de passe afin de vous inscrire sur le site et d'accéder aux fonctionalités</p>
   </div>
 
   <div class="form-label-group">
-    <input type="text" id="inputLogin" class="form-control" name="login_parameter" placeholder="Login" required autofocus>
-    <label for="inputLogin">Login :</label>
+    <input type="text" id="inputLogin" class="form-control" name="name_parameter" placeholder="Login" required autofocus>
+    <label for="inputLogin">Nom :</label>
   </div>
 
   <div class="form-label-group">
-    <input type="password" id="inputPassword" class="form-control" name="mdp_parameter" placeholder="mot de passe" required>
+    <input type="password" id="inputPassword" class="form-control" name="password_parameter" placeholder="mot de passe" required>
     <label for="inputPassword">Mot de passe :</label>
+  </div>
+
+  <div class="form-label-group">
+    <input type="number" id="inputPhone" class="form-control" name="phone_parameter" placeholder="phone" required>
+    <label for="inputPassword">Telephone :</label>
   </div>
 
   <!-- <div class="checkbox mb-3">

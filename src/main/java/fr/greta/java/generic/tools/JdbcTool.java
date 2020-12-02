@@ -13,6 +13,12 @@ public class JdbcTool {
         close(conn);
     }
 
+    public static void close(Statement stmt, Connection conn) {
+        close(stmt);
+        close(conn);
+    }
+
+
     private static void close(ResultSet resultSet) {
         if(resultSet != null) {
             try {

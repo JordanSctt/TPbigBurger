@@ -64,12 +64,14 @@
         </c:when>
 
         <c:otherwise>
+         <!-- 
         <c:if test="${isAdmin}">               
         <li class="nav-item">
-          <a type="button" class="btn btn-secondary" href="administration">Administration</a>          
+          <a type="button" class="btn btn-secondary" href="administration">Afficher les commandes</a>          
         </li>                
         </c:if>
-        
+        -->
+
         <li class="nav-item">
           <div class="dropdown">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -107,7 +109,7 @@
         <div class="container">
           <div class="carousel-caption text-left">
             <h1 class="light">BigBurger</h1>
-            <p class="light">Depuis 1998, BIGBurger vous offre le bonheur de dzguster les meilleurs burgers de la region !!</p>
+            <p class="light">Depuis 1998, BIGBurger vous offre le bonheur de deguster les meilleurs burgers de la region !!</p>
             <p><a class="btn btn-lg btn-primary" href="#" role="button">Passer commande</a></p>
           </div>
         </div>
@@ -116,7 +118,7 @@
           <img src="images/burgerbg2.jpg" alt="" width="100%" height="100%">                  
         <div class="container">
           <div class="carousel-caption">
-            <h1 class="light">Click ans collect !</h1>
+            <h1 class="light">Click and collect !</h1>
             <p class="light">Commandez puis venez retirer votre commande !</p>
             <p><a class="btn btn-lg btn-primary" href="#" role="button">En savoir plus</a></p>
           </div>
@@ -184,7 +186,7 @@
 
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">BigBurger <span class="text-muted">mode créativité activé</span></h2>
+        <h2 class="featurette-heading">BigBurger <span class="text-muted">mode creativite active</span></h2>
         <p class="lead">Les meilleurs BigBurger du monde, les meilleurs BigBurger du monde, les meilleurs BigBurger du monde, les meilleurs BigBurger du monde, les meilleurs BigBurger du monde, </p>
       </div>
       <div class="col-md-5">        
@@ -209,7 +211,7 @@
     <div class="row featurette">
       <div class="col-md-7">
         <h2 class="featurette-heading">Visiter notre carte sans attendre ! <span class="text-muted"> Tous nos produits y figure</span></h2>
-        <p class="lead">Grâce à notre carte faite sur mesure, vous pourrez directement faire votre commande en détail, ajoutez vos souhaits les uns aprés les autres puis valider votre commande</p>
+        <p class="lead">Grace a notre carte faite sur mesure, vous pourrez directement faire votre commande en detail, ajoutez vos souhaits les uns apres les autres puis valider votre commande</p>
         <p class="lead"><button type="button" class="btn btn-secondary btn-sm">Commander</button></p>
       </div>
       <div class="col-md-5">
