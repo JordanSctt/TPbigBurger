@@ -25,12 +25,21 @@ public class UserWrapper {
     }
 
     public User fromEntity(UserEntity entity) {
-        User model = new User();
-        model.setId(entity.getId());
-        model.setName(entity.getName());
-        model.setPassword(entity.getPassword());
-        model.setPhone(entity.getPhone());
-        return model;
-    }
 
+        if (entity.isAdmin()) {
+            Admin model = new Admin();
+            model.setId(entity.getId());
+            model.setName(entity.getName());
+            model.setPassword(entity.getPassword());
+            model.setPhone(entity.getPhone());
+            return model;
+        } else {
+            User model = new User();
+            model.setId(entity.getId());
+            model.setName(entity.getName());
+            model.setPassword(entity.getPassword());
+            model.setPhone(entity.getPhone());
+            return model;
+        }
+    }
 }

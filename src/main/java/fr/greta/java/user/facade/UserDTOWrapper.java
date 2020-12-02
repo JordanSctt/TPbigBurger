@@ -1,5 +1,6 @@
 package fr.greta.java.user.facade;
 
+import fr.greta.java.user.domain.Admin;
 import fr.greta.java.user.domain.User;
 
 import java.util.ArrayList;
@@ -16,12 +17,22 @@ public class UserDTOWrapper {
     }
 
     public UserDTO toDTO(User model) {
-        UserDTO dto = new UserDTO();
-        dto.setId(model.getId());
-        dto.setName(model.getName());
-        dto.setPassword(model.getPassword());
-        dto.setPhone(model.getPhone());
-            return dto;
-    }
 
+        if (model.isAdmin()) {
+
+            AdminDTO dto = new AdminDTO();
+            dto.setId(model.getId());
+            dto.setName(model.getName());
+            dto.setPassword(model.getPassword());
+            dto.setPhone(model.getPhone());
+            return dto;
+        } else {
+            UserDTO dto = new UserDTO();
+            dto.setId(model.getId());
+            dto.setName(model.getName());
+            dto.setPassword(model.getPassword());
+            dto.setPhone(model.getPhone());
+            return dto;
+        }
+    }
 }

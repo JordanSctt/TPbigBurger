@@ -24,7 +24,7 @@ public class UserService {
     }
 
     public User createUser(User user) throws ServiceException {
-        if(user.nameIsValid() && user.passwordIsValid()) {
+        if(user.nameIsValid() && user.passwordIsValid() && user.phoneIsValid()) {
             try {
                 return wrapper.fromEntity(repository.create(wrapper.toEntity(user)));
             } catch (RepositoryException e) {

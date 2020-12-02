@@ -1,6 +1,7 @@
 package fr.greta.java.user.facade;
 
 import fr.greta.java.generic.exception.ServiceException;
+import fr.greta.java.user.domain.Admin;
 import fr.greta.java.user.domain.User;
 import fr.greta.java.user.domain.UserService;
 import fr.greta.java.user.domain.UserWrapper;
@@ -38,7 +39,7 @@ public class UserConnectionServlet extends HttpServlet {
 				if (user != null) {
 					HttpSession session = request.getSession();
 					session.setAttribute("userConnected", userDTOWrapper.toDTO(user));
-					//request.setAttribute("isAdmin", user instanceof Admin);
+					request.setAttribute("isAdmin", user instanceof Admin);
 					request.getRequestDispatcher("accueil.jsp").forward(request, response);
 					} else {
 						PrintWriter out = response.getWriter();

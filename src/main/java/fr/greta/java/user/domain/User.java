@@ -9,6 +9,21 @@ public class User {
     private String password;
     private String phone;
 
+    public User(int id, String name, String password, String phone) {
+        super();
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.phone = phone;
+    }
+
+    public User() {
+    }
+    //-------------------------------
+    public boolean isAdmin() {
+        return false;
+    }
+    //-------------------------------
 
     public int getId() {
         return id;

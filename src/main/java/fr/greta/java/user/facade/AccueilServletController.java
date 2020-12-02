@@ -1,5 +1,6 @@
 package fr.greta.java.user.facade;
 
+import fr.greta.java.user.domain.Admin;
 import fr.greta.java.user.domain.User;
 
 import javax.servlet.RequestDispatcher;
@@ -17,9 +18,9 @@ public class AccueilServletController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		//HttpSession session = req.getSession();
-		//User user = (User)session.getAttribute("userConnected");
-		//req.setAttribute("isAdmin", user instanceof Admin);
+		HttpSession session = req.getSession();
+		User user = (User)session.getAttribute("userConnected");
+		req.setAttribute("isAdmin", user instanceof Admin);
 		
 		RequestDispatcher dispatch = req.getRequestDispatcher("accueil.jsp");
 		dispatch.forward(req, resp);			
