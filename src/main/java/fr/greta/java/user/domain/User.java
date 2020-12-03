@@ -9,8 +9,8 @@ public class User {
     private String password;
     private String phone;
 
-    public User(int id, String name, String password, String phone) {
-        super();
+    public User(int id ,String name, String password, String phone) {
+
         this.id = id;
         this.name = name;
         this.password = password;

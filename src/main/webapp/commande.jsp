@@ -57,7 +57,7 @@
                <tr>
                    <td width = "15%" ><c:out value="${ burger.label }" /></td>
                    <td width = "10%" ><c:out value="${ burger.price }" /></td>
-                   <td><input type="text" id="quantiteBurger" name="user_quantiteBurger" maxlength="2" size = "1"></td>
+                   <td><input type="number" id="quantiteBurger" name="burgerquantity${burger.id}" maxlength="2" size = "1"></td>
                </tr>
 
            </c:forEach>
