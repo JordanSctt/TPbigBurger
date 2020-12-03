@@ -71,21 +71,16 @@ public class UserRepository {
 
     private UserEntity toEntity(ResultSet resultSet) throws SQLException {
         UserEntity entity;
-        //entity.setId(resultSet.getInt("_user_id"));
 
         if (resultSet.getString("_role").equals("admin")) {
             entity = new AdminEntity();
-            entity.setId(resultSet.getInt("_user_id"));
-            entity.setName(resultSet.getString("_name"));
-            entity.setPassword(resultSet.getString("_password"));
-            entity.setPhone(resultSet.getString("_phone"));
         } else {
             entity = new UserEntity();
-            entity.setId(resultSet.getInt("_user_id"));
-            entity.setName(resultSet.getString("_name"));
-            entity.setPassword(resultSet.getString("_password"));
-            entity.setPhone(resultSet.getString("_phone"));
         }
+        entity.setId(resultSet.getInt("_user_id"));
+        entity.setName(resultSet.getString("_name"));
+        entity.setPassword(resultSet.getString("_password"));
+        entity.setPhone(resultSet.getString("_phone"));
         return entity;
     }
 
