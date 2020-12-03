@@ -3,6 +3,7 @@ package fr.greta.java.burger.facade;
 import fr.greta.java.burger.domain.Burger;
 import fr.greta.java.burger.domain.BurgerService;
 import fr.greta.java.generic.exception.ServiceException;
+import fr.greta.java.user.domain.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -24,17 +25,17 @@ public class BurgerServletController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-
-
-
-        try {
-            List<Burger> burgers = service.findAllWithBurger();
-            request.setAttribute("burgers", wrapper.toDTOS(burgers));
-            request.getRequestDispatcher("commande.jsp").forward(request, response);
-        } catch (ServiceException e) {
-            e.printStackTrace();
+        if (session.getAttribute("userConnected") != null) {
+            try {
+                List<Burger> burgers = service.findAllWithBurger();
+                request.setAttribute("burgers", wrapper.toDTOS(burgers));
+                request.getRequestDispatcher("commande.jsp").forward(request, response);
+            } catch (ServiceException e) {
+                e.printStackTrace();
+            }
+        } else {
+            request.getRequestDispatcher("accueil.jsp").forward(request, response);
         }
-
 
 
     }

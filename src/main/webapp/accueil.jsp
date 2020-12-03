@@ -47,9 +47,7 @@
       <ul class="navbar-nav mr-auto"> 
         
         <!-- Boutton pour passer une commande, nous dirige vers la page de commande des burgers -->
-        <li class="nav-item">
-          <button type="button" class="btn btn-secondary">Commander</button>
-        </li>
+        
 
         <!-- --------------- -->
         <c:choose>
@@ -86,6 +84,9 @@
         </li>
         <li class="nav-item">
           <a type="button" class="btn btn-secondary" href="disconnect">Se deconnecter</a>
+        </li>
+        <li class="nav-item">
+          <a type="button"  class="btn btn-secondary" href="CommandeUser">Commander</a>
         </li>    
         
         </c:otherwise> 
