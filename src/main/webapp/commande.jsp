@@ -5,7 +5,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
@@ -40,31 +40,31 @@
   <body>
 
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prix</th>
-                <th>Quantite</th>
+   <table class="table">
+           <thead>
+               <tr>
+                   <th>Nom</th>
+                   <th>Prix</th>
+                   <th>Quantite</th>
 
-            </tr>
-        </thead>
-        <tbody><tr>
+               </tr>
+           </thead>
+           <tbody><tr>
 
-        </tr>
-        <c:forEach items="${ requestScope.burgers}" var="burger">
-           <form action ="actionCommanderUser" method ="post">
-            <tr>
-                <td width = "15%" ><c:out value="${ burger.label }" /></td>
-                <td width = "10%" ><c:out value="${ burger.price }" /></td>
-                <td><input type="text" id="quantiteBurger" name="user_quantiteBurger" maxlength="2" size = "1"></td>
-            </tr>
+           </tr>
+           <c:forEach items="${ requestScope.burgers}" var="burger">
+              <form action ="actionCommanderUser" method ="post">
+               <tr>
+                   <td width = "15%" ><c:out value="${ burger.label }" /></td>
+                   <td width = "10%" ><c:out value="${ burger.price }" /></td>
+                   <td><input type="text" id="quantiteBurger" name="user_quantiteBurger" maxlength="2" size = "1"></td>
+               </tr>
 
-        </c:forEach>
-        <td ><class="button"><input type="submit" value="Commander"></a></td>
-        </form>
-        </tbody>
-    </table>
+           </c:forEach>
+           <td ><class="button"><input type="submit" value="Commander"></a></td>
+           </form>
+           </tbody>
+       </table>
 
 
 
