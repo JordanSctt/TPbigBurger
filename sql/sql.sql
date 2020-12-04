@@ -30,3 +30,8 @@ ALTER TABLE _commande
 ALTER TABLE _commandeItems
     ADD CONSTRAINT _commandeItems_pk_burgcomm primary key (_burger_id, _commande_id);
 
+    ALTER TABLE _commandeitems
+        ADD CONSTRAINT _commandeitems_fk__commande foreign key (_commande_id)  REFERENCES _commande(_commande_id);
+    ALTER TABLE _commandeitems
+        ADD CONSTRAINT _commandeitems_fk__burger foreign key (_burger_id)  REFERENCES _burger(_burger_id);
+

@@ -1,5 +1,7 @@
 package fr.greta.java.commande.facade;
 
+import fr.greta.java.user.facade.UserDTO;
+
 import java.time.LocalDateTime;
 
 public class CommandeDTO {
@@ -10,6 +12,8 @@ public class CommandeDTO {
     private String name;
     private String password;
     private String phone;
+
+
 
     public int getId() {
         return id;

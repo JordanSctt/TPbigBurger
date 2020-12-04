@@ -16,6 +16,26 @@ public class UserDTOWrapper {
         return dtos;
     }
 
+    public User fromDTO(UserDTO dto) {
+
+        if (dto.isAdmin()) {
+
+            Admin model = new Admin();
+            model.setId(dto.getId());
+            model.setName(dto.getName());
+            model.setPassword(dto.getPassword());
+            model.setPhone(dto.getPhone());
+            return model;
+
+        } else {
+            User model = new User();
+            model.setId(dto.getId());
+            model.setName(dto.getName());
+            model.setPassword(dto.getPassword());
+            model.setPhone(dto.getPhone());
+            return model;
+        }
+    }
     public UserDTO toDTO(User model) {
 
         if (model.isAdmin()) {

@@ -2,6 +2,7 @@ package fr.greta.java.burger.facade;
 
 import fr.greta.java.burger.domain.Burger;
 import fr.greta.java.burger.domain.BurgerService;
+import fr.greta.java.burger.facade.BurgerDTOWrapper;
 import fr.greta.java.generic.exception.ServiceException;
 import fr.greta.java.user.domain.User;
 
@@ -15,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/CommandeUser")
-public class BurgerServletController extends HttpServlet {
+public class BurgerServletControler extends HttpServlet {
 
     private BurgerService service = new BurgerService();
 

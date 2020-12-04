@@ -49,15 +49,14 @@
 
                </tr>
            </thead>
-           <tbody><tr>
+           <tbody>
 
-           </tr>
            <c:forEach items="${ requestScope.burgers}" var="burger">
               <form action ="actionCommanderUser" method ="post">
                <tr>
-                   <td width = "15%" ><c:out value="${ burger.label }" /></td>
-                   <td width = "10%" ><c:out value="${ burger.price }" /></td>
-                   <td><input type="number" id="quantiteBurger" name="burgerquantity${burger.id}" maxlength="2" size = "1"></td>
+                   <td width = "15%"><c:out value="${ burger.label }" /></td>
+                   <td width = "10%"><c:out value="${ burger.price }" /></td>
+                   <td><input type="number" id="quantiteBurger" name="${burger.id}" maxlength="2" size = "1"></td>
                </tr>
 
            </c:forEach>

@@ -7,9 +7,17 @@ import java.time.LocalDateTime;
 public class CommandeEntity {
 
     private int id;
-    private int userId;
+    private int userID;
     private LocalDateTime startDatePrep;
     private LocalDateTime endDatePrep;
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
 
     public int getId() {
         return id;
@@ -17,14 +25,6 @@ public class CommandeEntity {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public LocalDateTime getStartDatePrep() {
