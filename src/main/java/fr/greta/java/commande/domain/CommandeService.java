@@ -1,8 +1,12 @@
 package fr.greta.java.commande.domain;
 
+import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.commande.persistence.CommandeRepository;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 public class CommandeService {
 
@@ -18,6 +22,39 @@ public class CommandeService {
             } catch (RepositoryException e) {
                 throw new ServiceException(e);
             }
+
+    }
+
+    public Commande calculDateFin(Commande commande) {
+
+        LocalDateTime dateCommande = commande.getStartDatePrep();
+
+        if (verifSiCommandeEnCours()) {
+
+            commande.setEndDatePrep(dateCommande.plusMinutes(30));
+
+
+        } else {
+
+            commande.setEndDatePrep(dateCommande.plusMinutes(20));
+
+        }
+
+        return commande;
+
+    }
+
+    private boolean verifSiCommandeEnCours() {
+            List<CommandeEntity> entityList = null;
+
+        try {
+           entityList = repository.chercheByEtat();
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+        }
+
+            return !entityList.isEmpty();
+
 
     }
 

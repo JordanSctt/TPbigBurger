@@ -2,14 +2,24 @@ package fr.greta.java.commande.persistence;
 
 import fr.greta.java.user.domain.User;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class CommandeEntity {
 
     private int id;
     private int userID;
-    private LocalDateTime startDatePrep;
-    private LocalDateTime endDatePrep;
+    private Timestamp startDatePrep;
+    private Timestamp endDatePrep;
+    private String etatCommande;
+
+    public String getEtatCommande() {
+        return etatCommande;
+    }
+
+    public void setEtatCommande(String etatCommande) {
+        this.etatCommande = etatCommande;
+    }
 
     public int getUserID() {
         return userID;
@@ -27,19 +37,19 @@ public class CommandeEntity {
         this.id = id;
     }
 
-    public LocalDateTime getStartDatePrep() {
+    public Timestamp getStartDatePrep() {
         return startDatePrep;
     }
 
-    public void setStartDatePrep(LocalDateTime startDatePrep) {
+    public void setStartDatePrep(Timestamp startDatePrep) {
         this.startDatePrep = startDatePrep;
     }
 
-    public LocalDateTime getEndDatePrep() {
+    public Timestamp getEndDatePrep() {
         return endDatePrep;
     }
 
-    public void setEndDatePrep(LocalDateTime endDatePrep) {
+    public void setEndDatePrep(Timestamp endDatePrep) {
         this.endDatePrep = endDatePrep;
     }
 }

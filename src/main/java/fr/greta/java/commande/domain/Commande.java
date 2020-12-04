@@ -10,7 +10,20 @@ public class Commande {
     private User user;
     private LocalDateTime startDatePrep;
     private LocalDateTime endDatePrep;
+    private CommandeEtat etatCommande;
 
+
+
+
+    public CommandeEtat getEtatCommande() {
+        return etatCommande;
+    }
+
+
+
+    public void setEtatCommande(CommandeEtat etatCommande) {
+        this.etatCommande = etatCommande;
+    }
 
     public int getId() {
         return id;

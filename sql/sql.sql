@@ -35,3 +35,6 @@ ALTER TABLE _commandeItems
     ALTER TABLE _commandeitems
         ADD CONSTRAINT _commandeitems_fk__burger foreign key (_burger_id)  REFERENCES _burger(_burger_id);
 
+        ALTER TABLE _commande
+        ADD _etatCommande character varying(20);
+

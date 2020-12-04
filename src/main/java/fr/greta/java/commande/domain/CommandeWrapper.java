@@ -3,6 +3,8 @@ package fr.greta.java.commande.domain;
 import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.user.domain.User;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,9 @@ public class CommandeWrapper {
         user.setId(entity.getUserID());
         model.setId(entity.getId());
         model.setUser(user);
-        // heure
+        model.setStartDatePrep(entity.getStartDatePrep().toLocalDateTime());
+        model.setEndDatePrep(entity.getEndDatePrep().toLocalDateTime());
+        model.setEtatCommande(CommandeEtat.valueOf(entity.getEtatCommande()));
         return model;
     }
 
@@ -33,7 +37,9 @@ public class CommandeWrapper {
         CommandeEntity entity = new CommandeEntity();
         entity.setId(model.getId());
         entity.setUserID(model.getUser().getId());
-        // rajouter l'heure
+        entity.setStartDatePrep(Timestamp.valueOf(model.getStartDatePrep()));
+        entity.setEndDatePrep(Timestamp.valueOf(model.getEndDatePrep()));
+        entity.setEtatCommande(model.getEtatCommande().name());
         return entity;
     }
 
