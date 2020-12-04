@@ -6,6 +6,8 @@ public class CommandeItemsEntity {
     private int commandeId;
     private int quantity;
 
+
+
     public int getBurgerId() {
         return burgerId;
     }

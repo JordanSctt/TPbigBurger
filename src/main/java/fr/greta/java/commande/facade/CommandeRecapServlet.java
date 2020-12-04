@@ -1,6 +1,6 @@
 package fr.greta.java.commande.facade;
 
-import com.sun.java.swing.ui.CommonMenuBar;
+//import com.sun.java.swing.ui.CommonMenuBar;
 import fr.greta.java.commande.domain.Commande;
 import fr.greta.java.commande.domain.CommandeService;
 import fr.greta.java.commandeItems.domain.CommandeItemsService;
@@ -29,7 +29,7 @@ public class CommandeRecapServlet extends HttpServlet {
         private CommandeDTOWrapper wrapper = new CommandeDTOWrapper();
         private CommandeItemsRepository repository = new CommandeItemsRepository();
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Double prixTotal = 0.0;
         HttpSession session = request.getSession();
 

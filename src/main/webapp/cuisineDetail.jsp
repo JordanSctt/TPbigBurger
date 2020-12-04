@@ -45,30 +45,19 @@
   
   <div class="text-center">  
  	 <div class="text-center mb-4">
-   		<h1 class="h1 mb-3 font-weight-normal">Affichage des commandes (Admin.)</h1>
+   		<h1 class="h1 mb-3 font-weight-normal">Affichage du detail d'une commande (Admin.)</h1>
    		<a type="button" class="btn btn-outline-primary center" href="accueil.jsp">Accueil</a>
  	 </div>
     <table class="table">
       <thead class="thead-dark">
         <tr>
-          <th scope="col">Numero commande</th>
-          <th scope="col">Date/heure valid. commande</th>
-          <th scope="col">Date/heure commande prete</th>
-          <th scope="col">Nom client</th>
-          <th scope="col">Telephone client</th>
-          <th scope="col">Action</th>
+          <th scope="col">Nom burger</th>
+          <th scope="col">Prix</th>
+          <th scope="col">Quantité</th>
         </tr>
       </thead>
       <tbody>   
-        <c:forEach items="${requestScope.commandes}" var="commande">    
-            <tr>        
-                <td><c:out value="${ commande.id }" /></td>
-                <td><c:out value="${commande.startDatePrep}" /></td>
-                <td><c:out value="${commande.endDatePrep}" /></td>
-                <td><c:out value="${commande.name}" /></td>
-                <td><c:out value="${commande.phone}" /></td>
-                <td><a href="${pageContext.request.contextPath}/affichageCommande/detail?commande_id=<c:out value="${ commande.id }" />"/>Detail<a/></td>  
-                
+                        
                 <c:forEach items="${requestScope.commandeItems}" var="commandeItems"> 
                   <tr> 
                       <td><c:out value="${commandeItems.label}" /></td>  
@@ -76,10 +65,7 @@
                       <td><c:out value="${commandeItems.quantity}" />_unite(s)</td>
                   </tr> 
               </c:forEach>  
-
-            </tr>
-        </c:forEach> 
-                
+               
       </tbody>
     </table>  	
     <!--<a href="${pageContext.request.contextPath}/affichageCommande/detail?commande_id=<c:out value="${ commande.id }" />"/>Detail<a/>  -->	     	 

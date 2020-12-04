@@ -1,8 +1,11 @@
 package fr.greta.java.commande.domain;
 
+import fr.greta.java.commandeItems.domain.CommandeItems;
+import fr.greta.java.commandeItems.persistence.CommandeItemsEntity;
 import fr.greta.java.user.domain.User;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Commande {
 
@@ -11,15 +14,12 @@ public class Commande {
     private LocalDateTime startDatePrep;
     private LocalDateTime endDatePrep;
     private CommandeEtat etatCommande;
-
-
+    private List<CommandeItems> commandesItems;
 
 
     public CommandeEtat getEtatCommande() {
         return etatCommande;
     }
-
-
 
     public void setEtatCommande(CommandeEtat etatCommande) {
         this.etatCommande = etatCommande;
@@ -55,5 +55,13 @@ public class Commande {
 
     public void setEndDatePrep(LocalDateTime endDatePrep) {
         this.endDatePrep = endDatePrep;
+    }
+
+    public List<CommandeItems> getCommandesItems() {
+        return commandesItems;
+    }
+
+    public void setCommandesItems(List<CommandeItems> commandesItems) {
+        this.commandesItems = commandesItems;
     }
 }

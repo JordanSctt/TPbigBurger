@@ -34,18 +34,6 @@ public class CommandeItemsServlet extends HttpServlet {
 
     //System.out.println(key + " : " + map.get(key)[0] );
 
-    /*   //  LocalDateTime to Timestamp
-        LocalDateTime now = LocalDateTime.now();
-        Timestamp timestamp = Timestamp.valueOf(now);
-
-        System.out.println(now);            // 2019-06-14T15:50:36.068076300
-        System.out.println(timestamp);      // 2019-06-14 15:50:36.0680763
-
-        //  Timestamp to LocalDateTime
-        LocalDateTime localDateTime = timestamp.toLocalDateTime();
-
-        System.out.println(localDateTime);  // 2019-06-14T15:50:36.068076300
-*/
 
 
     private CommandeService serviceCommande = new CommandeService();
@@ -73,7 +61,6 @@ public class CommandeItemsServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-
         Map<String, String[]> map = request.getParameterMap();
 
         for (String key : map.keySet()) {
@@ -93,19 +80,10 @@ public class CommandeItemsServlet extends HttpServlet {
             }
         }
         }
-
             session.setAttribute("commande", commande);
-            request.getRequestDispatcher("recapCommande").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/recapCommande");
+            //request.getRequestDispatcher("recapCommande").forward(request, response);
 
         }
     }
 
-
-
-
-// ----------
-    /*   // commandeItemsDTO.setBurgerID(Integer.parseInt(key));
-
-            // faire requette SQL pour rentrer l'id cle etrangere du burger, et la quantite + user name dans commande
-*/
-// key = burgerID , [0] = quantite    System.out.println(key + " : " + map.get(key)[0] );

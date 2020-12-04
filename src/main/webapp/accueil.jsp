@@ -65,7 +65,7 @@
 
         <c:if test="${isAdmin}">
         <li class="nav-item">
-          <a type="button" class="btn btn-secondary" href="administration">Afficher les commandes</a>
+          <a type="button" class="btn btn-secondary" href="affichageCommande">Afficher les commandes</a>
         </li>                
         </c:if>
 

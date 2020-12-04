@@ -1,15 +1,20 @@
 package fr.greta.java.commandeItems.persistence;
 
+import fr.greta.java.burger.persistence.BurgerEntity;
 import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.commandeItems.domain.CommandeItems;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.tools.ConnectionFactory;
 import fr.greta.java.generic.tools.JdbcTool;
+import fr.greta.java.user.persistence.UserEntity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,8 +48,50 @@ public class CommandeItemsRepository {
         }
     }
 
-    public List<CommandeItemsEntity> findAllCommandeItemsByCommandeID (int id) throws  RepositoryException {
+    public List<CommandeItemsEntity> findAll() throws RepositoryException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        try {
+            conn = connectionFactory.create();
+            stmt = conn.prepareStatement(SELECT_REQUEST_ALL);
+            resultSet = stmt.executeQuery();
 
+            List<CommandeItemsEntity> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(toEntity(resultSet));
+            }
+            return list;
+
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST_ALL, e);
+        } finally {
+            JdbcTool.close(resultSet, stmt, conn);
+        }
+    }
+
+    public CommandeItemsEntity findById(int id) throws RepositoryException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        try {
+            conn = connectionFactory.create();
+            stmt = conn.prepareStatement(SELECT_REQUEST_WHERE_ID);
+            stmt.setInt(1, id);
+            resultSet = stmt.executeQuery();
+
+            if (resultSet.next()) {
+                return toEntity(resultSet);
+            }
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST_WHERE_ID);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST_WHERE_ID, e);
+        } finally {
+            JdbcTool.close(resultSet, stmt, conn);
+        }
+    }
+
+    public List<CommandeItemsEntity> findAllCommandeItemsByCommandeID (int id) throws  RepositoryException {
 
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -66,7 +113,6 @@ public class CommandeItemsRepository {
         } finally {
             JdbcTool.close(resultSet, stmt, conn);
         }
-
     }
 
     private CommandeItemsEntity toEntity(ResultSet resultSet) throws SQLException {
@@ -77,8 +123,4 @@ public class CommandeItemsRepository {
 
         return entity;
     }
-
-
-
-
 }

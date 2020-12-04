@@ -1,7 +1,5 @@
 package fr.greta.java.commande.facade;
 
-import fr.greta.java.user.facade.UserDTO;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
