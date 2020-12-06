@@ -57,7 +57,7 @@ public class CommandeRepository {
         try {
             conn = connectionFactory.create();
             stmt = conn.prepareStatement(SEARCH_REQUEST_BYETAT);
-            stmt.setString(1, CommandeEtat.EN_COURS_DE_PREPARATION.name());
+            stmt.setString(1, CommandeEtat.EN_COURS_DE_TRAITEMENT.name());
             resultSet = stmt.executeQuery();
 
             List<CommandeEntity> list = new ArrayList<>();
