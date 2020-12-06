@@ -5,12 +5,27 @@ import java.time.LocalDateTime;
 public class CommandeItemsDTO {
 
     private String label;
-    private String price;
-    private LocalDateTime startDatePrep;
-    private LocalDateTime endDatePrep;
+    private Double price;
+    private String startDateFormat;
+    private String endDateFormat;
     private int quantity;
 
 
+    public String getStartDateFormat() {
+        return startDateFormat;
+    }
+
+    public void setStartDateFormat(String startDateFormat) {
+        this.startDateFormat = startDateFormat;
+    }
+
+    public String getEndDateFormat() {
+        return endDateFormat;
+    }
+
+    public void setEndDateFormat(String endDateFormat) {
+        this.endDateFormat = endDateFormat;
+    }
 
     public String getLabel() {
         return label;
@@ -20,28 +35,12 @@ public class CommandeItemsDTO {
         this.label = label;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public LocalDateTime getStartDatePrep() {
-        return startDatePrep;
-    }
-
-    public void setStartDatePrep(LocalDateTime startDatePrep) {
-        this.startDatePrep = startDatePrep;
-    }
-
-    public LocalDateTime getEndDatePrep() {
-        return endDatePrep;
-    }
-
-    public void setEndDatePrep(LocalDateTime endDatePrep) {
-        this.endDatePrep = endDatePrep;
     }
 
     public int getQuantity() {

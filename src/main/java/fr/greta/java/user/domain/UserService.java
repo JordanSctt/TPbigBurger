@@ -23,6 +23,15 @@ public class UserService {
         }
     }
 
+    public User findById(int id) throws ServiceException {
+        try {
+            User user = wrapper.fromEntity(repository.findById(id));
+            return user;
+        } catch (RepositoryException e) {
+            throw new ServiceException(e);
+        }
+    }
+
     public User createUser(User user) throws ServiceException {
         if(user.nameIsValid() && user.passwordIsValid() && user.phoneIsValid()) {
             try {

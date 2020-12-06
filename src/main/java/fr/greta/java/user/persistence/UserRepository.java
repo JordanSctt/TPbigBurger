@@ -14,34 +14,56 @@ public class UserRepository {
     private final String SELECT_REQUEST = "SELECT _user_id, _name, _password, _phone, _role FROM _user WHERE _name = ? AND _password = ?";
     private final String INSERT_REQUEST = "INSERT INTO _user (_name, _password, _phone, _role) VALUES (?, ?, ?, ?)";
 
+    private final String SELECT_REQUEST_WHERE_ID = "SELECT * FROM _user WHERE _user_id = ?";
+
     public UserEntity findByNameAndPassword(String name, String password) throws RepositoryException {
 
-            Connection conn = null;
-            PreparedStatement stmt = null;
-            ResultSet resultSet = null;
-            try {
-                conn = connectionFactory.create();
-                stmt = conn.prepareStatement(SELECT_REQUEST);
-                stmt.setString(1, name);
-                stmt.setString(2, password);
-                resultSet = stmt.executeQuery();
-                if (resultSet.next()) {
-                    return toEntity(resultSet);
-                }
-
-                throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST);
-            } catch (SQLException | ClassNotFoundException e) {
-                throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST, e);
-            } finally {
-                JdbcTool.close(resultSet, stmt, conn);
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        try {
+            conn = connectionFactory.create();
+            stmt = conn.prepareStatement(SELECT_REQUEST);
+            stmt.setString(1, name);
+            stmt.setString(2, password);
+            resultSet = stmt.executeQuery();
+            if (resultSet.next()) {
+                return toEntity(resultSet);
             }
+
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST, e);
+        } finally {
+            JdbcTool.close(resultSet, stmt, conn);
         }
+    }
+
+    public UserEntity findById(int id) throws RepositoryException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        try {
+            conn = connectionFactory.create();
+            stmt = conn.prepareStatement(SELECT_REQUEST_WHERE_ID);
+            stmt.setInt(1, id);
+            resultSet = stmt.executeQuery();
+
+            if (resultSet.next()) {
+                return toEntity(resultSet);
+            }
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST_WHERE_ID);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST_WHERE_ID, e);
+        } finally {
+            JdbcTool.close(resultSet, stmt, conn);
+        }
+    }
 
     public UserEntity create(UserEntity entity) throws RepositoryException {
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
-
 
         try {
             conn = connectionFactory.create();
@@ -52,14 +74,10 @@ public class UserRepository {
             preparedStatement.setString(4, "user");
             preparedStatement.executeUpdate();
 
-             rs = preparedStatement.getGeneratedKeys();
-             if(rs.next()) {
-
-                 entity.setId(rs.getInt(1));
-
-             }
-
-
+            rs = preparedStatement.getGeneratedKeys();
+            if(rs.next()) {
+                entity.setId(rs.getInt(1));
+            }
             return entity;
         } catch (SQLException | ClassNotFoundException e) {
             throw new RepositoryException("Erreur lors de l'execution de la requête:" + INSERT_REQUEST, e);

@@ -110,34 +110,39 @@
 
     <!-- START THE FEATURETTES -->
 
+<center><h1>RECAPITULATIF</h1></center>
 
          <table class="table">
                     <thead>
                         <tr>
-                        <th></th>
-                            <th>Nom</th>
-                            <th>Prix</th>
+
+                            <th>Burger</th>
                             <th>Quantite</th>
+                            <th>Prix unitaire</th>
+                            <th>Total</th>
+
 
                         </tr>
                     </thead>
                     <tbody>
-         <form action ="actionCommanderUser" method ="post">
-                    <c:forEach items="${ requestScope.burgers}" var="burger">
-
+                        <c:forEach items="${ requestScope.commandeItemsDTO}" var="commande">
                         <tr>
-                        <td width = "10%">
-                        <img src="images/${ burger.label }.png"
-                         width="100" height="110"></img></td>
-                            <td> <c:out value="${ burger.label }" /></td>
-                            <td ><c:out value="${ burger.price }" /></td>
-                            <td width = "70%"><input type="text" id="${burger.id}" name="${burger.id}" size = "1"></td>
+                            <td> <c:out value = "${commande.label}"/></td>
+                            <td ><c:out value = "${commande.quantity}"/></td>
+                            <td><c:out value = "${commande.price} euros"/></td>
+                            <td>${commande.quantity * commande.price } euros</td>
+
                         </tr>
-                    </c:forEach>
-                    <td ><class="button"><input type="submit" value="Valider"></a></td>
-                    </form>
+</c:forEach>
                     </tbody>
-                </table>
+               </table>
+
+               <tr>
+
+               </tr>
+<p><h1>Date recup : <c:out value = "${sessionScope.commande.heureRecup}"/></h1></p>
+
+<p><a type="button" class="btn btn-primary" href="accueil.jsp">Retour Accueil</a></p>
 
     <hr class="featurette-divider">
 

@@ -3,6 +3,7 @@ package fr.greta.java.commande.facade;
 import fr.greta.java.user.facade.UserDTO;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class CommandeDTO {
 
@@ -12,8 +13,34 @@ public class CommandeDTO {
     private String name;
     private String password;
     private String phone;
+    private String etatCommande;
+    private String heureRecup;
+
+    public String getHeureRecup() {
+        return heureRecup;
+    }
+
+    public void setHeureRecup (LocalDateTime endDatePrep) {
+
+        this.heureRecup = formatDate(endDatePrep);
+
+    }
+    public String formatDate(LocalDateTime localDate) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        String formatDateTime = localDate.format(formatter);
+
+        return formatDateTime;
+    }
 
 
+    public String getEtatCommande() {
+        return etatCommande;
+    }
+
+    public void setEtatCommande(String etatCommande) {
+        this.etatCommande = etatCommande;
+    }
 
     public int getId() {
         return id;

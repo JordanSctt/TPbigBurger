@@ -40,6 +40,30 @@
   <body>
 
 
+   <table class="table">
+           <thead>
+               <tr>
+                   <th>Nom</th>
+                   <th>Prix</th>
+                   <th>Quantite</th>
+
+               </tr>
+           </thead>
+           <tbody>
+<form action ="actionCommanderUser" method ="post">
+           <c:forEach items="${ requestScope.burgers}" var="burger">
+
+               <tr>
+                   <td width = "15%"><c:out value="${ burger.label }" /></td>
+                   <td width = "10%"><c:out value="${ burger.price }" /></td>
+                   <td><input type="text" id="quantiteBurger" name="${burger.id}" size = "1"></td>
+               </tr>
+
+           </c:forEach>
+           <td ><class="button"><input type="submit" value="Commander"></a></td>
+           </form>
+           </tbody>
+       </table>
 
 
 
