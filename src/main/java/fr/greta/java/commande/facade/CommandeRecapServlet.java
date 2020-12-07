@@ -30,7 +30,7 @@ public class CommandeRecapServlet extends HttpServlet {
         private CommandeItemsRepository repository = new CommandeItemsRepository();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        Double prixTotal = 0.0;
         HttpSession session = request.getSession();
 
       CommandeDTO commandeDTO = wrapper.toDTO ( (Commande) session.getAttribute("commande"));
@@ -38,14 +38,21 @@ public class CommandeRecapServlet extends HttpServlet {
 
         try {
 
-            List<CommandeItemsEntity> commandeItemsEntityList = new ArrayList<>();
-            commandeItemsEntityList = repository.findAllCommandeItemsByCommandeID(commandeDTO.getId());
+            List<CommandeItemsEntity> commandeItemsEntityList = repository.findAllCommandeItemsByCommandeID(commandeDTO.getId());
             List <CommandeItemsDTO> listCommandeDTO = wrapperDTO.toListDTO(commandeItemsEntityList);
             request.setAttribute("commandeItemsDTO", listCommandeDTO);
+            for (CommandeItemsDTO commandeItemsDTO : listCommandeDTO) {
+
+                prixTotal += commandeItemsDTO.getTotalPrixLigne();
+
+            }
+
         } catch (RepositoryException e) {
             e.printStackTrace();
         }
-        // recup les burgers
+
+        commandeDTO.setPrixTotal(prixTotal);
+
 
         session.setAttribute("commande",commandeDTO );
         request.getRequestDispatcher("recapCommande.jsp").forward(request, response);

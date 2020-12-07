@@ -15,9 +15,15 @@ public class CommandeDTO {
     private String phone;
     private String etatCommande;
     private String heureRecup;
+    private double prixTotal;
 
+    public double getPrixTotal() {
+        return prixTotal;
+    }
 
-
+    public void setPrixTotal(double prixTotal) {
+        this.prixTotal = prixTotal;
+    }
 
     public String getHeureRecup() {
         return heureRecup;

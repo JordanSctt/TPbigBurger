@@ -47,6 +47,7 @@ public CommandeItemsDTO toDTO(CommandeItemsEntity commandeItemsEntity) throws Re
     DTO.setStartDateFormat(formatDate(commandeEntity.getStartDatePrep().toLocalDateTime()));
     DTO.setEndDateFormat(formatDate(commandeEntity.getEndDatePrep().toLocalDateTime()));
     DTO.setQuantity(commandeItemsEntity.getQuantity());
+    DTO.setTotalPrixLigne(DTO.getPrice()*DTO.getQuantity());
 
     return DTO;
 }

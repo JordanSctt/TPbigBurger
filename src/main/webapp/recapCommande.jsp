@@ -130,7 +130,7 @@
                             <td> <c:out value = "${commande.label}"/></td>
                             <td ><c:out value = "${commande.quantity}"/></td>
                             <td><c:out value = "${commande.price} euros"/></td>
-                            <td>${commande.quantity * commande.price } euros</td>
+                            <td>${commande.totalPrixLigne} euros</td>
 
                         </tr>
 </c:forEach>
@@ -141,6 +141,7 @@
 
                </tr>
 <p><h1>Date recup : <c:out value = "${sessionScope.commande.heureRecup}"/></h1></p>
+<p><h1>Prix Total : <c:out value = "${sessionScope.commande.prixTotal}"/> euros</h1></p>
 
 <p><a type="button" class="btn btn-primary" href="accueil.jsp">Retour Accueil</a></p>
 

@@ -9,7 +9,15 @@ public class CommandeItemsDTO {
     private String startDateFormat;
     private String endDateFormat;
     private int quantity;
+    private Double totalPrixLigne;
 
+    public Double getTotalPrixLigne() {
+        return totalPrixLigne;
+    }
+
+    public void setTotalPrixLigne(Double totalPrixLigne) {
+        this.totalPrixLigne = totalPrixLigne;
+    }
 
     public String getStartDateFormat() {
         return startDateFormat;
