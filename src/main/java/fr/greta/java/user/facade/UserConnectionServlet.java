@@ -30,21 +30,23 @@ public class UserConnectionServlet extends HttpServlet {
 
 	    @Override
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    		
+
 	    	String name = request.getParameter(NAME);
 	    	String password = request.getParameter(PASSWORD);
 
 	    	try {
 				User user = userService.findByNameAndPassword(name, password);
-				if (user != null) {
+
+				if (user.getName() == null) {
+					HttpSession session = request.getSession();
+					request.getRequestDispatcher("connectionFail.jsp").forward(request, response);
+				} else {
 					HttpSession session = request.getSession();
 					session.setAttribute("userConnected", userDTOWrapper.toDTO(user));
 					request.setAttribute("isAdmin", user instanceof Admin);
 					request.getRequestDispatcher("accueil.jsp").forward(request, response);
-					} else {
-						PrintWriter out = response.getWriter();
-						out.println("<html>" + "<body>" + "<h1>Erreur de saisie du name ou du password !!</h1>" + "</html>" + "</body>");
-					}
+				}
+
 			} catch (ServiceException e) {
 				e.printStackTrace();
 			}

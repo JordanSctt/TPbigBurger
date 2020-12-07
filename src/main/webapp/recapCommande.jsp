@@ -112,6 +112,7 @@
 
 <center><h1>RECAPITULATIF</h1></center>
 
+
          <table class="table">
                     <thead>
                         <tr>

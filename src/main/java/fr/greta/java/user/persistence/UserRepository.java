@@ -30,8 +30,9 @@ public class UserRepository {
             if (resultSet.next()) {
                 return toEntity(resultSet);
             }
+            UserEntity entity = new UserEntity();
+                    return  entity;
 
-            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST);
         } catch (SQLException | ClassNotFoundException e) {
             throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST, e);
         } finally {
@@ -89,7 +90,13 @@ public class UserRepository {
 
     private UserEntity toEntity(ResultSet resultSet) throws SQLException {
         UserEntity entity;
+        if (resultSet.getString("_name").isEmpty() || resultSet.getString("_name") == null ||
+                resultSet.getString("_password").isEmpty() || resultSet.getString("_password") == null) {
 
+            return entity = new UserEntity();
+
+
+        }
         if (resultSet.getString("_role").equals("admin")) {
             entity = new AdminEntity();
         } else {

@@ -34,11 +34,11 @@
     <link rel="stylesheet" href="css/floating-labels.css" >
   </head>
   <body>
-  
-  
+
+
   <!-- FORMULAIRE : -->
-  
-  
+
+
     <form class="form-signin" action="ConnectionUser" method="POST">
   <div class="text-center mb-4">
 
@@ -61,7 +61,7 @@
       <input type="checkbox" value="remember-me"> Remember me
     </label>
   </div>  -->
-
+<p> Nom ou mot de passe incorrect</p>
   <button class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
   <p class="mt-5 mb-3 text-muted text-center">&copy; Family Bros since 1998</p>
 </form>

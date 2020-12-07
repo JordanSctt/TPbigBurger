@@ -26,6 +26,12 @@ public class UserWrapper {
 
     public User fromEntity(UserEntity entity) {
 
+        if (entity.getName() == null ) {
+
+            User model = new User();
+            return model;
+
+        }
 
         if (entity.isAdmin()) {
             Admin model = new Admin();
