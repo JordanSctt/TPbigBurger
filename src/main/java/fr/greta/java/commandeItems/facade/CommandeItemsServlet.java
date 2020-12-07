@@ -77,25 +77,22 @@ public class CommandeItemsServlet extends HttpServlet {
         Map<String, String[]> map = request.getParameterMap();
 
         for (String key : map.keySet()) {
-
+            if (!(map.get(key)[0]== null || map.get(key)[0].isEmpty())) {
             CommandeItems commandeItems = new CommandeItems();
             Burger burger = new Burger();
             burger.setId(Integer.parseInt(key));
             commandeItems.setBurger(burger);
+
             commandeItems.setQuantity(Integer.parseInt(map.get(key)[0]));
             commandeItems.setCommande(commande);
-
 
             try {
                 serviceCommandeItems.create(commandeItems);
             } catch (ServiceException e) {
                 e.printStackTrace();
             }
-
         }
-
-
-
+        }
 
             session.setAttribute("commande", commande);
             request.getRequestDispatcher("recapCommande").forward(request, response);

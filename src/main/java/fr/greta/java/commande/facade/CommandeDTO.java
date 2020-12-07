@@ -16,6 +16,9 @@ public class CommandeDTO {
     private String etatCommande;
     private String heureRecup;
 
+
+
+
     public String getHeureRecup() {
         return heureRecup;
     }
