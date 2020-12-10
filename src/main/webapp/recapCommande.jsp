@@ -75,7 +75,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item" href="#">Mon compte</a>
-              <a class="dropdown-item" href="#">Historique commande</a>
+              <a class="dropdown-item" href="historyCommande">Historique commande</a>
               <a class="dropdown-item" href="#">parametres</a>
             </div>
           </div>
