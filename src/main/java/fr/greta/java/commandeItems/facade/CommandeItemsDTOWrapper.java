@@ -21,7 +21,6 @@ private BurgerRepository repositoryBurger = new BurgerRepository();
 private CommandeRepository repositoryCommande = new CommandeRepository();
 
 
-
     public List<CommandeItemsDTO> toListDTO (List <CommandeItemsEntity> commandeItemsEntityList) throws RepositoryException {
 
         List <CommandeItemsDTO> listDTO = new ArrayList<>();
@@ -39,7 +38,6 @@ private CommandeRepository repositoryCommande = new CommandeRepository();
         }
         return listDTO;
     }
-
 
     public CommandeItemsDTO toDTO(CommandeItemsEntity commandeItemsEntity) throws RepositoryException {
 
@@ -71,24 +69,6 @@ private CommandeRepository repositoryCommande = new CommandeRepository();
 
         return dto;
     }
-
-
-
-    /*public CommandeDTO toDTO(Commande model) {
-        CommandeDTO dto = new CommandeDTO();
-        dto.setId(model.getId());
-        dto.setStartDatePrep(model.getStartDatePrep());
-        dto.setEndDatePrep(model.getEndDatePrep());
-        dto.setName(model.getUser().getName());
-        dto.setPhone(model.getUser().getPhone());
-        dto.setEtatCommande(model.getEtatCommande().name());
-
-        return dto;
-    }*/
-
-
-
-
 
     public String formatDate(LocalDateTime localDate) {
 

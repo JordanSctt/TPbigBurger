@@ -100,8 +100,6 @@ public class BurgerRepository {
         }
     }
 
-
-
     private BurgerEntity toEntity(ResultSet resultSet) throws SQLException {
         BurgerEntity entity = new BurgerEntity();
         entity.setId(resultSet.getInt("_burger_id"));

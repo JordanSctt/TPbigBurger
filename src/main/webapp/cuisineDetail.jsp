@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>Page administrateur</title>
+    <title>Page admin detail commande</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/floating-labels/">
 
@@ -46,20 +46,23 @@
   <div class="text-center">  
  	 <div class="text-center mb-4">
    		<h1 class="h1 mb-3 font-weight-normal">Affichage du detail d'une commande (Admin.)</h1>
-   		<a type="button" class="btn btn-outline-primary center" href="accueil.jsp">Accueil</a>
- 	 </div>
+   		<a type="button" class="btn btn-outline-primary center" href="/TPbigBurger/affichageCommande">Retour</a>
+    </div>
+    <div class="text-center mb-4">
+      <h2>Commande numero : <c:out value="${commande_id}" /></h2>
+    </div>
     <table class="table">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Nom burger</th>
           <th scope="col">Prix</th>
-          <th scope="col">Quantité</th>
+          <th scope="col">Quantite</th>
         </tr>
       </thead>
       <tbody>   
                         
                 <c:forEach items="${requestScope.commandeItems}" var="commandeItems"> 
-                  <tr> 
+                  <tr>                    
                       <td><c:out value="${commandeItems.label}" /></td>  
                       <td><c:out value="${commandeItems.price}" />_euros</td>
                       <td><c:out value="${commandeItems.quantity}" />_unite(s)</td>
@@ -67,8 +70,7 @@
               </c:forEach>  
                
       </tbody>
-    </table>  	
-    <!--<a href="${pageContext.request.contextPath}/affichageCommande/detail?commande_id=<c:out value="${ commande.id }" />"/>Detail<a/>  -->	     	 
+    </table>  	     	 
   </div>
 </body>
 </html>

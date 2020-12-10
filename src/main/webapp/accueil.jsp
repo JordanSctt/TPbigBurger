@@ -66,7 +66,10 @@
         <c:if test="${isAdmin}">
         <li class="nav-item">
           <a type="button" class="btn btn-secondary" href="affichageCommande">Afficher les commandes</a>
-        </li>                
+        </li>    
+        <li class="nav-item">
+          <a type="button" class="btn btn-secondary" href="burgerAdd.jsp">Ajouter un burger</a>
+        </li>            
         </c:if>
 
 

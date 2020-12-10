@@ -23,7 +23,7 @@ public class BurgerService {
                 throw new ServiceException(e);
             }
         }
-        throw new ServiceException("Le label du burger ne peut être vide.");
+        throw new ServiceException("Le label et le prix du burger ne peuvent être vide.");
     }
 
     public List<Burger> findAllWithBurger() throws ServiceException {
