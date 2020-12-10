@@ -28,6 +28,7 @@ public class CommandeRepository {
     private final String INSERT_REQUEST = "INSERT INTO _commande (_user_id, _startdateprep, _enddateprep, _etatcommande) VALUES (?, ?, ?, ?)";
     private final String SELECT_COMMANDE_BY_ID = "SELECT * FROM _commande WHERE _commande_id = ?";
     private final String SELECT_REQUEST = "SELECT * FROM _commande";
+    private final String SEARCH_REQUEST_BY_USER_ID = "SELECT * FROM _commande WHERE _user_id = ?";
 
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
@@ -90,6 +91,28 @@ public class CommandeRepository {
         try {
             conn = connectionFactory.create();
             stmt = conn.prepareStatement(SELECT_REQUEST);
+            resultSet = stmt.executeQuery();
+
+            List<CommandeEntity> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(toEntity(resultSet));
+            }
+            return list;
+
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST, e);
+        } finally {
+            JdbcTool.close(resultSet, stmt, conn);
+        }
+    }
+    public List<CommandeEntity> findAllCommandesByUserID(int userID) throws RepositoryException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        try {
+            conn = connectionFactory.create();
+            stmt = conn.prepareStatement(SEARCH_REQUEST_BY_USER_ID);
+            stmt.setInt(1, userID);
             resultSet = stmt.executeQuery();
 
             List<CommandeEntity> list = new ArrayList<>();

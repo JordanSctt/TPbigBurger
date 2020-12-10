@@ -53,7 +53,7 @@ public class AffichageCommandesServlet extends HttpServlet {
             request.setAttribute("commandeItems", itemsWrapper.toDTO(detailCommande));*/
 
             request.getRequestDispatcher("cuisine.jsp").forward(request, response);
-        } catch (ServiceException e) {
+        } catch (ServiceException | RepositoryException e) {
             e.printStackTrace();
         }
     }

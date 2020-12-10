@@ -135,10 +135,11 @@
                         </tr>
                     </c:forEach>
                     <td ><class="button"><input type="submit" value="Valider"></a></td>
+
                     </form>
                     </tbody>
                 </table>
-
+<p><a type="button" class="btn btn-primary" href="accueil.jsp">Retour Accueil</a></p>
     <hr class="featurette-divider">
 
     <!-- /END THE FEATURETTES -->

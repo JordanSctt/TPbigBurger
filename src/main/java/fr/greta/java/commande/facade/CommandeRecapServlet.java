@@ -3,6 +3,7 @@ package fr.greta.java.commande.facade;
 //import com.sun.java.swing.ui.CommonMenuBar;
 import fr.greta.java.commande.domain.Commande;
 import fr.greta.java.commande.domain.CommandeService;
+import fr.greta.java.commande.persistence.CommandeRepository;
 import fr.greta.java.commandeItems.domain.CommandeItemsService;
 import fr.greta.java.commandeItems.domain.CommandeItemsWrapper;
 import fr.greta.java.commandeItems.facade.CommandeItemsDTO;
@@ -25,16 +26,21 @@ import java.util.List;
 @WebServlet("/recapCommande")
 public class CommandeRecapServlet extends HttpServlet {
 
-        private CommandeItemsDTOWrapper wrapperDTO = new CommandeItemsDTOWrapper();
-        private CommandeDTOWrapper wrapper = new CommandeDTOWrapper();
-        private CommandeItemsRepository repository = new CommandeItemsRepository();
+    private CommandeItemsDTOWrapper wrapperDTO = new CommandeItemsDTOWrapper();
+    private CommandeDTOWrapper wrapper = new CommandeDTOWrapper();
+    private CommandeItemsRepository repository = new CommandeItemsRepository();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Double prixTotal = 0.0;
         HttpSession session = request.getSession();
 
-      CommandeDTO commandeDTO = wrapper.toDTO ( (Commande) session.getAttribute("commande"));
-      commandeDTO.setHeureRecup(commandeDTO.getEndDatePrep());
+        CommandeDTO commandeDTO = null;
+        try {
+            commandeDTO = wrapper.toDTO ( (Commande) session.getAttribute("commande"));
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+        }
+        commandeDTO.setHeureRecup(commandeDTO.getEndDatePrep());
 
         try {
 

@@ -14,7 +14,7 @@ public class Commande {
     private LocalDateTime startDatePrep;
     private LocalDateTime endDatePrep;
     private CommandeEtat etatCommande;
-    private List<CommandeItems> commandesItems;
+
 
 
     public CommandeEtat getEtatCommande() {
@@ -57,11 +57,5 @@ public class Commande {
         this.endDatePrep = endDatePrep;
     }
 
-    public List<CommandeItems> getCommandesItems() {
-        return commandesItems;
-    }
 
-    public void setCommandesItems(List<CommandeItems> commandesItems) {
-        this.commandesItems = commandesItems;
-    }
 }

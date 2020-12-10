@@ -1,3 +1,4 @@
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
@@ -26,6 +27,7 @@
         -ms-user-select: none;
         user-select: none;
       }
+
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
@@ -104,47 +106,38 @@
 
 
     <!-- Three columns of text below the carousel
+
+
     <!-- START THE FEATURETTES -->
 
-<center><h1>RECAPITULATIF</h1></center>
+<center><h1>Historique Commande</h1></center>
+
+<table class = "table">
+  <tr>
+   <c:forEach items="${ requestScope.commande}" var="commande">
+    <td>Commande n°${ commande.id }</td>
+    <td><c:out value="${ commande.etatCommande }" /></td>
+    <td>Heure recup: ${ commande.heureRecup }</td>
+    <td>Prix Total: ${ commande.prixTotal }</td>
+  </tr>
+  <tr>
+  <c:forEach items="${ commande.commandeItemsDTOList}" var="commandeI">
+    <td>${ commandeI.quantity } ${ commandeI.label }</td>
+
+     </c:forEach>
 
 
-         <table class="table">
-                    <thead>
-                        <tr>
+  </tr>
+  </c:forEach>
+</table>
 
-                            <th>Burger</th>
-                            <th>Quantite</th>
-                            <th>Prix unitaire</th>
-                            <th>Total</th>
-
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach items="${ requestScope.commandeItemsDTO}" var="commande">
-                        <tr>
-                            <td> <c:out value = "${commande.label}"/></td>
-                            <td ><c:out value = "${commande.quantity}"/></td>
-                            <td><c:out value = "${commande.price} euros"/></td>
-                            <td>${commande.totalPrixLigne} euros</td>
-
-                        </tr>
-</c:forEach>
-                    </tbody>
-               </table>
-
-               <tr>
-
-               </tr>
-<p><h1>Date recup : <c:out value = "${sessionScope.commande.heureRecup}"/></h1></p>
-<p><h1>Prix Total : <c:out value = "${sessionScope.commande.prixTotal}"/> euros</h1></p>
 
 <p><a type="button" class="btn btn-primary" href="accueil.jsp">Retour Accueil</a></p>
 
     <hr class="featurette-divider">
 
     <!-- /END THE FEATURETTES -->
+
 
   </div><!-- /.container -->
 

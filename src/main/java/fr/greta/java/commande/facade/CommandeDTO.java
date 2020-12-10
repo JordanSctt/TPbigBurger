@@ -1,7 +1,10 @@
 package fr.greta.java.commande.facade;
 
+import fr.greta.java.commandeItems.facade.CommandeItemsDTO;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class CommandeDTO {
 
@@ -14,6 +17,7 @@ public class CommandeDTO {
     private String etatCommande;
     private String heureRecup;
     private double prixTotal;
+    private List<CommandeItemsDTO> commandeItemsDTOList;
 
     public double getPrixTotal() {
         return prixTotal;
@@ -21,6 +25,17 @@ public class CommandeDTO {
 
     public void setPrixTotal(double prixTotal) {
         this.prixTotal = prixTotal;
+    }
+
+    public void calculPrixTotal(List<CommandeItemsDTO> commandeItemsDTOList) {
+
+        for (CommandeItemsDTO commandesItems : commandeItemsDTOList) {
+
+                this.prixTotal += commandesItems.getTotalPrixLigne();
+
+        }
+
+
     }
 
     public String getHeureRecup() {
@@ -96,4 +111,14 @@ public class CommandeDTO {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public List<CommandeItemsDTO> getCommandeItemsDTOList() {
+        return commandeItemsDTOList;
+    }
+
+    public void setCommandeItemsDTOList(List<CommandeItemsDTO> commandeItemsDTOList) {
+        this.commandeItemsDTOList = commandeItemsDTOList;
+    }
+
+
 }

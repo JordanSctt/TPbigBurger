@@ -1,9 +1,12 @@
 package fr.greta.java.commande.persistence;
 
+import fr.greta.java.commandeItems.domain.CommandeItems;
+import fr.greta.java.commandeItems.persistence.CommandeItemsEntity;
 import fr.greta.java.user.domain.User;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class CommandeEntity {
 
@@ -52,4 +55,5 @@ public class CommandeEntity {
     public void setEndDatePrep(Timestamp endDatePrep) {
         this.endDatePrep = endDatePrep;
     }
+
 }
