@@ -29,6 +29,9 @@ public class CommandeItemsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+
         LocalDateTime dateDebutCommande = LocalDateTime.now();
         Commande commande = new Commande();
         HttpSession session = request.getSession();
@@ -48,10 +51,10 @@ public class CommandeItemsServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        Map<String, String[]> map = request.getParameterMap();
+       Map<String, String[]> map = request.getParameterMap();
 
         for (String key : map.keySet()) {
-            if (!(map.get(key)[0]== null || map.get(key)[0].isEmpty())) {
+            if (!(map.get(key)[0]== null || map.get(key)[0].isEmpty()) ) {
             CommandeItems commandeItems = new CommandeItems();
             Burger burger = new Burger();
             burger.setId(Integer.parseInt(key));
@@ -65,10 +68,13 @@ public class CommandeItemsServlet extends HttpServlet {
             } catch (ServiceException e) {
                 e.printStackTrace();
             }
-        }
-        }
-             response.sendRedirect(request.getContextPath() + "/recapCommande");
 
+
+        }
+
+        }
+
+                response.sendRedirect(request.getContextPath() + "/recapCommande");
            /*  ancienne servlet
            session.setAttribute("commande", commande);
 

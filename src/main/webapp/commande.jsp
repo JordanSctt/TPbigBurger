@@ -131,7 +131,7 @@
                          width="100" height="110"></img></td>
                             <td><c:out value="${ burger.label }" /></td>
                             <td ><c:out value="${ burger.price }" /></td>
-                            <td width = "70%"><input type="text" name="${burger.id}" size = "1"></input></td>
+                            <td width = "70%"><input type="text" name="${burger.id}" size = "1" ></input></td>
                         </tr>
                     </c:forEach>
                     <td ><class="button"><input type="submit" value="Valider"></a></td>

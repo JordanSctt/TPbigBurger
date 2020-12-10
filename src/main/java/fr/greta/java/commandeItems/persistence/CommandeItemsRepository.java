@@ -29,6 +29,7 @@ public class CommandeItemsRepository {
     private ConnectionFactory connectionFactory = new ConnectionFactory();
 
     public CommandeItemsEntity create(CommandeItemsEntity entity) throws RepositoryException {
+
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
@@ -46,6 +47,7 @@ public class CommandeItemsRepository {
         } finally {
             JdbcTool.close(rs, preparedStatement, conn);
         }
+
     }
 
     public List<CommandeItemsEntity> findAll() throws RepositoryException {
