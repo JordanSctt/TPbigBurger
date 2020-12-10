@@ -115,10 +115,10 @@
 <table class = "table">
   <tr>
    <c:forEach items="${ requestScope.commande}" var="commande">
-    <td>Commande n°${ commande.id }</td>
-    <td><c:out value="${ commande.etatCommande }" /></td>
-    <td>Heure recup: ${ commande.heureRecup }</td>
-    <td>Prix Total: ${ commande.prixTotal }</td>
+    <td><b>Commande n°${ commande.id }</b></td>
+    <td><b><c:out value="${ commande.etatCommande }" /></b></td>
+    <td><b>Heure recup: ${ commande.heureRecup }</b></td>
+    <td><b>Prix Total: ${ commande.prixTotal }</b></td>
   </tr>
   <tr>
   <c:forEach items="${ commande.commandeItemsDTOList}" var="commandeI">

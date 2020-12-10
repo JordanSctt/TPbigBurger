@@ -28,7 +28,7 @@ public class CommandeRepository {
     private final String INSERT_REQUEST = "INSERT INTO _commande (_user_id, _startdateprep, _enddateprep, _etatcommande) VALUES (?, ?, ?, ?)";
     private final String SELECT_COMMANDE_BY_ID = "SELECT * FROM _commande WHERE _commande_id = ?";
     private final String SELECT_REQUEST = "SELECT * FROM _commande";
-    private final String SEARCH_REQUEST_BY_USER_ID = "SELECT * FROM _commande WHERE _user_id = ?";
+    private final String SEARCH_REQUEST_BY_USER_ID = "SELECT * FROM _commande WHERE _user_id = ? ORDER BY _commande_id";
 
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
