@@ -59,7 +59,7 @@ public class CommandeRepository {
         try {
             conn = connectionFactory.create();
             stmt = conn.prepareStatement(SEARCH_REQUEST_BYETAT);
-            stmt.setString(1, CommandeEtat.EN_COURS_DE_TRAITEMENT.name());
+            stmt.setString(1, CommandeEtat.EN_COURS_DE_PREPARATION.name());
             resultSet = stmt.executeQuery();
 
             List<CommandeEntity> list = new ArrayList<>();
@@ -75,6 +75,7 @@ public class CommandeRepository {
             JdbcTool.close(resultSet, stmt, conn);
         }
     }
+
 
     public List<CommandeEntity> findAllCommandes() throws RepositoryException {
         Connection conn = null;

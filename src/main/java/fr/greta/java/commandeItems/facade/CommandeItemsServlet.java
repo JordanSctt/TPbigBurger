@@ -39,8 +39,12 @@ public class CommandeItemsServlet extends HttpServlet {
 
         commande.setUser(userEnCours);
         commande.setStartDatePrep(dateDebutCommande);
-        serviceCommande.calculDateFin(commande);
-        commande.setEtatCommande(CommandeEtat.EN_COURS_DE_PREPARATION);
+        try {
+            serviceCommande.calculDateFin(commande);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+        }
+        commande.setEtatCommande(CommandeEtat.EN_COURS_DE_TRAITEMENT);
 
         try {
             Commande commandeCreer;

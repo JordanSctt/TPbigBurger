@@ -112,11 +112,13 @@
 
 <center><h1>Historique Commande</h1></center>
 
+<center><h2>Commande en cours de preparation</h2></center>
 <table class = "table">
   <tr>
-   <c:forEach items="${ requestScope.commande}" var="commande">
+   <c:forEach items="${ commande }" var="commande">
+    <c:if test = "${commande.etatCommande == 'EN_COURS_DE_PREPARATION'}">
     <td><b>Commande n ${ commande.id }</b></td>
-    <td><b><c:out value="${ commande.etatCommande }" /></b></td>
+
     <td><b>Heure recup: ${ commande.heureRecup }</b></td>
     <td><b>Prix Total: ${ commande.prixTotal }</b></td>
   </tr>
@@ -125,7 +127,69 @@
     <td>${ commandeI.quantity } ${ commandeI.label }</td>
 
      </c:forEach>
+</c:if>
 
+  </tr>
+  </c:forEach>
+</table>
+<center><h2>Commande en cours de traitement</h2></center>
+<table class = "table">
+  <tr>
+   <c:forEach items="${ commande }" var="commande">
+    <c:if test = "${commande.etatCommande == 'EN_COURS_DE_TRAITEMENT'}">
+    <td><b>Commande n ${ commande.id }</b></td>
+
+    <td><b>Heure recup: ${ commande.heureRecup }</b></td>
+    <td><b>Prix Total: ${ commande.prixTotal }</b></td>
+  </tr>
+  <tr>
+  <c:forEach items="${ commande.commandeItemsDTOList}" var="commandeI">
+    <td>${ commandeI.quantity } ${ commandeI.label }</td>
+
+     </c:forEach>
+</c:if>
+
+  </tr>
+  </c:forEach>
+</table>
+
+<center><h2>Commande en cours de livraison</h2></center>
+<table class = "table">
+  <tr>
+   <c:forEach items="${ commande }" var="commande">
+    <c:if test = "${commande.etatCommande == 'EN_COURS_DE_LIVRAISON'}">
+    <td><b>Commande n ${ commande.id }</b></td>
+
+    <td><b>Heure recup: ${ commande.heureRecup }</b></td>
+    <td><b>Prix Total: ${ commande.prixTotal }</b></td>
+  </tr>
+  <tr>
+  <c:forEach items="${ commande.commandeItemsDTOList}" var="commandeI">
+    <td>${ commandeI.quantity } ${ commandeI.label }</td>
+
+     </c:forEach>
+</c:if>
+
+  </tr>
+  </c:forEach>
+</table>
+
+<center><h2>Commande termine</h2></center>
+<table class = "table">
+  <tr>
+   <c:forEach items="${ commande }" var="commande">
+    <c:if test = "${commande.etatCommande == 'LIVRE'}">
+    <td><b>Commande n ${ commande.id }</b></td>
+
+    <td><b>Heure recup: ${ commande.heureRecup }</b></td>
+    <td><b>Prix Total: ${ commande.prixTotal }</b></td>
+  </tr>
+  <tr>
+  <c:forEach items="${ commande.commandeItemsDTOList}" var="commandeI">
+    <td>${ commandeI.quantity } ${ commandeI.label }</td>
+
+     </c:forEach>
+</c:if>
 
   </tr>
   </c:forEach>

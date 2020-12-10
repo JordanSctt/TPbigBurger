@@ -39,7 +39,7 @@ public class UserConnectionServlet extends HttpServlet {
 				} else {
 					HttpSession session = request.getSession();
 					session.setAttribute("userConnected", user);
-					request.setAttribute("isAdmin", user instanceof Admin);
+					//request.setAttribute("isAdmin", user instanceof Admin);
 					request.getRequestDispatcher("accueil.jsp").forward(request, response);
 				}
 

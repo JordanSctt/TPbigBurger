@@ -41,4 +41,5 @@ ALTER TABLE _commandeItems
         ALTER TABLE _user
                 ADD _role character varying(20);
 
-
+        ALTER TABLE _user
+                ADD _presence BOOLEAN;

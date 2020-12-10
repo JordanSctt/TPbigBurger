@@ -7,6 +7,7 @@ public class UserEntity {
     private String password;
     private String phone;
     private String role;
+    private boolean presence;
 
     public UserEntity(int id, String name, String password, String phone, String role) {
         this.id = id;
@@ -60,5 +61,13 @@ public class UserEntity {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public boolean isPresence() {
+        return presence;
+    }
+
+    public void setPresence(boolean presence) {
+        this.presence = presence;
     }
 }

@@ -6,6 +6,10 @@ import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
 import fr.greta.java.user.domain.User;
 import fr.greta.java.user.domain.UserService;
+import fr.greta.java.user.persistence.UserEntity;
+import fr.greta.java.user.persistence.UserRepository;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
 
@@ -17,6 +21,7 @@ public class CommandeService {
     private CommandeWrapper wrapper = new CommandeWrapper();
     private CommandeRepository repository = new CommandeRepository();
     private UserService userService = new UserService();
+    private UserRepository userRepository = new UserRepository();
 
     public Commande create(Commande commande) throws ServiceException {
 
@@ -69,14 +74,21 @@ public class CommandeService {
 
 
 
-    public Commande calculDateFin(Commande commande) {
+    public Commande calculDateFin(Commande commande) throws RepositoryException {
 
         LocalDateTime dateCommande = commande.getStartDatePrep();
-        if (verifSiCommandeEnCours()) {
+        if (verifSiCommandeEnCours() && verifSiCuisto()) {
+            commande.setEndDatePrep(dateCommande.plusMinutes(20));
+        } else if (verifSiCommandeEnCours() && !verifSiCuisto()){
             commande.setEndDatePrep(dateCommande.plusMinutes(30));
-        } else {
+        }
+        else if (!verifSiCommandeEnCours() && verifSiCuisto()) {
+            commande.setEndDatePrep(dateCommande.plusMinutes(10));
+        }
+        else {
             commande.setEndDatePrep(dateCommande.plusMinutes(20));
         }
+
         return commande;
     }
 
@@ -89,6 +101,22 @@ public class CommandeService {
             e.printStackTrace();
         }
             return !entityList.isEmpty();
+    }
+
+    private boolean verifSiCuisto() throws RepositoryException {
+
+        List<UserEntity> userEntity = new ArrayList<>();
+       userEntity = userRepository.searchPresenceCuisto();
+
+       for (UserEntity listUserEntity : userEntity) {
+
+           if (listUserEntity.isPresence()) {
+
+               return true;
+           }
+
+       }
+        return false;
     }
 
 

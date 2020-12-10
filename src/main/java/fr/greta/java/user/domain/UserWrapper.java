@@ -46,6 +46,7 @@ public class UserWrapper {
             model.setName(entity.getName());
             model.setPassword(entity.getPassword());
             model.setPhone(entity.getPhone());
+            model.setRole(entity.getRole());
             return model;
         }
     }

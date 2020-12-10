@@ -63,13 +63,13 @@
 
         <c:otherwise>
 
-        <c:if test="${isAdmin}">
+        <c:if test="${userConnected.role == 'admin'}">
         <li class="nav-item">
           <a type="button" class="btn btn-secondary" href="affichageCommande">Afficher les commandes</a>
-        </li>    
+        </li>
         <li class="nav-item">
           <a type="button" class="btn btn-secondary" href="burgerAdd.jsp">Ajouter un burger</a>
-        </li>            
+        </li>
         </c:if>
 
 

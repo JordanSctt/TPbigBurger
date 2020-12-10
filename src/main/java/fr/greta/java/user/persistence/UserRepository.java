@@ -1,11 +1,15 @@
 package fr.greta.java.user.persistence;
 
+import fr.greta.java.commande.domain.CommandeEtat;
+import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.tools.ConnectionFactory;
 import fr.greta.java.generic.tools.JdbcTool;
 
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserRepository {
 
@@ -15,6 +19,7 @@ public class UserRepository {
     private final String INSERT_REQUEST = "INSERT INTO _user (_name, _password, _phone, _role) VALUES (?, ?, ?, ?)";
 
     private final String SELECT_REQUEST_WHERE_ID = "SELECT * FROM _user WHERE _user_id = ?";
+    private final String SEARCH_REQUEST_PRESENCE_CUISTO = "SELECT _presence FROM _user WHERE _role = 'cuisto'";
 
     public UserEntity findByNameAndPassword(String name, String password) throws RepositoryException {
 
@@ -88,6 +93,30 @@ public class UserRepository {
     }
 
 
+    public List<UserEntity> searchPresenceCuisto() throws RepositoryException {
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        try {
+            conn = connectionFactory.create();
+            stmt = conn.prepareStatement(SEARCH_REQUEST_PRESENCE_CUISTO);
+            resultSet = stmt.executeQuery();
+
+            List<UserEntity> list = new ArrayList<>();
+
+            while (resultSet.next()) {
+                list.add(toEntitySearchPresence(resultSet));
+            }
+            return list;
+
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SEARCH_REQUEST_PRESENCE_CUISTO, e);
+        } finally {
+            JdbcTool.close(resultSet, stmt, conn);
+        }
+    }
+
     private UserEntity toEntity(ResultSet resultSet) throws SQLException {
         UserEntity entity;
         if (resultSet.getString("_name").isEmpty() || resultSet.getString("_name") == null ||
@@ -97,17 +126,29 @@ public class UserRepository {
 
 
         }
-        if (resultSet.getString("_role").equals("admin")) {
+      /*  if (resultSet.getString("_role").equals("admin")) {
             entity = new AdminEntity();
         } else {
             entity = new UserEntity();
-        }
+        } */
+        entity = new UserEntity();
+
         entity.setId(resultSet.getInt("_user_id"));
         entity.setName(resultSet.getString("_name"));
         entity.setPassword(resultSet.getString("_password"));
         entity.setPhone(resultSet.getString("_phone"));
+        entity.setRole(resultSet.getString("_role"));
         return entity;
     }
 
+    private UserEntity toEntitySearchPresence(ResultSet resultSet) throws SQLException {
 
-}
+        UserEntity entity = new UserEntity();
+        entity.setPresence(resultSet.getBoolean("_presence"));
+        return entity;
+
+        }
+
+
+    }
+
