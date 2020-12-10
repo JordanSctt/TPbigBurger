@@ -19,9 +19,9 @@ public class CommandeRepository {
     private final String INSERT_REQUEST = "INSERT INTO _commande (_user_id, _startdateprep, _enddateprep, _etatcommande) VALUES (?, ?, ?, ?)";
     private final String SELECT_COMMANDE_BY_ID = "SELECT * FROM _commande WHERE _commande_id = ?";
     private final String SELECT_REQUEST = "SELECT * FROM _commande";
-    private final String SEARCH_REQUEST_BY_USER_ID = "SELECT * FROM _commande WHERE _user_id = ? ORDER BY _commande_id";
+    private final String SEARCH_REQUEST_BY_USER_ID = "SELECT * FROM _commande WHERE _user_id = ? ORDER BY _commande_id DESC";
+    private final String SEARCH_LASTCOMMANDE_BY_USER_ID = "SELECT * FROM _commande WHERE _user_id = ? AND _commande_id =( SELECT MAX(_commande_id) FROM _commande)";
     private final String UPDATE_REQUEST = "UPDATE _commande SET _etatcommande = ? WHERE _commande_id = ?";
-
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
 
@@ -115,6 +115,28 @@ public class CommandeRepository {
 
         } catch (SQLException | ClassNotFoundException e) {
             throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST, e);
+        } finally {
+            JdbcTool.close(resultSet, stmt, conn);
+        }
+    }
+
+    public CommandeEntity findLastCommandeByUserID(int userID) throws RepositoryException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        try {
+            conn = connectionFactory.create();
+            stmt = conn.prepareStatement(SEARCH_LASTCOMMANDE_BY_USER_ID);
+            stmt.setInt(1, userID);
+            resultSet = stmt.executeQuery();
+
+            if  (resultSet.next()) {
+                return toEntity(resultSet);
+            }
+
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SEARCH_LASTCOMMANDE_BY_USER_ID);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SEARCH_LASTCOMMANDE_BY_USER_ID, e);
         } finally {
             JdbcTool.close(resultSet, stmt, conn);
         }

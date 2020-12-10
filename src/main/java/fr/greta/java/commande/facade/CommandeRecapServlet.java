@@ -1,6 +1,7 @@
 package fr.greta.java.commande.facade;
 
 //import com.sun.java.swing.ui.CommonMenuBar;
+
 import fr.greta.java.commande.domain.Commande;
 import fr.greta.java.commande.domain.CommandeService;
 import fr.greta.java.commande.persistence.CommandeRepository;
@@ -11,6 +12,7 @@ import fr.greta.java.commandeItems.facade.CommandeItemsDTOWrapper;
 import fr.greta.java.commandeItems.persistence.CommandeItemsEntity;
 import fr.greta.java.commandeItems.persistence.CommandeItemsRepository;
 import fr.greta.java.generic.exception.RepositoryException;
+import fr.greta.java.user.facade.UserDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,12 +28,39 @@ import java.util.List;
 @WebServlet("/recapCommande")
 public class CommandeRecapServlet extends HttpServlet {
 
+   /* ancienne servlet
+
     private CommandeItemsDTOWrapper wrapperDTO = new CommandeItemsDTOWrapper();
     private CommandeDTOWrapper wrapper = new CommandeDTOWrapper();
     private CommandeItemsRepository repository = new CommandeItemsRepository();
+    */
+
+    CommandeRepository repository = new CommandeRepository();
+    CommandeDTOWrapper wrapperDTO = new CommandeDTOWrapper();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Double prixTotal = 0.0;
+
+        HttpSession session = request.getSession();
+        UserDTO userEnCours = (UserDTO) session.getAttribute("userConnected");
+
+
+        try {
+            CommandeDTO commandeDTO = wrapperDTO.toDTOByEntity(repository.findLastCommandeByUserID(userEnCours.getId()));
+            request.setAttribute("commande", commandeDTO);
+        } catch (RepositoryException e) {
+            e.printStackTrace();
+        }
+
+        request.getRequestDispatcher("recapCommande.jsp").forward(request, response);
+
+    }
+}
+
+      /*  Ancienne servlet
+
+
+      Double prixTotal = 0.0;
         HttpSession session = request.getSession();
 
         CommandeDTO commandeDTO = null;
@@ -60,8 +89,8 @@ public class CommandeRecapServlet extends HttpServlet {
         commandeDTO.setPrixTotal(prixTotal);
 
 
-        session.setAttribute("commande",commandeDTO );
-        request.getRequestDispatcher("recapCommande.jsp").forward(request, response);
+        session.setAttribute("commande",commandeDTO );*/
 
-    }
-}
+
+        //request.getRequestDispatcher("recapCommande.jsp").forward(request, response);
+

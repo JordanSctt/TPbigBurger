@@ -67,9 +67,12 @@ public class CommandeItemsServlet extends HttpServlet {
             }
         }
         }
-            session.setAttribute("commande", commande);
-            response.sendRedirect(request.getContextPath() + "/recapCommande");
-            //request.getRequestDispatcher("recapCommande").forward(request, response);
+             response.sendRedirect(request.getContextPath() + "/recapCommande");
+
+           /*  ancienne servlet
+           session.setAttribute("commande", commande);
+
+         request.getRequestDispatcher("recapCommande").forward(request, response); */
 
         }
     }

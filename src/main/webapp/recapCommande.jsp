@@ -122,12 +122,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${ requestScope.commandeItemsDTO}" var="commande">
+                        <c:forEach items="${ requestScope.commande.commandeItemsDTOList}" var="commandeI">
                         <tr>
-                            <td> <c:out value = "${commande.label}"/></td>
-                            <td ><c:out value = "${commande.quantity}"/></td>
-                            <td><c:out value = "${commande.price} euros"/></td>
-                            <td>${commande.totalPrixLigne} euros</td>
+                            <td> <c:out value = "${commandeI.label}"/></td>
+                            <td ><c:out value = "${commandeI.quantity}"/></td>
+                            <td><c:out value = "${commandeI.price} euros"/></td>
+                            <td>${commandeI.totalPrixLigne} euros</td>
 
                         </tr>
 </c:forEach>
@@ -137,8 +137,8 @@
                <tr>
 
                </tr>
-<p><h1>Date recup : <c:out value = "${sessionScope.commande.heureRecup}"/></h1></p>
-<p><h1>Prix Total : <c:out value = "${sessionScope.commande.prixTotal}"/> euros</h1></p>
+<p><h1>Date recup : <c:out value = "${commande.heureRecup}"/></h1></p>
+<p><h1>Prix Total : <c:out value = "${commande.prixTotal}"/> euros</h1></p>
 
 <p><a type="button" class="btn btn-primary" href="accueil.jsp">Retour Accueil</a></p>
 
