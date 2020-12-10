@@ -1,10 +1,8 @@
 package fr.greta.java.commande.facade;
 
-import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.commande.persistence.CommandeRepository;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.user.domain.User;
-import fr.greta.java.user.facade.UserDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,7 +25,7 @@ public class HistoryCommande extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        UserDTO userEnCours = (UserDTO) session.getAttribute("userConnected");
+        User userEnCours = (User) session.getAttribute("userConnected");
         List <CommandeDTO> commandeDTO = new ArrayList<>();
 
         try {

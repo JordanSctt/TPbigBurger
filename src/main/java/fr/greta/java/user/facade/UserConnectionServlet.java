@@ -4,8 +4,6 @@ import fr.greta.java.generic.exception.ServiceException;
 import fr.greta.java.user.domain.Admin;
 import fr.greta.java.user.domain.User;
 import fr.greta.java.user.domain.UserService;
-import fr.greta.java.user.domain.UserWrapper;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
-
 
 
 @WebServlet("/ConnectionUser")
@@ -42,7 +38,7 @@ public class UserConnectionServlet extends HttpServlet {
 					request.getRequestDispatcher("connectionFail.jsp").forward(request, response);
 				} else {
 					HttpSession session = request.getSession();
-					session.setAttribute("userConnected", userDTOWrapper.toDTO(user));
+					session.setAttribute("userConnected", user);
 					request.setAttribute("isAdmin", user instanceof Admin);
 					request.getRequestDispatcher("accueil.jsp").forward(request, response);
 				}

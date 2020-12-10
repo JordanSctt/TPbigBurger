@@ -1,17 +1,16 @@
 package fr.greta.java.commande.domain;
 
-import fr.greta.java.burger.domain.Burger;
 import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.commande.persistence.CommandeRepository;
-import fr.greta.java.commandeItems.domain.CommandeItemsService;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
+import fr.greta.java.user.domain.User;
 import fr.greta.java.user.domain.UserService;
-
 import java.util.List;
-
 import java.time.LocalDateTime;
-import java.util.List;
+
+
+import static fr.greta.java.commande.domain.CommandeEtat.EN_COURS_DE_PREPARATION;
 
 public class CommandeService {
 
@@ -93,5 +92,14 @@ public class CommandeService {
     }
 
 
-
+    public void updateEtatCommande(User userConnected, Commande commande) throws ServiceException {
+        try {
+            if (userConnected.isAdmin()) {
+                CommandeEntity commandeEntity = wrapper.toEntity(commande);
+                repository.updateEtatCommande(commandeEntity, EN_COURS_DE_PREPARATION);
+            }
+        } catch (RepositoryException e) {
+            throw new ServiceException(e);
+        }
+    }
 }

@@ -6,16 +6,10 @@ import fr.greta.java.commande.domain.CommandeEtat;
 import fr.greta.java.commande.domain.CommandeService;
 import fr.greta.java.commandeItems.domain.CommandeItems;
 import fr.greta.java.commandeItems.domain.CommandeItemsService;
-import fr.greta.java.commandeItems.persistence.CommandeItemsEntity;
-import fr.greta.java.commandeItems.persistence.CommandeItemsRepository;
-import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
 import fr.greta.java.user.domain.User;
-import fr.greta.java.user.domain.UserWrapper;
-import fr.greta.java.user.facade.UserDTO;
 import fr.greta.java.user.facade.UserDTOWrapper;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,17 +18,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @WebServlet("/actionCommanderUser")
 public class CommandeItemsServlet extends HttpServlet {
-
-    //System.out.println(key + " : " + map.get(key)[0] );
-
-
 
     private CommandeService serviceCommande = new CommandeService();
     private CommandeItemsService serviceCommandeItems = new CommandeItemsService();
@@ -45,9 +32,9 @@ public class CommandeItemsServlet extends HttpServlet {
         LocalDateTime dateDebutCommande = LocalDateTime.now();
         Commande commande = new Commande();
         HttpSession session = request.getSession();
-        UserDTO userEnCours = (UserDTO) session.getAttribute("userConnected");
+        User userEnCours = (User) session.getAttribute("userConnected");
 
-        commande.setUser(wrapper.fromDTO(userEnCours));
+        commande.setUser(userEnCours);
         commande.setStartDatePrep(dateDebutCommande);
         serviceCommande.calculDateFin(commande);
         commande.setEtatCommande(CommandeEtat.EN_COURS_DE_PREPARATION);

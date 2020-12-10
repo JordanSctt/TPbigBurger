@@ -2,8 +2,8 @@ package fr.greta.java.user.persistence;
 
 public class AdminEntity extends UserEntity {
 
-    public AdminEntity(int id, String name, String password, String phone) {
-        super(id, name, password, phone);
+    public AdminEntity(int id, String name, String password, String phone, String role) {
+        super(id, name, password, phone, role);
     }
 
     public AdminEntity() {

@@ -6,12 +6,13 @@ public class UserEntity {
     private String name;
     private String password;
     private String phone;
+    private String role;
 
-    public UserEntity(int id, String name, String password, String phone) {
+    public UserEntity(int id, String name, String password, String phone, String role) {
         this.id = id;
         this.name = name;
         this.password = password;
-        this.phone = phone;
+        this.role = role;
     }
 
     public UserEntity() {
@@ -51,5 +52,13 @@ public class UserEntity {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

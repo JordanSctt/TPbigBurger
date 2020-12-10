@@ -4,7 +4,6 @@ import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.user.domain.User;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,11 +35,16 @@ public class CommandeWrapper {
     public CommandeEntity toEntity(Commande model) {
         CommandeEntity entity = new CommandeEntity();
         entity.setId(model.getId());
-        entity.setUserID(model.getUser().getId());
-        entity.setStartDatePrep(Timestamp.valueOf(model.getStartDatePrep()));
-        entity.setEndDatePrep(Timestamp.valueOf(model.getEndDatePrep()));
-        entity.setEtatCommande(model.getEtatCommande().name());
+        if (model.getUser() != null) {
+            entity.setUserID(model.getUser().getId());
+        }
+        if (model.getStartDatePrep() != null || model.getEndDatePrep() != null) {
+            entity.setStartDatePrep(Timestamp.valueOf(model.getStartDatePrep()));
+            entity.setEndDatePrep(Timestamp.valueOf(model.getEndDatePrep()));
+        }
+        if (model.getEtatCommande() != null) {
+            entity.setEtatCommande(model.getEtatCommande().name());
+        }
         return entity;
     }
-
 }

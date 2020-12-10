@@ -1,23 +1,14 @@
 package fr.greta.java.commande.persistence;
 
-import fr.greta.java.burger.persistence.BurgerEntity;
-import fr.greta.java.commandeItems.persistence.CommandeItemsEntity;
-import fr.greta.java.commande.domain.Commande;
 import fr.greta.java.commande.domain.CommandeEtat;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.tools.ConnectionFactory;
 import fr.greta.java.generic.tools.JdbcTool;
-import fr.greta.java.user.persistence.UserEntity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +20,7 @@ public class CommandeRepository {
     private final String SELECT_COMMANDE_BY_ID = "SELECT * FROM _commande WHERE _commande_id = ?";
     private final String SELECT_REQUEST = "SELECT * FROM _commande";
     private final String SEARCH_REQUEST_BY_USER_ID = "SELECT * FROM _commande WHERE _user_id = ? ORDER BY _commande_id";
+    private final String UPDATE_REQUEST = "UPDATE _commande SET _etatcommande = ? WHERE _commande_id = ?";
 
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
@@ -151,6 +143,25 @@ public class CommandeRepository {
         }
     }
 
+    public void updateEtatCommande(CommandeEntity commandeEntity, CommandeEtat commandeEtat) throws RepositoryException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+
+        try {
+            conn = connectionFactory.create();
+            stmt = conn.prepareStatement(UPDATE_REQUEST);
+            stmt.setString(1, commandeEtat.name());
+            stmt.setInt(2, commandeEntity.getId());
+
+            stmt.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requete:" + UPDATE_REQUEST, e);
+        } finally {
+            JdbcTool.close(resultSet, stmt, conn);
+        }
+    }
 
 
     private CommandeEntity toEntityEtat(ResultSet resultSet) throws SQLException {
@@ -169,5 +180,6 @@ public class CommandeRepository {
 
         return entity;
     }
+
 
 }
