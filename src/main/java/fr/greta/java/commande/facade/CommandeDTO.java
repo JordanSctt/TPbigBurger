@@ -20,6 +20,7 @@ public class CommandeDTO {
     private String endDateLivraison;
     private double prixTotal;
     private List<CommandeItemsDTO> commandeItemsDTOList;
+    private String typeLivraison;
 
     public double getPrixTotal() {
         return prixTotal;
@@ -138,5 +139,12 @@ public class CommandeDTO {
         this.commandeItemsDTOList = commandeItemsDTOList;
     }
 
+    public String getTypeLivraison() {
+        return typeLivraison;
+    }
+
+    public void setTypeLivraison(String typeLivraison) {
+        this.typeLivraison = typeLivraison;
+    }
 
 }

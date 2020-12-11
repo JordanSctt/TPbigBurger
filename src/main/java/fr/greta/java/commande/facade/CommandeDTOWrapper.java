@@ -50,7 +50,7 @@ public class CommandeDTOWrapper {
         List <CommandeItemsEntity> commandesItemsEntities = commandeItemsRepository.findAllCommandeItemsByCommandeID(model.getId());
         dto.setCommandeItemsDTOList(commandeItemsDTOWrapper.toListDTO(commandesItemsEntities));
         dto.calculPrixTotal(dto.getCommandeItemsDTOList());
-
+        dto.setTypeLivraison(model.getTypeLivraison().name());
         return dto;
     }
 
@@ -65,6 +65,7 @@ public class CommandeDTOWrapper {
         dto.setStartDatePrep(commandeEntity.getStartDatePrep().toLocalDateTime());
         dto.setEndDatePrep(commandeEntity.getEndDatePrep().toLocalDateTime());
         dto.setEtatCommande(commandeEntity.getEtatCommande());
+        dto.setTypeLivraison(commandeEntity.getTypeLivraison());
 
         List <CommandeItemsEntity> commandesItemsEntities = commandeItemsRepository.findAllCommandeItemsByCommandeID(commandeEntity.getId());
         dto.setCommandeItemsDTOList(commandeItemsDTOWrapper.toListDTO(commandesItemsEntities));

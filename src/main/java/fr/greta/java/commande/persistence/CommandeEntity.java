@@ -13,6 +13,7 @@ public class CommandeEntity {
     private String etatCommande;
     private Timestamp startDateLivraison;
     private Timestamp endDateLivraison;
+    private String typeLivraison;
 
     public String getEtatCommande() {
         return etatCommande;
@@ -68,5 +69,13 @@ public class CommandeEntity {
 
     public void setEndDateLivraison(Timestamp endDateLivraison) {
         this.endDateLivraison = endDateLivraison;
+    }
+
+    public String getTypeLivraison() {
+        return typeLivraison;
+    }
+
+    public void setTypeLivraison(String typeLivraison) {
+        this.typeLivraison = typeLivraison;
     }
 }

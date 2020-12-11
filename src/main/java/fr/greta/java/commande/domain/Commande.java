@@ -14,6 +14,7 @@ public class Commande {
     private CommandeEtat etatCommande;
     private LocalDateTime startDateLivraison;
     private LocalDateTime endDateLivraison;
+    private CommandeTypeLivraison typeLivraison;
 
 
 
@@ -71,5 +72,13 @@ public class Commande {
 
     public void setEndDateLivraison(LocalDateTime endDateLivraison) {
         this.endDateLivraison = endDateLivraison;
+    }
+
+    public CommandeTypeLivraison getTypeLivraison() {
+        return typeLivraison;
+    }
+
+    public void setTypeLivraison(CommandeTypeLivraison typeLivraison) {
+        this.typeLivraison = typeLivraison;
     }
 }
