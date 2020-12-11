@@ -6,6 +6,7 @@ import fr.greta.java.commande.domain.CommandeEtat;
 import fr.greta.java.commande.domain.CommandeService;
 import fr.greta.java.commandeItems.domain.CommandeItems;
 import fr.greta.java.commandeItems.domain.CommandeItemsService;
+import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
 import fr.greta.java.user.domain.User;
 import fr.greta.java.user.facade.UserDTOWrapper;
