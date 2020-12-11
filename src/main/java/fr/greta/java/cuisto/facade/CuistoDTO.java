@@ -1,10 +1,10 @@
-package fr.greta.java.cuisto.domain;
+package fr.greta.java.cuisto.facade;
 
-public class Cuisto {
+public class CuistoDTO {
 
     int id;
     String name;
-    CuistoPresence presence;
+    String presence;
 
     public int getId() {
         return id;
@@ -22,11 +22,11 @@ public class Cuisto {
         this.name = name;
     }
 
-    public CuistoPresence getPresence() {
+    public String getPresence() {
         return presence;
     }
 
-    public void setPresence(CuistoPresence presence) {
+    public void setPresence(String presence) {
         this.presence = presence;
     }
 }
