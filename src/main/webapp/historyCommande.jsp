@@ -119,7 +119,7 @@
     <c:if test = "${commande.etatCommande == 'EN_COURS_DE_PREPARATION'}">
     <td><b>Commande n ${ commande.id }</b></td>
 
-    <td><b>Heure recup: ${ commande.heureRecup }</b></td>
+    <td><b>Heure recup: ${ commande.endDatePrep }</b></td>
     <td><b>Prix Total: ${ commande.prixTotal }</b></td>
   </tr>
   <tr>
@@ -139,7 +139,7 @@
     <c:if test = "${commande.etatCommande == 'EN_COURS_DE_TRAITEMENT'}">
     <td><b>Commande n ${ commande.id }</b></td>
 
-    <td><b>Heure recup: ${ commande.heureRecup }</b></td>
+    <td><b>Heure recup: ${ commande.endDatePrep }</b></td>
     <td><b>Prix Total: ${ commande.prixTotal }</b></td>
   </tr>
   <tr>
@@ -160,7 +160,7 @@
     <c:if test = "${commande.etatCommande == 'EN_COURS_DE_LIVRAISON'}">
     <td><b>Commande n ${ commande.id }</b></td>
 
-    <td><b>Heure recup: ${ commande.heureRecup }</b></td>
+    <td><b>Heure recup: ${ commande.endDatePrep }</b></td>
     <td><b>Prix Total: ${ commande.prixTotal }</b></td>
   </tr>
   <tr>
@@ -181,7 +181,7 @@
     <c:if test = "${commande.etatCommande == 'LIVRE'}">
     <td><b>Commande n ${ commande.id }</b></td>
 
-    <td><b>Heure recup: ${ commande.heureRecup }</b></td>
+    <td><b>Heure recup: ${ commande.endDatePrep }</b></td>
     <td><b>Prix Total: ${ commande.prixTotal }</b></td>
   </tr>
   <tr>

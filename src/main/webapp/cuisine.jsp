@@ -65,7 +65,7 @@
             <tr>        
                 <td><c:out value="${ commande.id }" /></td>
                 <td><c:out value="${commande.startDatePrep}" /></td>
-                <td><c:out value="${commande.heureRecup}" /></td>
+                <td><c:out value="${commande.endDatePrep}" /></td>
                 <td><c:out value="${commande.name}" /></td>
                 <td><c:out value="${commande.phone}" /></td>
                 <td><c:out value="${commande.etatCommande}" /></td>

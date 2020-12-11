@@ -75,9 +75,8 @@ public class CommandeService {
     public Commande calculDateFin(Commande commande) throws RepositoryException {
 
         LocalDateTime dateCommande = commande.getStartDatePrep();
-        if (verifSiCommandeEnCours() && verifSiCuisto()) {
-            commande.setEndDatePrep(dateCommande.plusMinutes(20));
-        } else if (verifSiCommandeEnCours() && !verifSiCuisto()){
+
+          if (verifSiCommandeEnCours() && !verifSiCuisto()){
             commande.setEndDatePrep(dateCommande.plusMinutes(30));
         }
         else if (!verifSiCommandeEnCours() && verifSiCuisto()) {
@@ -86,7 +85,6 @@ public class CommandeService {
         else {
             commande.setEndDatePrep(dateCommande.plusMinutes(20));
         }
-
         return commande;
     }
 

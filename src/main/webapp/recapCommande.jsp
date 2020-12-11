@@ -137,8 +137,8 @@
                <tr>
 
                </tr>
-<p><h1>Date recup : <c:out value = "${commande.heureRecup}"/></h1></p>
-<p><h1>Prix Total : <c:out value = "${commande.prixTotal}"/> euros</h1></p>
+<center><p><h1>Date recup : <c:out value = "${commande.endDatePrep}"/></h1</p></center>
+<center><p><h1>Prix Total : <c:out value = "${commande.prixTotal}"/> euros</h1></p></center>
 
 <p><a type="button" class="btn btn-primary" href="accueil.jsp">Retour Accueil</a></p>
 

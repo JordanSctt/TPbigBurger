@@ -47,7 +47,6 @@ public class CommandeDTOWrapper {
         dto.setName(model.getUser().getName());
         dto.setPhone(model.getUser().getPhone());
         dto.setEtatCommande(model.getEtatCommande().name());
-        dto.setHeureRecup(dto.getEndDatePrep());
         List <CommandeItemsEntity> commandesItemsEntities = commandeItemsRepository.findAllCommandeItemsByCommandeID(model.getId());
         dto.setCommandeItemsDTOList(commandeItemsDTOWrapper.toListDTO(commandesItemsEntities));
         dto.calculPrixTotal(dto.getCommandeItemsDTOList());
@@ -66,7 +65,6 @@ public class CommandeDTOWrapper {
         dto.setStartDatePrep(commandeEntity.getStartDatePrep().toLocalDateTime());
         dto.setEndDatePrep(commandeEntity.getEndDatePrep().toLocalDateTime());
         dto.setEtatCommande(commandeEntity.getEtatCommande());
-        dto.setHeureRecup(dto.getEndDatePrep());
 
         List <CommandeItemsEntity> commandesItemsEntities = commandeItemsRepository.findAllCommandeItemsByCommandeID(commandeEntity.getId());
         dto.setCommandeItemsDTOList(commandeItemsDTOWrapper.toListDTO(commandesItemsEntities));

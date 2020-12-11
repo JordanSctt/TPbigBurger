@@ -10,15 +10,14 @@ import java.util.List;
 public class CommandeDTO {
 
     private int id;
-    private LocalDateTime startDatePrep;
-    private LocalDateTime endDatePrep;
+    private String startDatePrep;
+    private String endDatePrep;
     private String name;
     private String password;
     private String phone;
     private String etatCommande;
     private LocalDateTime startDateLivraison;
     private LocalDateTime endDateLivraison;
-    private String heureRecup;
     private double prixTotal;
     private List<CommandeItemsDTO> commandeItemsDTOList;
 
@@ -41,15 +40,7 @@ public class CommandeDTO {
 
     }
 
-    public String getHeureRecup() {
-        return heureRecup;
-    }
 
-    public void setHeureRecup (LocalDateTime endDatePrep) {
-
-        this.heureRecup = formatDate(endDatePrep);
-
-    }
     public String formatDate(LocalDateTime localDate) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -75,20 +66,28 @@ public class CommandeDTO {
         this.id = id;
     }
 
-    public LocalDateTime getStartDatePrep() {
+    public String getStartDatePrep() {
+
+
         return startDatePrep;
     }
 
     public void setStartDatePrep(LocalDateTime startDatePrep) {
-        this.startDatePrep = startDatePrep;
+
+
+        this.startDatePrep = formatDate(startDatePrep);
     }
 
-    public LocalDateTime getEndDatePrep() {
+    public String getEndDatePrep() {
+
+
         return endDatePrep;
     }
 
     public void setEndDatePrep(LocalDateTime endDatePrep) {
-        this.endDatePrep = endDatePrep;
+
+
+        this.endDatePrep = formatDate(endDatePrep);
     }
 
     public String getName() {
