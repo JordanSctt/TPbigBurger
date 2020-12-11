@@ -102,7 +102,7 @@ public class CommandeService {
     private boolean verifSiCuisto() throws RepositoryException {
 
 
-        List<CuistoEntity> cuistoEntity  = cuistoRepository.searchPresenceCuisto();
+        List<CuistoEntity> cuistoEntity  = cuistoRepository.findAllCuisto();
 
        for (CuistoEntity listCuistoEntity : cuistoEntity) {
 

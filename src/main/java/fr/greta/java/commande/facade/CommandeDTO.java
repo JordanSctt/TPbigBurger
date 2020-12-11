@@ -16,8 +16,8 @@ public class CommandeDTO {
     private String password;
     private String phone;
     private String etatCommande;
-    private LocalDateTime startDateLivraison;
-    private LocalDateTime endDateLivraison;
+    private String startDateLivraison;
+    private String endDateLivraison;
     private double prixTotal;
     private List<CommandeItemsDTO> commandeItemsDTOList;
 
@@ -114,19 +114,19 @@ public class CommandeDTO {
         this.phone = phone;
     }
 
-    public LocalDateTime getStartDateLivraison() {
+    public String getStartDateLivraison() {
         return startDateLivraison;
     }
 
-    public void setStartDateLivraison(LocalDateTime startDateLivraison) {
+    public void setStartDateLivraison(String startDateLivraison) {
         this.startDateLivraison = startDateLivraison;
     }
 
-    public LocalDateTime getEndDateLivraison() {
+    public String getEndDateLivraison() {
         return endDateLivraison;
     }
 
-    public void setEndDateLivraison(LocalDateTime endDateLivraison) {
+    public void setEndDateLivraison(String endDateLivraison) {
         this.endDateLivraison = endDateLivraison;
     }
 

@@ -68,7 +68,14 @@
           <a type="button" class="btn btn-secondary" href="affichageCommande">Afficher les commandes</a>
         </li>
         <li class="nav-item">
-          <a type="button" class="btn btn-secondary" href="gestionLivreur">Gestion livreurs</a>
+          <div class="dropdown">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Gestion</a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="gestionCuisto">Gestion Cuisto</a>
+              <a class="dropdown-item" href="gestionLivreur">GestionLivreur</a>
+              </div>
+              </div>
         </li>
         <li class="nav-item">
           <a type="button" class="btn btn-secondary" href="burgerAdd.jsp">Ajouter un burger</a>
