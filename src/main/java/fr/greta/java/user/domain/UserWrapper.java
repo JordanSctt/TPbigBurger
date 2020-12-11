@@ -21,6 +21,7 @@ public class UserWrapper {
         entity.setName(model.getName());
         entity.setPassword(model.getPassword());
         entity.setPhone(model.getPhone());
+        entity.setRole(model.getRole());
         return entity;
     }
 
@@ -39,6 +40,7 @@ public class UserWrapper {
             model.setName(entity.getName());
             model.setPassword(entity.getPassword());
             model.setPhone(entity.getPhone());
+            model.setRole(entity.getRole());
             return model;
         } else {
             User model = new User();
@@ -46,6 +48,7 @@ public class UserWrapper {
             model.setName(entity.getName());
             model.setPassword(entity.getPassword());
             model.setPhone(entity.getPhone());
+            model.setRole(entity.getRole());
             return model;
         }
     }

@@ -115,6 +115,7 @@ public class UserRepository {
         entity.setName(resultSet.getString("_name"));
         entity.setPassword(resultSet.getString("_password"));
         entity.setPhone(resultSet.getString("_phone"));
+        entity.setRole(resultSet.getString("_role"));
         return entity;
     }
 
