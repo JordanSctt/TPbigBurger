@@ -54,20 +54,34 @@
           <th scope="col">Numero livreur</th>
           <th scope="col">Nom livreur</th>
           <th scope="col">Etat de presence livreur</th>
+          <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>   
+        
         <c:forEach items="${requestScope.livreurs}" var="livreur">    
+          <form class="form-signin" action="presenceLivreur" method="POST">
+            <input type="hidden" name="livreurId" value="${ livreur.id }" />
             <tr>        
                 <td><c:out value="${livreur.id }" /></td>
                 <td><c:out value="${livreur.name}" /></td>
                 <td><c:out value="${livreur.presence}" /></td>
+                <td><div class="form-label-group">
+                  <form class="form-signin" action="presenceLivreur" method="POST">
+                  <select class="form-select" aria-label="Default select example" name="presence_parameter">
+                    <option selected>changer presence :</option>
+                    <option value="PRESENT">PRESENT</option>
+                    <option value="ABSENT">ABSENT</option>
+                  </select>
+                  <button class="btn btn-lg btn-primary btn-block" type="submit" >modifier</button>
+                  </div></td>
             </tr>
-        </c:forEach> 
-                
+          </form>
+          
+        </c:forEach>                      
       </tbody>
     </table>  	
-    <!--<a href="${pageContext.request.contextPath}/affichageCommande/detail?commande_id=<c:out value="${ commande.id }" />"/>Detail<a/>  -->	     	 
+    <!--<button class="btn btn-lg btn-primary btn-block" type="submit" value="${pageContext.request.contextPath}/presenceLivreur?livreur_id=<c:out value="${ livreur.id }" />">modifier</button>  -->	     	 
   </div>
 </body>
 </html>

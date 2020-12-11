@@ -73,12 +73,10 @@
                 Gestion</a>
               <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <a class="dropdown-item" href="gestionCuisto">Gestion Cuisto</a>
-              <a class="dropdown-item" href="gestionLivreur">GestionLivreur</a>
+              <a class="dropdown-item" href="gestionLivreur">Gestion Livreur</a>
+              <a class="dropdown-item" href="burgerAdd.jsp">Ajouter un burger</a>
               </div>
               </div>
-        </li>
-        <li class="nav-item">
-          <a type="button" class="btn btn-secondary" href="burgerAdd.jsp">Ajouter un burger</a>
         </li>
         </c:if>
 

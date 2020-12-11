@@ -33,7 +33,9 @@ public class LivreurWrapper {
     public LivreurEntity toEntity(Livreur model) {
         LivreurEntity entity = new LivreurEntity();
         entity.setId(model.getId());
-        entity.setCommandeID(model.getCommande().getId());
+        if (model.getCommande() != null) {
+            entity.setCommandeID(model.getCommande().getId());
+        }
         entity.setName(model.getName());
         entity.setPresence(model.getPresence());
 
