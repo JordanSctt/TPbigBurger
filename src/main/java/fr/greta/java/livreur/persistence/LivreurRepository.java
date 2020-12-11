@@ -1,5 +1,6 @@
 package fr.greta.java.livreur.persistence;
 
+import fr.greta.java.burger.persistence.BurgerEntity;
 import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.tools.ConnectionFactory;
@@ -17,6 +18,7 @@ public class LivreurRepository {
 
 
     private final String SELECT_REQUEST = "SELECT _livreur_id, _name, _presence FROM _livreur";
+    private final String UPDATE_REQUEST = "UPDATE _livreur SET _presence = ? WHERE _livreur_id = ?";
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
 
@@ -39,6 +41,24 @@ public class LivreurRepository {
             throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST, e);
         } finally {
             JdbcTool.close(resultSet, stmt, conn);
+        }
+    }
+
+    public void updatePresence(LivreurEntity entity) throws RepositoryException {
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
+        try {
+            conn = connectionFactory.create();
+            preparedStatement = conn.prepareStatement(UPDATE_REQUEST);
+            preparedStatement.setString(1, String.valueOf(entity.getPresence()));
+            preparedStatement.setInt(2, entity.getId());
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + UPDATE_REQUEST, e);
+        } finally {
+            JdbcTool.close(rs, preparedStatement, conn);
         }
     }
 
