@@ -2,6 +2,7 @@ package fr.greta.java.commande.facade;
 
 import fr.greta.java.commandeItems.facade.CommandeItemsDTO;
 
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -15,6 +16,8 @@ public class CommandeDTO {
     private String password;
     private String phone;
     private String etatCommande;
+    private LocalDateTime startDateLivraison;
+    private LocalDateTime endDateLivraison;
     private String heureRecup;
     private double prixTotal;
     private List<CommandeItemsDTO> commandeItemsDTOList;
@@ -110,6 +113,22 @@ public class CommandeDTO {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public LocalDateTime getStartDateLivraison() {
+        return startDateLivraison;
+    }
+
+    public void setStartDateLivraison(LocalDateTime startDateLivraison) {
+        this.startDateLivraison = startDateLivraison;
+    }
+
+    public LocalDateTime getEndDateLivraison() {
+        return endDateLivraison;
+    }
+
+    public void setEndDateLivraison(LocalDateTime endDateLivraison) {
+        this.endDateLivraison = endDateLivraison;
     }
 
     public List<CommandeItemsDTO> getCommandeItemsDTOList() {

@@ -1,11 +1,9 @@
 package fr.greta.java.commande.domain;
 
-import fr.greta.java.commandeItems.domain.CommandeItems;
-import fr.greta.java.commandeItems.persistence.CommandeItemsEntity;
 import fr.greta.java.user.domain.User;
 
 import java.time.LocalDateTime;
-import java.util.List;
+
 
 public class Commande {
 
@@ -14,6 +12,8 @@ public class Commande {
     private LocalDateTime startDatePrep;
     private LocalDateTime endDatePrep;
     private CommandeEtat etatCommande;
+    private LocalDateTime startDateLivraison;
+    private LocalDateTime endDateLivraison;
 
 
 
@@ -57,5 +57,19 @@ public class Commande {
         this.endDatePrep = endDatePrep;
     }
 
+    public LocalDateTime getStartDateLivraison() {
+        return startDateLivraison;
+    }
 
+    public void setStartDateLivraison(LocalDateTime startDateLivraison) {
+        this.startDateLivraison = startDateLivraison;
+    }
+
+    public LocalDateTime getEndDateLivraison() {
+        return endDateLivraison;
+    }
+
+    public void setEndDateLivraison(LocalDateTime endDateLivraison) {
+        this.endDateLivraison = endDateLivraison;
+    }
 }

@@ -41,5 +41,19 @@ ALTER TABLE _commandeItems
         ALTER TABLE _user
                 ADD _role character varying(20);
 
-        ALTER TABLE _user
-                ADD _presence BOOLEAN;
+
+    //-------------------------------------------
+CREATE TABLE _livreur (
+    _livreur_id SERIAL NOT NULL PRIMARY KEY,
+    _commande_id integer,
+    _name character varying(20),
+    _presence character varying(100)
+);
+
+ALTER TABLE _livreur
+        ADD CONSTRAINT _livreur_fk__commande foreign key (_commande_id)  REFERENCES _commande(_commande_id);
+
+ALTER TABLE _commande
+        ADD _startDateLivraison timestamp;
+ALTER TABLE _commande
+        ADD _endDateLivraison timestamp;

@@ -98,6 +98,7 @@ public class CommandeRepository {
             JdbcTool.close(resultSet, stmt, conn);
         }
     }
+
     public List<CommandeEntity> findAllCommandesByUserID(int userID) throws RepositoryException {
         Connection conn = null;
         PreparedStatement stmt = null;

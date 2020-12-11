@@ -61,8 +61,6 @@ public class CommandeService {
         }
     }
 
-
-
     public Commande findById(int id) throws ServiceException {
         try {
             return wrapper.fromEntity(repository.findById(id));
@@ -70,9 +68,6 @@ public class CommandeService {
             throw new ServiceException(e);
         }
     }
-
-
-
 
     public Commande calculDateFin(Commande commande) throws RepositoryException {
 
@@ -119,10 +114,9 @@ public class CommandeService {
         return false;
     }
 
-
     public void updateEtatCommande(User userConnected, Commande commande) throws ServiceException {
         try {
-            if (userConnected.isAdmin()) {
+            if (userConnected.getRole().equals("admin")) {
                 CommandeEntity commandeEntity = wrapper.toEntity(commande);
                 repository.updateEtatCommande(commandeEntity, EN_COURS_DE_PREPARATION);
             }

@@ -1,12 +1,8 @@
 package fr.greta.java.commande.persistence;
 
-import fr.greta.java.commandeItems.domain.CommandeItems;
-import fr.greta.java.commandeItems.persistence.CommandeItemsEntity;
-import fr.greta.java.user.domain.User;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.List;
+
 
 public class CommandeEntity {
 
@@ -15,6 +11,8 @@ public class CommandeEntity {
     private Timestamp startDatePrep;
     private Timestamp endDatePrep;
     private String etatCommande;
+    private Timestamp startDateLivraison;
+    private Timestamp endDateLivraison;
 
     public String getEtatCommande() {
         return etatCommande;
@@ -56,4 +54,19 @@ public class CommandeEntity {
         this.endDatePrep = endDatePrep;
     }
 
+    public Timestamp getStartDateLivraison() {
+        return startDateLivraison;
+    }
+
+    public void setStartDateLivraison(Timestamp startDateLivraison) {
+        this.startDateLivraison = startDateLivraison;
+    }
+
+    public Timestamp getEndDateLivraison() {
+        return endDateLivraison;
+    }
+
+    public void setEndDateLivraison(Timestamp endDateLivraison) {
+        this.endDateLivraison = endDateLivraison;
+    }
 }
