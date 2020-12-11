@@ -125,38 +125,33 @@
 
           <div class="text-center">
           	 <div class="text-center mb-4">
-            		<h1 class="h1 mb-3 font-weight-normal">Affichage des Cuistos (Admin.)</h1>
+            		<h1 class="h1 mb-3 font-weight-normal">Detail Commande N <c:out value="${commande.id}" /></h1>
             		<a type="button" class="btn btn-outline-primary center" href="accueil.jsp">Accueil</a>
           	 </div>
              <table class="table">
                <thead class="thead-dark">
                  <tr>
-                   <th scope="col">Numero cuisto</th>
-                   <th scope="col">Nom cuisto</th>
-                   <th scope="col">Etat presence</th>
-                   <th scope="col"></th>
-                   <th scope="col"></th>
+                   <th scope="col">Burger</th>
+                   <th scope="col">Quantite</th>
+                   <th scope="col">Prix</th>
                  </tr>
                </thead>
                <tbody>
-                 <c:forEach items="${requestScope.cuistos}" var="cuisto">
+                 <c:forEach items="${commande.commandeItemsDTOList}" var="commandeI">
                      <tr>
-                         <td width ="10%"><c:out value="${cuisto.id }" /></td>
-                         <td width ="20%"><c:out value="${cuisto.name}" /></td>
-                         <td width ="15%" <c:if test="${cuisto.presence == 'PRESENT'}"> style="color:green" </c:if> style="color:red" ><c:out value="${cuisto.presence}" /></td>
-                         <td width ="10%"><a href="${pageContext.request.contextPath}/PresenceCuisto/present?cuisto_id=<c:out value="${ cuisto.id }" />"/>Present<a/></td>
-                         <td width ="10%"><a href="${pageContext.request.contextPath}/PresenceCuisto/absent?cuisto_id=<c:out value="${ cuisto.id }" />"/>Absent<a/>
+                         <td width ="15%"><c:out value="${commandeI.label }" /></td>
+                         <td width ="15%"><c:out value="${commandeI.quantity}" /></td>
+                         <td width ="10%"><c:out value="${commandeI.totalPrixLigne}" /></td>
 
-                         </td>
-                     </tr>
                  </c:forEach>
 
+  </tr>
                </tbody>
              </table>
-             <!--<a href="${pageContext.request.contextPath}/affichageCommande/detail?cuisto_id=<c:out value="${ cuisto.id }" />"/>Detail<a/>  -->
+
            </div>
 
-<p><a type="button" class="btn btn-primary" href="accueil.jsp">Retour Accueil</a></p>
+<p><a type="button" class="btn btn-secondary" href="historyCommande">Retour </a></p>
     <hr class="featurette-divider">
 
     <!-- /END THE FEATURETTES -->

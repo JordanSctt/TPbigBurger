@@ -11,6 +11,7 @@ import fr.greta.java.user.domain.UserService;
 import fr.greta.java.user.persistence.UserEntity;
 import fr.greta.java.user.persistence.UserRepository;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
@@ -123,4 +124,13 @@ public class CommandeService {
             throw new ServiceException(e);
         }
     }
+
+    public String formatDate(LocalDateTime localDate) {
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        String formatDateTime = localDate.format(formatter);
+
+        return formatDateTime;
+    }
+
 }

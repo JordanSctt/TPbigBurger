@@ -23,6 +23,7 @@ public class CommandeRepository {
     private final String SEARCH_LASTCOMMANDE_BY_USER_ID = "SELECT * FROM _commande WHERE _user_id = ? AND _commande_id =( SELECT MAX(_commande_id) FROM _commande)";
     private final String UPDATE_REQUEST = "UPDATE _commande SET _etatcommande = ? WHERE _commande_id = ?";
 
+
     private ConnectionFactory connectionFactory = new ConnectionFactory();
 
 
@@ -187,6 +188,7 @@ public class CommandeRepository {
             JdbcTool.close(resultSet, stmt, conn);
         }
     }
+
 
 
     private CommandeEntity toEntityEtat(ResultSet resultSet) throws SQLException {

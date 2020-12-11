@@ -84,10 +84,10 @@ public class CommandeDTO {
         return endDatePrep;
     }
 
-    public void setEndDatePrep(LocalDateTime endDatePrep) {
+    public void setEndDatePrep(LocalDateTime startDatePrep) {
 
 
-        this.endDatePrep = formatDate(endDatePrep);
+        this.endDatePrep = formatDate(startDatePrep);
     }
 
     public String getName() {

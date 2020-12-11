@@ -17,7 +17,7 @@ import java.util.List;
 public class LivreurRepository {
 
 
-    private final String SELECT_REQUEST = "SELECT _livreur_id, _name, _presence FROM _livreur";
+    private final String SELECT_REQUEST = "SELECT _livreur_id, _name, _presence FROM _livreur ORDER BY _livreur_id";
     private final String UPDATE_REQUEST = "UPDATE _livreur SET _presence = ? WHERE _livreur_id = ?";
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
