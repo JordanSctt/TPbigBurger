@@ -12,6 +12,7 @@ import fr.greta.java.commandeItems.facade.CommandeItemsDTOWrapper;
 import fr.greta.java.commandeItems.persistence.CommandeItemsEntity;
 import fr.greta.java.commandeItems.persistence.CommandeItemsRepository;
 import fr.greta.java.generic.exception.RepositoryException;
+import fr.greta.java.user.domain.User;
 import fr.greta.java.user.facade.UserDTO;
 
 import javax.servlet.ServletException;
@@ -42,7 +43,7 @@ public class CommandeRecapServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        UserDTO userEnCours = (UserDTO) session.getAttribute("userConnected");
+        User userEnCours = (User) session.getAttribute("userConnected");
 
 
         try {

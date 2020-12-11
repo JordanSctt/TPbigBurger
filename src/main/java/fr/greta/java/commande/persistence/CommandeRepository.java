@@ -15,7 +15,7 @@ import java.util.List;
 public class CommandeRepository {
 
 
-    private final String SEARCH_REQUEST_BYETAT = "SELECT _commande_id FROM _commande WHERE _etatcommande = ?";
+    private final String SEARCH_REQUEST_BYETAT = "SELECT _commande_id FROM _commande WHERE _etatcommande = ? OR _etatcommande = ?";
     private final String INSERT_REQUEST = "INSERT INTO _commande (_user_id, _startdateprep, _enddateprep, _etatcommande) VALUES (?, ?, ?, ?)";
     private final String SELECT_COMMANDE_BY_ID = "SELECT * FROM _commande WHERE _commande_id = ?";
     private final String SELECT_REQUEST = "SELECT * FROM _commande";
@@ -60,6 +60,7 @@ public class CommandeRepository {
             conn = connectionFactory.create();
             stmt = conn.prepareStatement(SEARCH_REQUEST_BYETAT);
             stmt.setString(1, CommandeEtat.EN_COURS_DE_PREPARATION.name());
+            stmt.setString(2, CommandeEtat.EN_COURS_DE_TRAITEMENT.name());
             resultSet = stmt.executeQuery();
 
             List<CommandeEntity> list = new ArrayList<>();

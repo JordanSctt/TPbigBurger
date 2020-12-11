@@ -2,6 +2,8 @@ package fr.greta.java.commande.domain;
 
 import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.commande.persistence.CommandeRepository;
+import fr.greta.java.cuisto.persistence.CuistoEntity;
+import fr.greta.java.cuisto.persistence.CuistoRepository;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
 import fr.greta.java.user.domain.User;
@@ -22,6 +24,7 @@ public class CommandeService {
     private CommandeRepository repository = new CommandeRepository();
     private UserService userService = new UserService();
     private UserRepository userRepository = new UserRepository();
+    private CuistoRepository cuistoRepository = new CuistoRepository();
 
     public Commande create(Commande commande) throws ServiceException {
 
@@ -100,23 +103,21 @@ public class CommandeService {
 
     private boolean verifSiCuisto() throws RepositoryException {
 
-        List<UserEntity> userEntity = new ArrayList<>();
-       userEntity = userRepository.searchPresenceCuisto();
 
-       for (UserEntity listUserEntity : userEntity) {
+        List<CuistoEntity> cuistoEntity  = cuistoRepository.searchPresenceCuisto();
 
-           if (listUserEntity.isPresence()) {
+       for (CuistoEntity listCuistoEntity : cuistoEntity) {
 
+           if (listCuistoEntity.getPresence().equalsIgnoreCase("present")) {
                return true;
            }
-
        }
         return false;
     }
 
     public void updateEtatCommande(User userConnected, Commande commande) throws ServiceException {
         try {
-            if (userConnected.getRole().equals("admin")) {
+            if (userConnected.getRole().equalsIgnoreCase("admin")) {
                 CommandeEntity commandeEntity = wrapper.toEntity(commande);
                 repository.updateEtatCommande(commandeEntity, EN_COURS_DE_PREPARATION);
             }

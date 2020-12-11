@@ -33,7 +33,6 @@ public class UserDTOWrapper {
             model.setName(dto.getName());
             model.setPassword(dto.getPassword());
             model.setPhone(dto.getPhone());
-            model.setRole(dto.getRole());
             return model;
         }
     }
@@ -53,7 +52,6 @@ public class UserDTOWrapper {
             dto.setName(model.getName());
             dto.setPassword(model.getPassword());
             dto.setPhone(model.getPhone());
-            dto.setRole(model.getRole());
             return dto;
         }
     }
