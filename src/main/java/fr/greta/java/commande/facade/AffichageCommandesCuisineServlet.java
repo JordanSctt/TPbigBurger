@@ -18,7 +18,7 @@ import java.util.List;
 
 
 @WebServlet("/affichageCommande")
-public class AffichageCommandesServlet extends HttpServlet {
+public class AffichageCommandesCuisineServlet extends HttpServlet {
 
     private CommandeService service = new CommandeService();
     private CommandeDTOWrapper wrapper = new CommandeDTOWrapper();

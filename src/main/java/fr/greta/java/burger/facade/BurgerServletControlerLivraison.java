@@ -15,8 +15,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/CommandeUser")
-public class BurgerServletControler extends HttpServlet {
+@WebServlet("/CommandeUserLivraison")
+public class BurgerServletControlerLivraison extends HttpServlet {
 
     private BurgerService service = new BurgerService();
 
@@ -30,7 +30,7 @@ public class BurgerServletControler extends HttpServlet {
             try {
                 List<Burger> burgers = service.findAllWithBurger();
                 request.setAttribute("burgers", wrapper.toDTOS(burgers));
-                request.getRequestDispatcher("commandeEmporter.jsp").forward(request, response);
+                request.getRequestDispatcher("commandeLivraison.jsp").forward(request, response);
             } catch (ServiceException e) {
                 e.printStackTrace();
             }

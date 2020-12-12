@@ -157,7 +157,14 @@
                <tr>
 
                </tr>
-<center><p><h1>Date recup : <c:out value = "${commande.endDatePrep}"/></h1</p></center>
+
+      <c:if test="${commande.typeLivraison == 'EMPORTER'}">
+      <center><p><h1>Date recup : <c:out value = "${commande.endDatePrep}"/></h1</p></center>
+      </c:if>
+<c:if test="${commande.typeLivraison == 'LIVRAISON'}">
+      <center><p><h1>Date recup : <c:out value = "${commande.estimationLivraison}"/></h1</p></center>
+      </c:if>
+
 <center><p><h1>Prix Total : <c:out value = "${commande.prixTotal}"/> euros</h1></p></center>
 
 <p><a type="button" class="btn btn-primary" href="accueil.jsp">Retour Accueil</a></p>

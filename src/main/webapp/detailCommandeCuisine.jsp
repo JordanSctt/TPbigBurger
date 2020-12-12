@@ -115,6 +115,76 @@
     </div>
   </nav>
 </header>
+  <body>
+    <header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+    <a class="navbar-brand" href="#">BigBurger</a>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+
+        <!-- Boutton pour passer une commande, nous dirige vers la page de commande des burgers -->
+
+
+        <!-- --------------- -->
+        <c:choose>
+
+        <c:when test = "${empty sessionScope.userConnected}">
+        <li class="nav-item">
+          <a type="button" class="btn btn-secondary" href="connection.jsp">Se connecter</a>
+        </li>
+         <li class="nav-item">
+          <a type="button" class="btn btn-secondary" href="inscription.jsp">S'inscrire</a>
+        </li>
+        </c:when>
+
+        <c:otherwise>
+
+         <c:if test="${userConnected.role == 'admin'}">
+                 <li class="nav-item">
+                   <a type="button" class="btn btn-secondary" href="affichageCommande">Afficher les commandes</a>
+                 </li>
+                 <li class="nav-item">
+                   <div class="dropdown">
+                       <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         Gestion</a>
+                       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                       <a class="dropdown-item" href="gestionCuisto">Gestion Cuisto</a>
+                       <a class="dropdown-item" href="gestionLivreur">GestionLivreur</a>
+                       </div>
+                       </div>
+                 </li>
+                 <li class="nav-item">
+                   <a type="button" class="btn btn-secondary" href="burgerAdd.jsp">Ajouter un burger</a>
+                 </li>
+                 </c:if>
+
+        <li class="nav-item">
+          <div class="dropdown">
+            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Bienvenue <c:out value = "${sessionScope.userConnected.name}"/>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="#">Mon compte</a>
+              <a class="dropdown-item" href="historyCommande">Historique commande</a>
+              <a class="dropdown-item" href="#">parametres</a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a type="button" class="btn btn-secondary" href="disconnect">Se deconnecter</a>
+        </li>
+        <li class="nav-item">
+          <a type="button"  class="btn btn-secondary" href="CommandeUser">Commander</a>
+        </li>
+
+        </c:otherwise>
+        </c:choose>
+
+      </ul>
+    </div>
+  </nav>
+</header>
 <main role="main">
 
 
@@ -130,46 +200,37 @@
     <!-- START THE FEATURETTES -->
 
 
-          	 <div class="text-center mb-1">
-            		<h1>Selection Commande</h1>
-
-
+          <div class="text-center">
+          	 <div class="text-center mb-4">
+            		<h1 class="h1 mb-3 font-weight-normal">Detail Commande N <c:out value="${commande.id}" /></h1>
+            		<a type="button" class="btn btn-outline-primary center" href="accueil.jsp">Accueil</a>
           	 </div>
-         <table class="table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th></th>
-                                    <th>Nom</th>
-                                    <th>Prix</th>
-                                    <th>Quantite</th>
+             <table class="table">
+               <thead class="thead-dark">
+                 <tr>
+                   <th scope="col">Burger</th>
+                   <th scope="col">Quantite</th>
+                   <th scope="col">Prix</th>
+                 </tr>
+               </thead>
+               <tbody>
+   <c:forEach items="${commande.commandeItemsDTOList}" var="commandeI">
+                     <tr>
 
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                 <form action ="actionCommanderUser" method ="post">
-                            <c:forEach items="${ requestScope.burgers}" var="burger">
-
-                                <tr>
-                                <td width = "15%">
-                                <img src="images/${ burger.label }.png"
-                                 width="120" height="130"></img></td>
-                                    <td width = "15%"><c:out value="${ burger.label }" /></td>
-                                    <td width = "10%"><c:out value="${ burger.price }" /></td>
-                                    <td><input type="text" name="${burger.id}" size = "1" ></input></td>
-
-                                </tr>
-                            </c:forEach>
+                         <td width ="15%"><c:out value="${commandeI.label }" /></td>
+                         <td width ="15%"><c:out value="${commandeI.quantity}" /></td>
+                         <td width ="10%"><c:out value="${commandeI.totalPrixLigne}" /></td>
 
 
 
+  </tr>
+     </c:forEach>
+           </tbody>
+             </table>
 
-                            </tbody>
-                        </table>
-                      <p> <class="button"><input type="submit" value="Commander"></a></p>
-  </form>
+           </div>
 
-
+<p><a type="button" class="btn btn-secondary" href="affichageCommande">Retour </a></p>
     <hr class="featurette-divider">
 
     <!-- /END THE FEATURETTES -->

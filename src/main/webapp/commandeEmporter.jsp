@@ -115,50 +115,62 @@
     </div>
   </nav>
 </header>
-  <body>
+<main role="main">
+
+
   <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
 
 
 
-      <!-- Three columns of text below the carousel
+    <!-- Three columns of text below the carousel
 
 
-      <!-- START THE FEATURETTES -->
-  
+    <!-- START THE FEATURETTES -->
 
-  
-  
-  <div class="text-center">  
- 	 <div class="text-center mb-4">
-   		<h1 class="h1 mb-3 font-weight-normal">Affichage du detail d'une commande (Admin.)</h1>
-   		<a type="button" class="btn btn-outline-primary center" href="/TPbigBurger/affichageCommande">Retour</a>
-    </div>
-    <div class="text-center mb-4">
-      <h2>Commande numero : <c:out value="${commande_id}" /></h2>
-    </div>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Nom burger</th>
-          <th scope="col">Prix</th>
-          <th scope="col">Quantite</th>
-        </tr>
-      </thead>
-      <tbody>   
-                        
-                <c:forEach items="${requestScope.commandeItems}" var="commandeItems"> 
-                  <tr>                    
-                      <td><c:out value="${commandeItems.label}" /></td>  
-                      <td><c:out value="${commandeItems.price}" />_euros</td>
-                      <td><c:out value="${commandeItems.quantity}" />_unite(s)</td>
-                  </tr> 
-              </c:forEach>  
-               
-      </tbody>
-    </table>  	     	 
 
+          	 <div class="text-center mb-1">
+            		<h1>Selection Commande</h1>
+
+
+          	 </div>
+         <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th></th>
+                                    <th>Nom</th>
+                                    <th>Prix</th>
+                                    <th>Quantite</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                 <form action ="actionCommanderUserEmporter" method ="post">
+                            <c:forEach items="${ requestScope.burgers}" var="burger">
+
+                                <tr>
+                                <td width = "15%">
+                                <img src="images/${ burger.label }.png"
+                                 width="120" height="130"></img></td>
+                                    <td width = "15%"><c:out value="${ burger.label }" /></td>
+                                    <td width = "10%"><c:out value="${ burger.price }" /></td>
+                                    <td><input type="text" name="${burger.id}" size = "1" ></input></td>
+
+                                </tr>
+                            </c:forEach>
+
+
+
+
+                            </tbody>
+                        </table>
+                      <p> <class="button"><input type="submit" value="Commander"></a></p>
+  </form>
+
+
+    <hr class="featurette-divider">
 
     <!-- /END THE FEATURETTES -->
 

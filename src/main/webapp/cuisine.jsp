@@ -130,9 +130,8 @@
         <tr>
           <th scope="col">Numero commande</th>
           <th scope="col">Date/heure valid. commande</th>
-          <th scope="col">heure commande prete</th>
-          <th scope="col">Nom client</th>
-          <th scope="col">Telephone client</th>
+          <th scope="col">heure prevision</th>
+          <th scope="col">Type livraison</th>
           <th scope="col">Etat commande</th>
           <th scope="col">Action</th>
         </tr>
@@ -143,10 +142,9 @@
                 <td><c:out value="${ commande.id }" /></td>
                 <td><c:out value="${commande.startDatePrep}" /></td>
                 <td><c:out value="${commande.endDatePrep}" /></td>
-                <td><c:out value="${commande.name}" /></td>
-                <td><c:out value="${commande.phone}" /></td>
+                <td><c:out value="${commande.typeLivraison}" /></td>
                 <td><c:out value="${commande.etatCommande}" /></td>
-                <td><a href="${pageContext.request.contextPath}/affichageCommande/detail?commande_id=<c:out value="${ commande.id }" />"/>Detail /<a/>
+                <td><a href="${pageContext.request.contextPath}/detailCommandeCuisine?commande_id=<c:out value="${ commande.id }" />"/>Detail /<a/>
                   <a href="${pageContext.request.contextPath}/affichageCommande/affect?commande_id=<c:out value="${ commande.id }" />"/>Affecter cuisinier<a/>
                 </td>  
                 
@@ -163,7 +161,7 @@
                 
       </tbody>
     </table>  	
-    <!--<a href="${pageContext.request.contextPath}/affichageCommande/detail?commande_id=<c:out value="${ commande.id }" />"/>Detail<a/>  -->	     	 
+
   </div>
 </body>
 </html>

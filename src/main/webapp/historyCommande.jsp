@@ -140,7 +140,8 @@
                  <tr>
                    <th scope="col">Numero commande</th>
                    <th scope="col">Date effectue</th>
-                   <th scope="col">Heure Livraison</th>
+                   <th scope="col">Type Livraison</th>
+                   <th scope="col">Heure finale</th>
                    <th scope="col">Etat</th>
                    <th scope="col">Prix Total</th>
                    <th scope="col"></th>
@@ -151,7 +152,13 @@
                      <tr>
                          <td width ="10%"><c:out value="${commande.id }" /></td>
                          <td width ="10%"><c:out value="${commande.startDatePrep}" /></td>
+                         <td width ="10%"><c:out value="${commande.typeLivraison}" /></td>
+                          <c:if test="${commande.typeLivraison == 'EMPORTER'}">
                          <td width ="10%"><c:out value="${commande.endDatePrep}" /></td>
+                         </c:if>
+                          <c:if test="${commande.typeLivraison == 'LIVRAISON'}">
+                          <td width ="10%"><c:out value="${commande.estimationLivraison}" /></td>
+                          </c:if>
                          <td width ="15%"><c:out value="${commande.etatCommande}" /></td>
                          <td width ="15%"><c:out value="${commande.prixTotal}" /></td>
                          <td width ="10%"><a href="${pageContext.request.contextPath}/detailCommandeUser?commande_id=<c:out value="${ commande.id }" />"/>Detail<a/></td>

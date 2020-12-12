@@ -6,12 +6,14 @@ import fr.greta.java.livreur.domain.LivreurPresence;
 public class LivreurEntity {
 
     private int id;
-    private int commandeID;
+    private Integer commandeID;
     private String name;
-    private LivreurPresence presence;
+    private String presence;
 
     //-----------------------------------------
-    public LivreurEntity(int id, int commandeID, String name, LivreurPresence presence) {
+
+
+    public LivreurEntity(int id, Integer commandeID, String name, String presence) {
         this.id = id;
         this.commandeID = commandeID;
         this.name = name;
@@ -30,11 +32,11 @@ public class LivreurEntity {
         this.id = id;
     }
 
-    public int getCommandeID() {
+    public Integer getCommandeID() {
         return commandeID;
     }
 
-    public void setCommandeID(int commandeID) {
+    public void setCommandeID(Integer commandeID) {
         this.commandeID = commandeID;
     }
 
@@ -46,11 +48,11 @@ public class LivreurEntity {
         this.name = name;
     }
 
-    public LivreurPresence getPresence() {
+    public String getPresence() {
         return presence;
     }
 
-    public void setPresence(LivreurPresence presence) {
+    public void setPresence(String presence) {
         this.presence = presence;
     }
 }

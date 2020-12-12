@@ -2,6 +2,7 @@ package fr.greta.java.livreur.facade;
 
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.livreur.domain.Livreur;
+import fr.greta.java.livreur.persistence.LivreurEntity;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -23,22 +24,23 @@ public class LivreurDTOWrapper {
         LivreurDTO dto = new LivreurDTO();
         dto.setId(model.getId());
         dto.setName(model.getName());
-        dto.setPresence(model.getPresence());
-        if (model.getCommande().getId() > 0) {
-            dto.setStartDatePrep(model.getCommande().getStartDatePrep().toString());
-            dto.setEndDatePrep(model.getCommande().getEndDatePrep().toString());
-            dto.setEtatCommande(model.getCommande().getEtatCommande().name());
-            dto.setStartDateLivraison(model.getCommande().getStartDateLivraison().toString());
-            dto.setEndDateLivraison(model.getCommande().getEndDateLivraison().toString());
+        dto.setPresence(model.getPresence().name());
+        if (model.getCommande() != null) {
+            dto.setCommandeID(model.getCommande().getId());
         }
         return dto;
     }
 
-    public String formatDate(LocalDateTime localDate) {
+    public LivreurDTO toDTOentity (LivreurEntity entity) {
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        String formatDateTime = localDate.format(formatter);
+        LivreurDTO dto = new LivreurDTO();
+        dto.setId(entity.getId());
+        dto.setPresence(entity.getPresence());
+        if (entity.getCommandeID() > 0) {
+            dto.setCommandeID(entity.getCommandeID());
+        }
+        dto.setName(entity.getName());
 
-        return formatDateTime;
+        return dto;
     }
 }

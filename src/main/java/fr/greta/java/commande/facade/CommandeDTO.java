@@ -21,6 +21,7 @@ public class CommandeDTO {
     private double prixTotal;
     private List<CommandeItemsDTO> commandeItemsDTOList;
     private String typeLivraison;
+    private String estimationLivraison;
 
     public double getPrixTotal() {
         return prixTotal;
@@ -147,4 +148,11 @@ public class CommandeDTO {
         this.typeLivraison = typeLivraison;
     }
 
+    public String getEstimationLivraison() {
+        return estimationLivraison;
+    }
+
+    public void setEstimationLivraison(LocalDateTime estimationLivraison) {
+        this.estimationLivraison = formatDate(estimationLivraison);
+    }
 }

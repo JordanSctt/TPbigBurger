@@ -17,6 +17,7 @@ public class CommandeRepository {
 
     private final String SEARCH_REQUEST_BYETAT = "SELECT _commande_id FROM _commande WHERE _etatcommande = ? OR _etatcommande = ?";
     private final String INSERT_REQUEST = "INSERT INTO _commande (_user_id, _startdateprep, _enddateprep, _etatcommande, _typeLivraison) VALUES (?, ?, ?, ?, ?)";
+    private final String INSERT_REQUEST_LIVRAISON = "INSERT INTO _commande (_user_id, _startdateprep, _enddateprep, _etatcommande, _typeLivraison, _estimationLivraison) VALUES (?, ?, ?, ?, ?, ?)";
     private final String SELECT_COMMANDE_BY_ID = "SELECT * FROM _commande WHERE _commande_id = ?";
     private final String SELECT_REQUEST = "SELECT * FROM _commande ORDER BY _commande_id";
     private final String SEARCH_REQUEST_BY_USER_ID = "SELECT * FROM _commande WHERE _user_id = ? ORDER BY _commande_id DESC";
@@ -27,7 +28,7 @@ public class CommandeRepository {
     private ConnectionFactory connectionFactory = new ConnectionFactory();
 
 
-    public CommandeEntity create(CommandeEntity entity) throws RepositoryException {
+    public CommandeEntity createEmporter(CommandeEntity entity) throws RepositoryException {
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
@@ -39,6 +40,32 @@ public class CommandeRepository {
             preparedStatement.setTimestamp(3, entity.getEndDatePrep());
             preparedStatement.setString(4, entity.getEtatCommande());
             preparedStatement.setString(5, entity.getTypeLivraison());
+            preparedStatement.executeUpdate();
+
+            rs = preparedStatement.getGeneratedKeys();
+            if (rs.next()) {
+                entity.setId(rs.getInt(1));
+            }
+            return entity;
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + INSERT_REQUEST, e);
+        } finally {
+            JdbcTool.close(rs, preparedStatement, conn);
+        }
+    }
+    public CommandeEntity createLivraison(CommandeEntity entity) throws RepositoryException {
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
+        try {
+            conn = connectionFactory.create();
+            preparedStatement = conn.prepareStatement(INSERT_REQUEST_LIVRAISON, PreparedStatement.RETURN_GENERATED_KEYS);
+            preparedStatement.setInt(1, entity.getUserID());
+            preparedStatement.setTimestamp(2, entity.getStartDatePrep());
+            preparedStatement.setTimestamp(3, entity.getEndDatePrep());
+            preparedStatement.setString(4, entity.getEtatCommande());
+            preparedStatement.setString(5, entity.getTypeLivraison());
+            preparedStatement.setTimestamp(6, entity.getEstimationLivraison());
             preparedStatement.executeUpdate();
 
             rs = preparedStatement.getGeneratedKeys();
@@ -204,8 +231,11 @@ public class CommandeRepository {
         entity.setUserID(resultSet.getInt("_user_id"));
         entity.setStartDatePrep(resultSet.getTimestamp("_startdateprep"));
         entity.setEndDatePrep(resultSet.getTimestamp("_enddateprep"));
+        entity.setStartDateLivraison(resultSet.getTimestamp("_startdatelivraison"));
+        entity.setEndDateLivraison(resultSet.getTimestamp("_enddatelivraison"));
         entity.setEtatCommande(resultSet.getString("_etatcommande"));
-
+        entity.setTypeLivraison(resultSet.getString("_typelivraison"));
+        entity.setEstimationLivraison(resultSet.getTimestamp("_estimationlivraison"));
         return entity;
     }
 

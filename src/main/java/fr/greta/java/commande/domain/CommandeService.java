@@ -6,6 +6,10 @@ import fr.greta.java.cuisto.persistence.CuistoEntity;
 import fr.greta.java.cuisto.persistence.CuistoRepository;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
+import fr.greta.java.livreur.domain.LivreurService;
+import fr.greta.java.livreur.domain.LivreurWrapper;
+import fr.greta.java.livreur.persistence.LivreurEntity;
+import fr.greta.java.livreur.persistence.LivreurRepository;
 import fr.greta.java.user.domain.User;
 import fr.greta.java.user.domain.UserService;
 import fr.greta.java.user.persistence.UserEntity;
@@ -24,17 +28,26 @@ public class CommandeService {
     private CommandeWrapper wrapper = new CommandeWrapper();
     private CommandeRepository repository = new CommandeRepository();
     private UserService userService = new UserService();
-    private UserRepository userRepository = new UserRepository();
     private CuistoRepository cuistoRepository = new CuistoRepository();
+   private LivreurRepository livreurRepository = new LivreurRepository();
 
-    public Commande create(Commande commande) throws ServiceException {
+    public Commande createEmporter(Commande commande) throws ServiceException {
 
             try {
-                Commande commandeCreer = wrapper.fromEntity(repository.create(wrapper.toEntity(commande)));
+                Commande commandeCreer = wrapper.fromEntity(repository.createEmporter(wrapper.toEntity(commande)));
                 return commandeCreer;
             } catch (RepositoryException e) {
                 throw new ServiceException(e);
             }
+    }
+    public Commande createLivraison(Commande commande) throws ServiceException {
+
+        try {
+            Commande commandeCreer = wrapper.fromEntity(repository.createLivraison(wrapper.toEntity(commande)));
+            return commandeCreer;
+        } catch (RepositoryException e) {
+            throw new ServiceException(e);
+        }
     }
 
     public List<Commande> findAllCommandes() throws ServiceException {
@@ -73,7 +86,7 @@ public class CommandeService {
         }
     }
 
-    public Commande calculDateFin(Commande commande) throws RepositoryException {
+    public Commande calculDateFinEmporter(Commande commande) throws RepositoryException {
 
         LocalDateTime dateCommande = commande.getStartDatePrep();
 
@@ -86,6 +99,20 @@ public class CommandeService {
         else {
             commande.setEndDatePrep(dateCommande.plusMinutes(20));
         }
+        return commande;
+    }
+
+
+    public Commande calculDateEstimationLivraison(Commande commande) throws RepositoryException {
+
+        if (verifSiLivreurDispo()) {
+
+           commande.setEstimationEndDateLivraison(commande.getEndDatePrep().plusMinutes(10));
+        } else {
+
+            commande.setEstimationEndDateLivraison(commande.getEndDatePrep().plusMinutes(20));
+        }
+
         return commande;
     }
 
@@ -111,6 +138,19 @@ public class CommandeService {
                return true;
            }
        }
+        return false;
+    }
+
+    public boolean verifSiLivreurDispo() throws RepositoryException {
+
+        List<LivreurEntity> livreurEntityList = livreurRepository.findAllLivreursAvailable();
+
+        for (LivreurEntity livreur : livreurEntityList) {
+
+            if (livreur.getId() > 0) {
+                return true;
+            }
+        }
         return false;
     }
 

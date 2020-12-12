@@ -31,7 +31,10 @@ public class CommandeWrapper {
         model.setStartDatePrep(entity.getStartDatePrep().toLocalDateTime());
         model.setEndDatePrep(entity.getEndDatePrep().toLocalDateTime());
         model.setEtatCommande(CommandeEtat.valueOf(entity.getEtatCommande()));
-        model.setTypeLivraison(entity.getTypeLivraison());
+        model.setTypeLivraison(CommandeTypeLivraison.valueOf(entity.getTypeLivraison()));
+        if (entity.getEstimationLivraison() != null) {
+            model.setEstimationEndDateLivraison(entity.getEstimationLivraison().toLocalDateTime());
+        }
         return model;
     }
 
@@ -49,6 +52,13 @@ public class CommandeWrapper {
         if (model.getEtatCommande() != null) {
             entity.setEtatCommande(model.getEtatCommande().name());
         }
+        if (model.getTypeLivraison() != null) {
+            entity.setTypeLivraison(model.getTypeLivraison().name());
+        }
+        if (model.getEstimationEndDateLivraison() != null) {
+            entity.setEstimationLivraison(Timestamp.valueOf(model.getEstimationEndDateLivraison()));
+        }
+
         return entity;
     }
 }

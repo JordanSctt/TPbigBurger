@@ -23,6 +23,16 @@ public class LivreurService {
         }
     }
 
+    public List<Livreur> findAllLivreursAvailable() throws ServiceException {
+        try {
+            List<Livreur> models = wrapper.fromEntities(repository.findAllLivreursAvailable());
+            return models;
+
+        } catch (RepositoryException e) {
+            throw new ServiceException(e);
+        }
+    }
+
     public void updatePresence(Livreur livreur) throws ServiceException {
             try {
                 LivreurEntity livreurPresence = wrapper.toEntity(livreur);

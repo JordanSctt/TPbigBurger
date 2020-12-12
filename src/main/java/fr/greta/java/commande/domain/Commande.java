@@ -14,7 +14,8 @@ public class Commande {
     private CommandeEtat etatCommande;
     private LocalDateTime startDateLivraison;
     private LocalDateTime endDateLivraison;
-    private String typeLivraison;
+    private LocalDateTime estimationEndDateLivraison;
+    private CommandeTypeLivraison typeLivraison;
 
 
 
@@ -74,11 +75,19 @@ public class Commande {
         this.endDateLivraison = endDateLivraison;
     }
 
-    public String getTypeLivraison() {
+    public CommandeTypeLivraison getTypeLivraison() {
         return typeLivraison;
     }
 
-    public void setTypeLivraison(String typeLivraison) {
+    public void setTypeLivraison(CommandeTypeLivraison typeLivraison) {
         this.typeLivraison = typeLivraison;
+    }
+
+    public LocalDateTime getEstimationEndDateLivraison() {
+        return estimationEndDateLivraison;
+    }
+
+    public void setEstimationEndDateLivraison(LocalDateTime estimationEndDateLivraison) {
+        this.estimationEndDateLivraison = estimationEndDateLivraison;
     }
 }

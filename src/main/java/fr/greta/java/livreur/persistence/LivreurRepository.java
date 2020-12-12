@@ -17,8 +17,9 @@ import java.util.List;
 public class LivreurRepository {
 
 
-    private final String SELECT_REQUEST = "SELECT _livreur_id, _name, _presence FROM _livreur ORDER BY _livreur_id";
+    private final String SELECT_REQUEST = "SELECT * FROM _livreur ORDER BY _livreur_id";
     private final String UPDATE_REQUEST = "UPDATE _livreur SET _presence = ? WHERE _livreur_id = ?";
+    private final String SEARCH_AVAILABLE_LIVREUR = "SELECT * FROM _livreur WHERE _commande_id IS null AND _presence = 'PRESENT'";
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
 
@@ -44,6 +45,30 @@ public class LivreurRepository {
         }
     }
 
+    public List<LivreurEntity> findAllLivreursAvailable() throws RepositoryException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        try {
+            conn = connectionFactory.create();
+            stmt = conn.prepareStatement(SEARCH_AVAILABLE_LIVREUR);
+            resultSet = stmt.executeQuery();
+
+            List<LivreurEntity> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(toEntity(resultSet));
+            }
+            return list;
+
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SEARCH_AVAILABLE_LIVREUR, e);
+        } finally {
+            JdbcTool.close(resultSet, stmt, conn);
+        }
+    }
+
+
+
     public void updatePresence(LivreurEntity entity) throws RepositoryException {
         Connection conn = null;
         PreparedStatement preparedStatement = null;
@@ -65,11 +90,12 @@ public class LivreurRepository {
     private LivreurEntity toEntity(ResultSet resultSet) throws SQLException {
         LivreurEntity entity = new LivreurEntity();
         entity.setId(resultSet.getInt("_livreur_id"));
-        if (entity.getCommandeID() > 0) {
+        if(resultSet.getInt("_commande_id") > 0) {
             entity.setCommandeID(resultSet.getInt("_commande_id"));
+
         }
         entity.setName(resultSet.getString("_name"));
-        entity.setPresence(LivreurPresence.valueOf(resultSet.getString("_presence")));
+        entity.setPresence(resultSet.getString("_presence"));
 
         return entity;
     }

@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet("/affichageCommande/detail")
+@WebServlet("/affichageCommande/detail2")
 public class AffichageDetailServlet extends HttpServlet {
 
     private CommandeItemsRepository repository = new CommandeItemsRepository();
