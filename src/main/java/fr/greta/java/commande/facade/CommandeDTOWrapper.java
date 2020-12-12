@@ -46,6 +46,7 @@ public class CommandeDTOWrapper {
         dto.setEndDatePrep(model.getEndDatePrep());
         dto.setName(model.getUser().getName());
         dto.setPhone(model.getUser().getPhone());
+        dto.setAdresse(model.getUser().getAdresse());
         dto.setEtatCommande(model.getEtatCommande().name());
         List <CommandeItemsEntity> commandesItemsEntities = commandeItemsRepository.findAllCommandeItemsByCommandeID(model.getId());
         dto.setCommandeItemsDTOList(commandeItemsDTOWrapper.toListDTO(commandesItemsEntities));
@@ -65,6 +66,7 @@ public class CommandeDTOWrapper {
         UserEntity userEntity = userRepository.findById(commandeEntity.getUserID());
         dto.setName(userEntity.getName());
         dto.setPhone(userEntity.getPhone());
+        dto.setAdresse(userEntity.getAdresse());
         dto.setStartDatePrep(commandeEntity.getStartDatePrep().toLocalDateTime());
         dto.setEndDatePrep(commandeEntity.getEndDatePrep().toLocalDateTime());
         dto.setEtatCommande(commandeEntity.getEtatCommande());

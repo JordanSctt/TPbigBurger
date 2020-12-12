@@ -9,16 +9,16 @@ public class User {
     private String password;
     private String phone;
     private String role;
+    private String adresse;
 
-    public User(int id ,String name, String password, String phone, String role) {
-
+    public User(int id, String name, String password, String phone, String role, String adresse) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.phone = phone;
         this.role = role;
+        this.adresse = adresse;
     }
-
 
     public User() {
     }
@@ -66,6 +66,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 
     //-------------------------------------------------------

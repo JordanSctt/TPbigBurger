@@ -208,27 +208,52 @@
              <table class="table">
                <thead class="thead-dark">
                  <tr>
+                   <th scope="col">Nom</th>
+                   <th scope="col">Tel</th>
+                   <th scope="col">Adresse</th>
+                 </tr>
+               </thead>
+               <tbody>
+                <tr>
+                    <td width ="15%"><c:out value="${commande.name }" /></td>
+                    <td width ="15%"><c:out value="${commande.phone }" /></td>
+                    <td width ="15%"><c:out value="${commande.adresse }" /></td>
+                     </tr>
+                     </tbody>
+                     </table>
+                     </div>
+
+
+<table class="table">
+               <thead class="thead-dark">
+                 <tr>
                    <th scope="col">Burger</th>
                    <th scope="col">Quantite</th>
                    <th scope="col">Prix</th>
                  </tr>
                </thead>
                <tbody>
-   <c:forEach items="${commande.commandeItemsDTOList}" var="commandeI">
-                     <tr>
 
-                         <td width ="15%"><c:out value="${commandeI.label }" /></td>
-                         <td width ="15%"><c:out value="${commandeI.quantity}" /></td>
-                         <td width ="10%"><c:out value="${commandeI.totalPrixLigne}" /></td>
+                   <c:forEach items="${commande.commandeItemsDTOList}" var="commandeI">
+
+                  <tr>
+                                           <td width ="15%"><c:out value="${commandeI.label }" /></td>
+                                           <td width ="15%"><c:out value="${commandeI.quantity}" /></td>
+                                           <td width ="10%"><c:out value="${commandeI.totalPrixLigne}" /></td>
+
+
+                      </tr>
+
+                       </c:forEach>
+
+                     </tbody>
+                     </table>
+                     </div>
 
 
 
-  </tr>
-     </c:forEach>
-           </tbody>
-             </table>
 
-           </div>
+
 
 <p><a type="button" class="btn btn-secondary" href="affichageCommande">Retour </a></p>
     <hr class="featurette-divider">

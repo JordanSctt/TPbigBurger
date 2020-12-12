@@ -16,8 +16,9 @@ public class UserRepository {
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
 
-    private final String SELECT_REQUEST = "SELECT _user_id, _name, _password, _phone, _role FROM _user WHERE _name = ? AND _password = ?";
+    private final String SELECT_REQUEST = "SELECT * FROM _user WHERE _name = ? AND _password = ?";
     private final String INSERT_REQUEST = "INSERT INTO _user (_name, _password, _phone, _role) VALUES (?, ?, ?, ?)";
+    private final String INSERT_REQUEST_PLUSADRESSE = "INSERT INTO _user (_name, _password, _phone, _role, _adresse) VALUES (?, ?, ?, ?, ?)";
 
     private final String SELECT_REQUEST_WHERE_ID = "SELECT * FROM _user WHERE _user_id = ?";
 
@@ -116,6 +117,7 @@ public class UserRepository {
         entity.setPassword(resultSet.getString("_password"));
         entity.setPhone(resultSet.getString("_phone"));
         entity.setRole(resultSet.getString("_role"));
+        entity.setAdresse(resultSet.getString("_adresse"));
         return entity;
     }
 

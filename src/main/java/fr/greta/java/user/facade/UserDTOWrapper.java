@@ -26,6 +26,7 @@ public class UserDTOWrapper {
             model.setPassword(dto.getPassword());
             model.setPhone(dto.getPhone());
             model.setRole(dto.getRole());
+            model.setAdresse(dto.getAdresse());
             return model;
 
         } else {
@@ -35,6 +36,7 @@ public class UserDTOWrapper {
             model.setPassword(dto.getPassword());
             model.setPhone(dto.getPhone());
             model.setRole(dto.getRole());
+            model.setAdresse(model.getAdresse());
             return model;
         }
     }
@@ -48,6 +50,7 @@ public class UserDTOWrapper {
             dto.setPassword(model.getPassword());
             dto.setPhone(model.getPhone());
             dto.setRole(model.getRole());
+            dto.setAdresse(model.getAdresse());
             return dto;
         } else {
             UserDTO dto = new UserDTO();
@@ -56,6 +59,7 @@ public class UserDTOWrapper {
             dto.setPassword(model.getPassword());
             dto.setPhone(model.getPhone());
             dto.setRole(model.getRole());
+            dto.setAdresse(model.getAdresse());
             return dto;
         }
     }
