@@ -50,7 +50,7 @@ public class CommandeDTOWrapper {
         List <CommandeItemsEntity> commandesItemsEntities = commandeItemsRepository.findAllCommandeItemsByCommandeID(model.getId());
         dto.setCommandeItemsDTOList(commandeItemsDTOWrapper.toListDTO(commandesItemsEntities));
         dto.calculPrixTotal(dto.getCommandeItemsDTOList());
-        dto.setTypeLivraison(model.getTypeLivraison().name());
+        dto.setTypeLivraison(model.getTypeLivraison());
         return dto;
     }
 

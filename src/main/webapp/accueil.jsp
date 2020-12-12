@@ -97,7 +97,14 @@
           <a type="button" class="btn btn-secondary" href="disconnect">Se deconnecter</a>
         </li>
         <li class="nav-item">
-          <a type="button"  class="btn btn-secondary" href="CommandeUser">Commander</a>
+                  <div class="dropdown">
+                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Commander</a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="CommandeUser">A emporter</a>
+                      <a class="dropdown-item" href="CommandeUserLivraison">Se faire livrer</a>
+                      </div>
+                      </div>
         </li>    
         
         </c:otherwise> 

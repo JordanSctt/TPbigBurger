@@ -16,9 +16,9 @@ public class CommandeRepository {
 
 
     private final String SEARCH_REQUEST_BYETAT = "SELECT _commande_id FROM _commande WHERE _etatcommande = ? OR _etatcommande = ?";
-    private final String INSERT_REQUEST = "INSERT INTO _commande (_user_id, _startdateprep, _enddateprep, _etatcommande) VALUES (?, ?, ?, ?)";
+    private final String INSERT_REQUEST = "INSERT INTO _commande (_user_id, _startdateprep, _enddateprep, _etatcommande, _typeLivraison) VALUES (?, ?, ?, ?, ?)";
     private final String SELECT_COMMANDE_BY_ID = "SELECT * FROM _commande WHERE _commande_id = ?";
-    private final String SELECT_REQUEST = "SELECT * FROM _commande";
+    private final String SELECT_REQUEST = "SELECT * FROM _commande ORDER BY _commande_id";
     private final String SEARCH_REQUEST_BY_USER_ID = "SELECT * FROM _commande WHERE _user_id = ? ORDER BY _commande_id DESC";
     private final String SEARCH_LASTCOMMANDE_BY_USER_ID = "SELECT * FROM _commande WHERE _user_id = ? AND _commande_id =( SELECT MAX(_commande_id) FROM _commande)";
     private final String UPDATE_REQUEST = "UPDATE _commande SET _etatcommande = ? WHERE _commande_id = ?";
@@ -38,6 +38,7 @@ public class CommandeRepository {
             preparedStatement.setTimestamp(2, entity.getStartDatePrep());
             preparedStatement.setTimestamp(3, entity.getEndDatePrep());
             preparedStatement.setString(4, entity.getEtatCommande());
+            preparedStatement.setString(5, entity.getTypeLivraison());
             preparedStatement.executeUpdate();
 
             rs = preparedStatement.getGeneratedKeys();

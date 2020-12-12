@@ -67,4 +67,4 @@ CREATE TABLE _cuisto (
                         ADD _endDateLivraison timestamp;
 
                 ALTER TABLE _commande
-                        ADD typeLivraison character varying(50);
+                        ADD _typeLivraison character varying(50);

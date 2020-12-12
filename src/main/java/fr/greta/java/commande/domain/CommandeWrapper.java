@@ -31,7 +31,7 @@ public class CommandeWrapper {
         model.setStartDatePrep(entity.getStartDatePrep().toLocalDateTime());
         model.setEndDatePrep(entity.getEndDatePrep().toLocalDateTime());
         model.setEtatCommande(CommandeEtat.valueOf(entity.getEtatCommande()));
-        model.setTypeLivraison(CommandeTypeLivraison.valueOf(entity.getTypeLivraison()));
+        model.setTypeLivraison(entity.getTypeLivraison());
         return model;
     }
 

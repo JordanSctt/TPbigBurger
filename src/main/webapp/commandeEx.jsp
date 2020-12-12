@@ -1,5 +1,4 @@
 
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
@@ -64,22 +63,11 @@
 
         <c:otherwise>
 
-        <c:if test="${userConnected.role == 'admin'}">
-        <li class="nav-item">
-          <a type="button" class="btn btn-secondary" href="affichageCommande">Afficher les commandes</a>
-        </li>
-        <li class="nav-item">
-          <div class="dropdown">
-              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Gestion</a>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="gestionCuisto">Gestion Cuisto</a>
-              <a class="dropdown-item" href="gestionLivreur">Gestion Livreur</a>
-              <a class="dropdown-item" href="burgerAdd.jsp">Ajouter un burger</a>
-              </div>
-              </div>
-        </li>
-        </c:if>
+          <c:if test="${userConnected.role == 'admin'}">
+              <li class="nav-item">
+                <a type="button" class="btn btn-secondary" href="affichageCommande">Afficher les commandes</a>
+              </li>
+              </c:if>
 
 
         <li class="nav-item">
@@ -98,14 +86,7 @@
           <a type="button" class="btn btn-secondary" href="disconnect">Se deconnecter</a>
         </li>
         <li class="nav-item">
-                  <div class="dropdown">
-                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Commander</a>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                      <a class="dropdown-item" href="CommandeUser">A emporter</a>
-                      <a class="dropdown-item" href="CommandeUserLivraison">Se faire livrer</a>
-                      </div>
-                      </div>
+          <a type="button"  class="btn btn-secondary" href="CommandeUser">Commander</a>
         </li>
 
         </c:otherwise>
@@ -115,40 +96,66 @@
     </div>
   </nav>
 </header>
-  <body>
-  
-  
-  <!-- FORMULAIRE : -->
-  
-  
-  <div class="text-center">  
- 	 <div class="text-center mb-4">
-   		<h1 class="h1 mb-3 font-weight-normal">Affichage du detail d'une commande (Admin.)</h1>
-   		<a type="button" class="btn btn-outline-primary center" href="/TPbigBurger/affichageCommande">Retour</a>
-    </div>
-    <div class="text-center mb-4">
-      <h2>Commande numero : <c:out value="${commande_id}" /></h2>
-    </div>
-    <table class="table">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Nom burger</th>
-          <th scope="col">Prix</th>
-          <th scope="col">Quantite</th>
-        </tr>
-      </thead>
-      <tbody>   
-                        
-                <c:forEach items="${requestScope.commandeItems}" var="commandeItems"> 
-                  <tr>                    
-                      <td><c:out value="${commandeItems.label}" /></td>  
-                      <td><c:out value="${commandeItems.price}" />_euros</td>
-                      <td><c:out value="${commandeItems.quantity}" />_unite(s)</td>
-                  </tr> 
-              </c:forEach>  
-               
-      </tbody>
-    </table>  	     	 
-  </div>
-</body>
+<main role="main">
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+
+
+    <!-- Three columns of text below the carousel
+
+
+    <!-- START THE FEATURETTES -->
+
+
+         <table class="table">
+                    <thead>
+                        <tr>
+                        <th></th>
+                            <th>Nom</th>
+                            <th>Prix</th>
+                            <th>Quantite</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+         <form action ="actionCommanderUser" method ="post">
+                    <c:forEach items="${ requestScope.burgers}" var="burger">
+
+                        <tr>
+                        <td width = "10%">
+                        <img src="images/${ burger.label }.png"
+                         width="100" height="110"></img></td>
+                            <td><c:out value="${ burger.label }" /></td>
+                            <td ><c:out value="${ burger.price }" /></td>
+                            <td width = "70%"><input type="text" name="${burger.id}" size = "1" ></input></td>
+                        </tr>
+                    </c:forEach>
+
+
+                    </form>
+
+                    </tbody>
+                </table>
+
+               <class="button"><input type="submit" value="Commander"></a>
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+
+
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&copy; 2017-2020 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+  </footer>
+</main>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="css/bootstrap.bundle.min.js"></script>
 </html>

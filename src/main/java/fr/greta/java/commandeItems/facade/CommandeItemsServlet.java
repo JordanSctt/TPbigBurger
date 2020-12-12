@@ -38,6 +38,7 @@ public class CommandeItemsServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User userEnCours = (User) session.getAttribute("userConnected");
 
+
         commande.setUser(userEnCours);
         commande.setStartDatePrep(dateDebutCommande);
         try {
@@ -59,6 +60,9 @@ public class CommandeItemsServlet extends HttpServlet {
        Map<String, String[]> map = request.getParameterMap();
 
         for (String key : map.keySet()) {
+
+            System.out.println(key);
+            System.out.println(map.get(key)[0]);
             if (!(map.get(key)[0]== null || map.get(key)[0].isEmpty()) ) {
             CommandeItems commandeItems = new CommandeItems();
             Burger burger = new Burger();

@@ -1,4 +1,5 @@
 
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
@@ -63,24 +64,23 @@
 
         <c:otherwise>
 
-         <c:if test="${userConnected.role == 'admin'}">
-                 <li class="nav-item">
-                   <a type="button" class="btn btn-secondary" href="affichageCommande">Afficher les commandes</a>
-                 </li>
-                 <li class="nav-item">
-                   <div class="dropdown">
-                       <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         Gestion</a>
-                       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                       <a class="dropdown-item" href="gestionCuisto">Gestion Cuisto</a>
-                       <a class="dropdown-item" href="gestionLivreur">GestionLivreur</a>
-                       </div>
-                       </div>
-                 </li>
-                 <li class="nav-item">
-                   <a type="button" class="btn btn-secondary" href="burgerAdd.jsp">Ajouter un burger</a>
-                 </li>
-                 </c:if>
+        <c:if test="${userConnected.role == 'admin'}">
+        <li class="nav-item">
+          <a type="button" class="btn btn-secondary" href="affichageCommande">Afficher les commandes</a>
+        </li>
+        <li class="nav-item">
+          <div class="dropdown">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Gestion</a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="gestionCuisto">Gestion Cuisto</a>
+              <a class="dropdown-item" href="gestionLivreur">Gestion Livreur</a>
+              <a class="dropdown-item" href="burgerAdd.jsp">Ajouter un burger</a>
+              </div>
+              </div>
+        </li>
+        </c:if>
+
 
         <li class="nav-item">
           <div class="dropdown">
@@ -98,7 +98,14 @@
           <a type="button" class="btn btn-secondary" href="disconnect">Se deconnecter</a>
         </li>
         <li class="nav-item">
-          <a type="button"  class="btn btn-secondary" href="CommandeUser">Commander</a>
+                  <div class="dropdown">
+                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Commander</a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="CommandeUser">A emporter</a>
+                      <a class="dropdown-item" href="CommandeUserLivraison">Se faire livrer</a>
+                      </div>
+                      </div>
         </li>
 
         </c:otherwise>

@@ -1,4 +1,5 @@
 
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
@@ -63,11 +64,22 @@
 
         <c:otherwise>
 
-          <c:if test="${userConnected.role == 'admin'}">
-              <li class="nav-item">
-                <a type="button" class="btn btn-secondary" href="affichageCommande">Afficher les commandes</a>
-              </li>
-              </c:if>
+        <c:if test="${userConnected.role == 'admin'}">
+        <li class="nav-item">
+          <a type="button" class="btn btn-secondary" href="affichageCommande">Afficher les commandes</a>
+        </li>
+        <li class="nav-item">
+          <div class="dropdown">
+              <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Gestion</a>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="gestionCuisto">Gestion Cuisto</a>
+              <a class="dropdown-item" href="gestionLivreur">Gestion Livreur</a>
+              <a class="dropdown-item" href="burgerAdd.jsp">Ajouter un burger</a>
+              </div>
+              </div>
+        </li>
+        </c:if>
 
 
         <li class="nav-item">
@@ -86,7 +98,14 @@
           <a type="button" class="btn btn-secondary" href="disconnect">Se deconnecter</a>
         </li>
         <li class="nav-item">
-          <a type="button"  class="btn btn-secondary" href="CommandeUser">Commander</a>
+                  <div class="dropdown">
+                      <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Commander</a>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="CommandeUser">A emporter</a>
+                      <a class="dropdown-item" href="CommandeUserLivraison">Se faire livrer</a>
+                      </div>
+                      </div>
         </li>
 
         </c:otherwise>
@@ -111,35 +130,46 @@
     <!-- START THE FEATURETTES -->
 
 
+          	 <div class="text-center mb-1">
+            		<h1>Selection Commande</h1>
+
+
+          	 </div>
          <table class="table">
-                    <thead>
-                        <tr>
-                        <th></th>
-                            <th>Nom</th>
-                            <th>Prix</th>
-                            <th>Quantite</th>
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th></th>
+                                    <th>Nom</th>
+                                    <th>Prix</th>
+                                    <th>Quantite</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-         <form action ="actionCommanderUser" method ="post">
-                    <c:forEach items="${ requestScope.burgers}" var="burger">
 
-                        <tr>
-                        <td width = "10%">
-                        <img src="images/${ burger.label }.png"
-                         width="100" height="110"></img></td>
-                            <td><c:out value="${ burger.label }" /></td>
-                            <td ><c:out value="${ burger.price }" /></td>
-                            <td width = "70%"><input type="text" name="${burger.id}" size = "1" ></input></td>
-                        </tr>
-                    </c:forEach>
-                    <td ><class="button"><input type="submit" value="Valider"></a></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                 <form action ="actionCommanderUser" method ="post">
+                            <c:forEach items="${ requestScope.burgers}" var="burger">
 
-                    </form>
-                    </tbody>
-                </table>
-<p><a type="button" class="btn btn-primary" href="accueil.jsp">Retour Accueil</a></p>
+                                <tr>
+                                <td width = "15%">
+                                <img src="images/${ burger.label }.png"
+                                 width="120" height="130"></img></td>
+                                    <td width = "15%"><c:out value="${ burger.label }" /></td>
+                                    <td width = "10%"><c:out value="${ burger.price }" /></td>
+                                    <td><input type="text" name="${burger.id}" size = "1" ></input></td>
+
+                                </tr>
+                            </c:forEach>
+
+
+
+
+                            </tbody>
+                        </table>
+                      <p> <class="button"><input type="submit" value="Commander"></a></p>
+  </form>
+
+
     <hr class="featurette-divider">
 
     <!-- /END THE FEATURETTES -->

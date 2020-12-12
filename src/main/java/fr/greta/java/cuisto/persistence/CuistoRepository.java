@@ -5,6 +5,7 @@ import fr.greta.java.cuisto.domain.CuistoPresence;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.tools.ConnectionFactory;
 import fr.greta.java.generic.tools.JdbcTool;
+import fr.greta.java.user.persistence.UserEntity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +18,7 @@ public class CuistoRepository {
 
     private final String SEARCH_REQUEST_PRESENCE_CUISTO = "SELECT * FROM _cuisto ORDER BY _cuisto_id";
     private final String UPDATE_PRESENCE_CUISTO_WHERE_ID = "UPDATE _cuisto SET _presence = ? WHERE _cuisto_id = ?";
+    private final String SEARCH_BY_ID = "SELECT * FROM _cuisto WHERE _cuisto_id = ?";
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
 
@@ -38,6 +40,27 @@ public class CuistoRepository {
 
         } catch (SQLException | ClassNotFoundException e) {
             throw new RepositoryException("Erreur lors de l'execution de la requête:" + SEARCH_REQUEST_PRESENCE_CUISTO, e);
+        } finally {
+            JdbcTool.close(resultSet, stmt, conn);
+        }
+    }
+
+    public CuistoEntity findById(int id) throws RepositoryException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        try {
+            conn = connectionFactory.create();
+            stmt = conn.prepareStatement(SEARCH_BY_ID);
+            stmt.setInt(1, id);
+            resultSet = stmt.executeQuery();
+
+            if (resultSet.next()) {
+                return toEntity(resultSet);
+            }
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SEARCH_BY_ID);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SEARCH_BY_ID, e);
         } finally {
             JdbcTool.close(resultSet, stmt, conn);
         }
