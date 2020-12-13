@@ -86,4 +86,7 @@ public class User {
     public boolean phoneIsValid() {
         return !StringTool.isNullOrEmpty(getPhone());
     }
+    public boolean adressIsValid() {
+        return !StringTool.isNullOrEmpty(getPhone());
+    }
 }

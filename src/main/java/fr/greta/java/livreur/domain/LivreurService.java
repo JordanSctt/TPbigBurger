@@ -1,5 +1,9 @@
 package fr.greta.java.livreur.domain;
 
+import fr.greta.java.commande.domain.Commande;
+import fr.greta.java.commande.domain.CommandeEtat;
+import fr.greta.java.commande.domain.CommandeWrapper;
+import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
 import fr.greta.java.livreur.persistence.LivreurEntity;
@@ -10,12 +14,13 @@ import java.util.List;
 
 public class LivreurService {
 
-    private LivreurWrapper wrapper = new LivreurWrapper();
+    private LivreurWrapper wrapperLivreur = new LivreurWrapper();
     private LivreurRepository repository = new LivreurRepository();
+    private CommandeWrapper wrapperCommande = new CommandeWrapper();
 
     public List<Livreur> findAllLivreurs() throws ServiceException {
         try {
-            List<Livreur> models = wrapper.fromEntities(repository.findAllLivreurs());
+            List<Livreur> models = wrapperLivreur.fromEntities(repository.findAllLivreurs());
             return models;
 
         } catch (RepositoryException e) {
@@ -25,7 +30,7 @@ public class LivreurService {
 
     public List<Livreur> findAllLivreursAvailable() throws ServiceException {
         try {
-            List<Livreur> models = wrapper.fromEntities(repository.findAllLivreursAvailable());
+            List<Livreur> models = wrapperLivreur.fromEntities(repository.findAllLivreursAvailable());
             return models;
 
         } catch (RepositoryException e) {
@@ -34,12 +39,25 @@ public class LivreurService {
     }
 
     public void updatePresence(Livreur livreur) throws ServiceException {
-            try {
-                LivreurEntity livreurPresence = wrapper.toEntity(livreur);
-                repository.updatePresence(livreurPresence);
+        try {
+            LivreurEntity livreurPresence = wrapperLivreur.toEntity(livreur);
+            repository.updatePresence(livreurPresence);
 
-            } catch (RepositoryException e) {
-            }
+        } catch (RepositoryException e) {
+        }
+
+    }
+
+    public void setCommande(Livreur livreur, Commande commande) throws ServiceException, RepositoryException {
+        LivreurEntity livreurEntity = wrapperLivreur.toEntity(livreur);
+        CommandeEntity commandeEntity = wrapperCommande.toEntity(commande);
+        repository.setCommande(livreurEntity, commandeEntity);
+
+    }
+
+    public void setPresencePresent(int livreurID) throws RepositoryException {
+
+        repository.setPresencePresent(livreurID);
 
     }
 }

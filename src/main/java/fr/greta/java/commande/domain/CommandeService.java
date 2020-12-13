@@ -20,8 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDateTime;
 
-
-import static fr.greta.java.commande.domain.CommandeEtat.EN_COURS_DE_PREPARATION;
+import static fr.greta.java.commande.domain.CommandeEtat.*;
 
 public class CommandeService {
 
@@ -154,14 +153,44 @@ public class CommandeService {
         return false;
     }
 
-    public void updateEtatCommande(User userConnected, Commande commande) throws ServiceException {
-        try {
-            if (userConnected.getRole().equalsIgnoreCase("admin")) {
-                CommandeEntity commandeEntity = wrapper.toEntity(commande);
-                repository.updateEtatCommande(commandeEntity, EN_COURS_DE_PREPARATION);
+    public void updateEtatCommande(User userConnected, Commande commande) throws ServiceException, RepositoryException {
+
+        if (userConnected.getRole().equalsIgnoreCase("admin")) {
+            CommandeEntity commandeEntity = wrapper.toEntity(commande);
+
+            if (commande.getTypeLivraison() == CommandeTypeLivraison.LIVRAISON) {
+
+                switch (commande.getEtatCommande()) {
+
+                    case EN_COURS_DE_TRAITEMENT:
+                        repository.updateEtatCommande(commandeEntity, EN_COURS_DE_PREPARATION);
+                        break;
+                    case EN_COURS_DE_PREPARATION:
+                        repository.updateEtatCommande(commandeEntity, EN_COURS_DE_LIVRAISON);
+                        repository.updateHeureLivraison(commandeEntity.getId());
+                        livreurRepository.setPresenceLivraison(commande.getId());
+                        break;
+                    case EN_COURS_DE_LIVRAISON:
+                        repository.updateEtatCommande(commandeEntity, LIVRE);
+                        livreurRepository.initCommandeLivreur(commandeEntity.getId());
+                        break;
+                }
             }
-        } catch (RepositoryException e) {
-            throw new ServiceException(e);
+
+            if (commande.getTypeLivraison() == CommandeTypeLivraison.EMPORTER) {
+
+                switch (commande.getEtatCommande()) {
+                    case EN_COURS_DE_TRAITEMENT:
+                        repository.updateEtatCommande(commandeEntity, EN_COURS_DE_PREPARATION);
+                        break;
+                    case EN_COURS_DE_PREPARATION:
+                        repository.updateEtatCommande(commandeEntity, PRETE);
+                        break;
+                }
+
+            }
+
+
         }
     }
 

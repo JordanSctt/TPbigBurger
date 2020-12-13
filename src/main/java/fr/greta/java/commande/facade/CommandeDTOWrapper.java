@@ -55,6 +55,10 @@ public class CommandeDTOWrapper {
         if (model.getEstimationEndDateLivraison() != null) {
             dto.setEstimationLivraison(model.getEstimationEndDateLivraison());
         }
+        if (model.getStartDateLivraison() != null && model.getEndDateLivraison() != null) {
+            dto.setStartDateLivraison(model.getStartDateLivraison());
+            dto.setEndDateLivraison(model.getEndDateLivraison());
+        }
         return dto;
     }
 
@@ -77,6 +81,12 @@ public class CommandeDTOWrapper {
         List <CommandeItemsEntity> commandesItemsEntities = commandeItemsRepository.findAllCommandeItemsByCommandeID(commandeEntity.getId());
         dto.setCommandeItemsDTOList(commandeItemsDTOWrapper.toListDTO(commandesItemsEntities));
         dto.calculPrixTotal(dto.getCommandeItemsDTOList());
+        if (commandeEntity.getStartDateLivraison() != null && commandeEntity.getEndDateLivraison() != null) {
+
+            dto.setStartDateLivraison(commandeEntity.getStartDateLivraison().toLocalDateTime());
+            dto.setEndDateLivraison(commandeEntity.getEndDateLivraison().toLocalDateTime());
+
+        }
 
         return dto;
     }

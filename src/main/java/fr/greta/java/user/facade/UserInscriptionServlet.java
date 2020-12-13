@@ -18,6 +18,7 @@ public class UserInscriptionServlet extends HttpServlet {
 	private static final String NAME = "name_parameter";
 	private static final String PASSWORD = "password_parameter";
 	private static final String PHONE = "phone_parameter";
+	private static final String ADRESSE = "adresse_parameter";
 
 	private static UserService userService = new UserService();
 
@@ -29,6 +30,7 @@ public class UserInscriptionServlet extends HttpServlet {
 			user.setName(request.getParameter(NAME));
 			user.setPassword(request.getParameter(PASSWORD));
 			user.setPhone(request.getParameter(PHONE));
+			user.setAdresse(request.getParameter(ADRESSE));
 			userService.createUser(user);
 			request.getRequestDispatcher("accueil.jsp").forward(request, response);
 		} catch (ServiceException e) {

@@ -121,16 +121,19 @@ public class CommandeDTO {
         return startDateLivraison;
     }
 
-    public void setStartDateLivraison(String startDateLivraison) {
-        this.startDateLivraison = startDateLivraison;
+    public void setStartDateLivraison(LocalDateTime startDateLivraison) {
+
+        this.startDateLivraison = formatDate(startDateLivraison);
     }
 
     public String getEndDateLivraison() {
         return endDateLivraison;
     }
 
-    public void setEndDateLivraison(String endDateLivraison) {
-        this.endDateLivraison = endDateLivraison;
+    public void setEndDateLivraison(LocalDateTime endDateLivraison) {
+
+
+        this.endDateLivraison = formatDate(endDateLivraison);
     }
 
     public List<CommandeItemsDTO> getCommandeItemsDTOList() {

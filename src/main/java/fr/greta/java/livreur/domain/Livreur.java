@@ -1,6 +1,7 @@
 package fr.greta.java.livreur.domain;
 
 import fr.greta.java.commande.domain.Commande;
+import fr.greta.java.commande.domain.CommandeEtat;
 
 
 public class Livreur {
@@ -53,4 +54,6 @@ public class Livreur {
     public void setPresence(LivreurPresence presence) {
         this.presence = presence;
     }
-}
+
+    }
+

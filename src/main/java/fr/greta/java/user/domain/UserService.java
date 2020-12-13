@@ -40,6 +40,7 @@ public class UserService {
                 throw new ServiceException(e);
             }
         }
+
         throw new ServiceException("Le name et le password ne peuvent pas etre vide.");
     }
 }

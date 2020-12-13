@@ -5,10 +5,8 @@ import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.tools.ConnectionFactory;
 import fr.greta.java.generic.tools.JdbcTool;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +21,7 @@ public class CommandeRepository {
     private final String SEARCH_REQUEST_BY_USER_ID = "SELECT * FROM _commande WHERE _user_id = ? ORDER BY _commande_id DESC";
     private final String SEARCH_LASTCOMMANDE_BY_USER_ID = "SELECT * FROM _commande WHERE _user_id = ? AND _commande_id =( SELECT MAX(_commande_id) FROM _commande)";
     private final String UPDATE_REQUEST = "UPDATE _commande SET _etatcommande = ? WHERE _commande_id = ?";
+    private final String UPDATE_DATEDEBUT_LIVRAISON = "UPDATE _commande SET _startdatelivraison = ?, _enddatelivraison = ? WHERE _commande_id = ?";
 
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
@@ -200,7 +199,6 @@ public class CommandeRepository {
     public void updateEtatCommande(CommandeEntity commandeEntity, CommandeEtat commandeEtat) throws RepositoryException {
         Connection conn = null;
         PreparedStatement stmt = null;
-        ResultSet resultSet = null;
 
         try {
             conn = connectionFactory.create();
@@ -213,8 +211,35 @@ public class CommandeRepository {
         } catch (SQLException | ClassNotFoundException e) {
             throw new RepositoryException("Erreur lors de l'execution de la requete:" + UPDATE_REQUEST, e);
         } finally {
-            JdbcTool.close(resultSet, stmt, conn);
+            JdbcTool.close(stmt, conn);
         }
+    }
+
+    public void updateHeureLivraison(int commandeID) throws RepositoryException {
+
+        Timestamp debut = Timestamp.valueOf(LocalDateTime.now());
+        Timestamp fin = Timestamp.valueOf(LocalDateTime.now().plusMinutes(10));
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+
+        try {
+            conn = connectionFactory.create();
+            stmt = conn.prepareStatement(UPDATE_DATEDEBUT_LIVRAISON);
+            stmt.setTimestamp(1, debut);
+            stmt.setTimestamp(2, fin);
+            stmt.setInt(3, commandeID);
+
+            stmt.executeUpdate();
+
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requete:" + UPDATE_DATEDEBUT_LIVRAISON, e);
+        } finally {
+            JdbcTool.close(stmt, conn);
+        }
+
+
     }
 
 
@@ -238,6 +263,7 @@ public class CommandeRepository {
         entity.setEstimationLivraison(resultSet.getTimestamp("_estimationlivraison"));
         return entity;
     }
+
 
 
 }

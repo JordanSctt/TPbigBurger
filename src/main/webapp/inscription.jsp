@@ -57,6 +57,11 @@
     <label for="inputPassword">Telephone :</label>
   </div>
 
+   <div class="form-label-group">
+      <input type="text" id="inputAdresse" class="form-control" name="adresse_parameter" placeholder="Adresse">
+      <label for="inputAdresse">Adresse : ( facultatif )</label>
+    </div>
+
   <!-- <div class="checkbox mb-3">
     <label>
       <input type="checkbox" value="remember-me"> Remember me

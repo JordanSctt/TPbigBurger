@@ -1,5 +1,5 @@
 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <!doctype html>
@@ -129,27 +129,51 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">Numero commande</th>
-          <th scope="col">Date/heure valid. commande</th>
-          <th scope="col">heure prevision</th>
-          <th scope="col">Type livraison</th>
+          <th scope="col">Heure commande</th>
+          <th scope="col">Heure Fin Prep</th>
+             <th scope="col">Type livraison</th>
           <th scope="col">Etat commande</th>
+          <th scope="col">Detail</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>   
-        <c:forEach items="${requestScope.commandes}" var="commande">    
-            <tr>        
-                <td><c:out value="${ commande.id }" /></td>
-                <td><c:out value="${commande.startDatePrep}" /></td>
-                <td><c:out value="${commande.endDatePrep}" /></td>
-                <td><c:out value="${commande.typeLivraison}" /></td>
-                <td><c:out value="${commande.etatCommande}" /></td>
-                <td><a href="${pageContext.request.contextPath}/detailCommandeCuisine?commande_id=<c:out value="${ commande.id }" />"/>Detail /<a/>
+       <c:forEach items="${requestScope.commandes}" var="commande">
+         <tr>
+           <td width ="10%"><c:out value="${ commande.id }" /></td>
+           <td width ="10%"><c:out value="${commande.startDatePrep}" /></td>
+           <td width ="10%"> <c:out value="${commande.endDatePrep}" /></td>
+           <td width ="10%"><c:out value="${commande.typeLivraison}" /></td>
+           <td width ="15%"><c:out value="${commande.etatCommande}" /></td>
+           <td width ="5%"><a href="${pageContext.request.contextPath}/detailCommandeCuisine?commande_id=<c:out value="${ commande.id }" />"/>Detail<a/></td>
+           <td width ="10%">
+       <c:if test="${commande.typeLivraison == 'EMPORTER'}">
+           <c:if test="${commande.etatCommande == 'EN_COURS_DE_TRAITEMENT'}">
+                    <a href="${pageContext.request.contextPath}/affichageCommande/affect?commande_id=<c:out value="${ commande.id }" />"/>Affecter cuisinier<a/>
+           </c:if>
+           <c:if test="${commande.etatCommande == 'EN_COURS_DE_PREPARATION'}">
+                    <a href="${pageContext.request.contextPath}/affichageCommande/affect?commande_id=<c:out value="${ commande.id }" />"/>Finaliser<a/>
+           </c:if>
+
+       </c:if>
+       <c:if test="${commande.typeLivraison == 'LIVRAISON'}">
+            <c:if test="${commande.etatCommande == 'EN_COURS_DE_TRAITEMENT'}">
                   <a href="${pageContext.request.contextPath}/affichageCommande/affect?commande_id=<c:out value="${ commande.id }" />"/>Affecter cuisinier<a/>
-                </td>  
+            </c:if>
+             <c:if test="${commande.etatCommande == 'EN_COURS_DE_PREPARATION'}">
+                   <a href="${pageContext.request.contextPath}/affichageCommande/affectLivreur?commande_id=<c:out value="${ commande.id }" />"/>Affecter livreur<a/>
+            </c:if>
+            <c:if test="${commande.etatCommande == 'EN_COURS_DE_LIVRAISON'}">
+                               <a href="${pageContext.request.contextPath}/affichageCommande/affect?commande_id=<c:out value="${ commande.id }" />"/>Livrer<a/>
+                        </c:if>
+
+
+       </c:if>
+           </td>
+
                 
                 <c:forEach items="${requestScope.commandeItems}" var="commandeItems"> 
-                  <tr> 
+         <tr>
                       <td><c:out value="${commandeItems.label}" /></td>  
                       <td><c:out value="${commandeItems.price}" />_euros</td>
                       <td><c:out value="${commandeItems.quantity}" />_unite(s)</td>
@@ -157,11 +181,9 @@
               </c:forEach>  
 
             </tr>
-        </c:forEach> 
-                
+        </c:forEach>
       </tbody>
-    </table>  	
-
+    </table>
   </div>
 </body>
 </html>
