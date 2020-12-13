@@ -141,6 +141,7 @@
                     <th scope="col">Numero livreur</th>
                     <th scope="col">Nom livreur</th>
                     <th scope="col">Etat de presence livreur</th>
+                    <th scope="col">Commande en Cours</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -153,12 +154,14 @@
                           <td width ="10%"><c:out value="${livreur.id }" /></td>
                           <td width ="20%"><c:out value="${livreur.name}" /></td>
                           <td width ="15%" <c:if test="${livreur.presence == 'PRESENT'}"> style="color:green" </c:if> style="color:red"><c:out value="${livreur.presence}" /></td>
+                          <td width ="10%"><c:if test="${livreur.commandeID != 0}"> <c:out value="${livreur.commandeID}" /></c:if></td>
                           <td width = "5%"><div class="form-label-group">
                             <form class="form-signin" action="presenceLivreur" method="POST">
                             <select class="form-select" aria-label="Default select example" name="presence_parameter">
                               <option selected>changer presence :</option>
                               <option value="PRESENT">PRESENT</option>
                               <option value="ABSENT">ABSENT</option>
+                              <option value="EN_LIVRAISON">LIVRAISON</option>
                             </select>
                             <button class="btn btn-lg btn-primary btn-block" type="submit" >modifier</button>
                             </div></td>

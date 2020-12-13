@@ -127,32 +127,29 @@
  	 </div>
  	 <div class="text-left mb-4">
         <h2 class="h2 mb-3 font-weight-normal">
-        <a type="button" class="btn btn-outline-primary center" href="affichageCommandesTermines"> COMMANDES TERMINES</a></h2>
+        <a type="button" class="btn btn-outline-primary center" href="affichageCommande"> Commandes en cours</a></h2>
      </div>
-     <h1 class="h1 mb-3 font-weight-normal">Commandes en cours</h1>
+     <h1 class="h1 mb-3 font-weight-normal">Commandes termines</h1>
     <table class="table">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Numero commande</th>
           <th scope="col">Heure commande</th>
           <th scope="col">Heure Fin Prep</th>
-          <th scope="col">Type livraison</th>
+             <th scope="col">Type livraison</th>
           <th scope="col">Etat commande</th>
-
           <th scope="col">Detail</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody>   
        <c:forEach items="${requestScope.commandes}" var="commande">
-
          <tr>
            <td width ="10%"><c:out value="${ commande.id }" /></td>
            <td width ="10%"><c:out value="${commande.startDatePrep}" /></td>
            <td width ="10%"> <c:out value="${commande.endDatePrep}" /></td>
            <td width ="10%"><c:out value="${commande.typeLivraison}" /></td>
            <td width ="15%"><c:out value="${commande.etatCommande}" /></td>
-
            <td width ="5%"><a href="${pageContext.request.contextPath}/detailCommandeCuisine?commande_id=<c:out value="${ commande.id }" />"/>Detail<a/></td>
            <td width ="10%">
        <c:if test="${commande.typeLivraison == 'EMPORTER'}">
@@ -189,7 +186,6 @@
               </c:forEach>  
 
             </tr>
-
         </c:forEach>
       </tbody>
     </table>

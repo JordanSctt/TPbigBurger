@@ -22,7 +22,8 @@ public class CommandeRepository {
     private final String SEARCH_LASTCOMMANDE_BY_USER_ID = "SELECT * FROM _commande WHERE _user_id = ? AND _commande_id =( SELECT MAX(_commande_id) FROM _commande)";
     private final String UPDATE_REQUEST = "UPDATE _commande SET _etatcommande = ? WHERE _commande_id = ?";
     private final String UPDATE_DATEDEBUT_LIVRAISON = "UPDATE _commande SET _startdatelivraison = ?, _enddatelivraison = ? WHERE _commande_id = ?";
-
+    private final String SELECT_ALL_ENCOURS = "SELECT * FROM _commande WHERE _etatcommande != 'LIVRE' AND _etatcommande != 'PRETE' ORDER BY _commande_id";
+    private final String SELECT_ALL_TERMINES = "SELECT * FROM _commande WHERE _etatcommande = 'LIVRE' OR _etatcommande = 'PRETE' ORDER BY _commande_id DESC";
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
 
@@ -123,6 +124,50 @@ public class CommandeRepository {
 
         } catch (SQLException | ClassNotFoundException e) {
             throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST, e);
+        } finally {
+            JdbcTool.close(resultSet, stmt, conn);
+        }
+    }
+
+    public List<CommandeEntity> findAllCommandesEnCours() throws RepositoryException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        try {
+            conn = connectionFactory.create();
+            stmt = conn.prepareStatement(SELECT_ALL_ENCOURS);
+            resultSet = stmt.executeQuery();
+
+            List<CommandeEntity> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(toEntity(resultSet));
+            }
+            return list;
+
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_ALL_ENCOURS, e);
+        } finally {
+            JdbcTool.close(resultSet, stmt, conn);
+        }
+    }
+
+    public List<CommandeEntity> findAllCommandesTermines() throws RepositoryException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        try {
+            conn = connectionFactory.create();
+            stmt = conn.prepareStatement(SELECT_ALL_TERMINES);
+            resultSet = stmt.executeQuery();
+
+            List<CommandeEntity> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(toEntity(resultSet));
+            }
+            return list;
+
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_ALL_TERMINES, e);
         } finally {
             JdbcTool.close(resultSet, stmt, conn);
         }

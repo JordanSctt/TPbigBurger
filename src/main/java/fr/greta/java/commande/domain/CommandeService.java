@@ -53,11 +53,26 @@ public class CommandeService {
 
         try {
             List<Commande> models = wrapper.fromEntities(repository.findAllCommandes());
-            for(Commande commande : models) {
+           /* for(Commande commande : models) {
                 if(commande.getUser() != null) {
                     commande.setUser(userService.findById(commande.getUser().getId()));
                 }
-            }
+            } */
+            return models;
+
+        } catch (RepositoryException e) {
+            throw new ServiceException(e);
+        }
+    }
+    public List<Commande> findAllCommandesEnCours() throws ServiceException {
+
+        try {
+            List<Commande> models = wrapper.fromEntities(repository.findAllCommandesEnCours());
+           /* for(Commande commande : models) {
+                if(commande.getUser() != null) {
+                    commande.setUser(userService.findById(commande.getUser().getId()));
+                }
+            } */
             return models;
 
         } catch (RepositoryException e) {
@@ -202,4 +217,19 @@ public class CommandeService {
         return formatDateTime;
     }
 
+    public List<Commande> findAllCommandesTermines() throws ServiceException {
+
+        try {
+            List<Commande> models = wrapper.fromEntities(repository.findAllCommandesTermines());
+           /* for(Commande commande : models) {
+                if(commande.getUser() != null) {
+                    commande.setUser(userService.findById(commande.getUser().getId()));
+                }
+            } */
+            return models;
+
+        } catch (RepositoryException e) {
+            throw new ServiceException(e);
+        }
+    }
 }

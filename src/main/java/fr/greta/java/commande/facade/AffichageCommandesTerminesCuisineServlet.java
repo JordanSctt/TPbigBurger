@@ -17,8 +17,8 @@ import java.io.IOException;
 import java.util.List;
 
 
-@WebServlet("/affichageCommande")
-public class AffichageCommandesCuisineServlet extends HttpServlet {
+@WebServlet("/affichageCommandesTermines")
+public class AffichageCommandesTerminesCuisineServlet extends HttpServlet {
 
     private CommandeService service = new CommandeService();
     private CommandeDTOWrapper wrapper = new CommandeDTOWrapper();
@@ -29,10 +29,10 @@ public class AffichageCommandesCuisineServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            List<Commande> allCommandes = service.findAllCommandesEnCours();
+            List<Commande> allCommandes = service.findAllCommandesTermines();
             request.setAttribute("commandes", wrapper.toDTOS(allCommandes));
 
-            request.getRequestDispatcher("cuisine.jsp").forward(request, response);
+            request.getRequestDispatcher("cuisineTermines.jsp").forward(request, response);
         } catch (ServiceException | RepositoryException e) {
             e.printStackTrace();
         }
