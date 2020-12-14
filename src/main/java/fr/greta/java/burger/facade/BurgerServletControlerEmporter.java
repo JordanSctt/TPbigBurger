@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 @WebServlet("/CommandeUser")
-public class BurgerServletControler extends HttpServlet {
+public class BurgerServletControlerEmporter extends HttpServlet {
 
     private BurgerService service = new BurgerService();
 

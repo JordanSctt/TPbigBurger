@@ -1,6 +1,5 @@
 
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <!doctype html>
@@ -101,7 +100,10 @@
                   <div class="dropdown">
                       <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Commander</a>
-
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                      <a class="dropdown-item" href="CommandeUser">A emporter</a>
+                      <a class="dropdown-item" href="CommandeUserLivraison">Se faire livrer</a>
+                      </div>
                       </div>
         </li>
 
@@ -112,74 +114,68 @@
     </div>
   </nav>
 </header>
-<main role="main">
+  <body>
+
+  <div class="text-center">
+   	 <div class="text-center mb-4">
+     		<h1 class="h1 mb-3 font-weight-normal">Affichage des commandes (Admin.)</h1>
+     		<a type="button" class="btn btn-outline-primary center" href="accueil.jsp">Accueil</a>
+   	 </div>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Numero commande</th>
+            <th scope="col">Heure commande</th>
+            <th scope="col">Date debut Livraison</th>
+            <th scope="col">Date fin livraison estime</th>
+            <th scope="col">Nom client</th>
+            <th scope="col">Phone client</th>
+            <th scope="col">Adresse</th>
 
 
-  <!-- Marketing messaging and featurettes
-  ================================================== -->
-  <!-- Wrap the rest of the page in another container to center all the content. -->
+          </tr>
+        </thead>
+        <tbody>
 
 
-
-    <!-- Three columns of text below the carousel
-
-
-    <!-- START THE FEATURETTES -->
-
-
-          	 <div class="text-center mb-1">
-            		<h1>Commande par Livraison</h1>
-
-
-          	 </div>
-         <table class="table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th></th>
-                                    <th>Nom</th>
-                                    <th>Prix</th>
-                                    <th>Quantite</th>
-
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                 <form action ="actionCommanderUserLivraison" method ="post">
-                            <c:forEach items="${ requestScope.burgers}" var="burger">
-
-                                <tr>
-                                <td width = "15%">
-                                <img src="images/${ burger.label }.png"
-                                 width="120" height="130"></img></td>
-                                    <td width = "15%"><c:out value="${ burger.label }" /></td>
-                                    <td width = "10%"><c:out value="${ burger.price }" /></td>
-                                    <td><input type="text" name="${burger.id}" size = "1" ></input></td>
-
-                                </tr>
-                            </c:forEach>
+           <tr>
+             <td width ="10%"><c:out value="${ commande.id }" /></td>
+             <td width ="10%"><c:out value="${commande.startDatePrep}" /></td>
+             <td width ="10%"> <c:out value="${commande.startDateLivraison}" /></td>
+             <td width ="10%"><c:out value="${commande.estimationLivraison}" /></td>
+             <td width ="10%"><c:out value="${commande.name}" /></td>
+             <td width ="10%"><c:out value="${commande.phone}" /></td>
+             <td width ="10%"><c:out value="${commande.adresse}" /></td>
 
 
 
+            </tr>
+  </tbody>
+             </table>
+           </div>
+                 <table class="table">
+                        <thead class="thead-dark">
+                          <tr>
+                            <th scope="col">Burger</th>
+                            <th scope="col">Prix burger</th>
+                            <th scope="col">Quantite</th>
 
-                            </tbody>
-                        </table>
-                      <p> <class="button"><input type="submit" value="Commander"></a></p>
-  </form>
+                          </tr>
+                        </thead>
+                        <tbody>
+                  <c:forEach items="${requestScope.commande.commandeItemsDTOList}" var="commandeItems">
+           <tr>
+                        <td><c:out value="${commandeItems.label}" /></td>
+                        <td><c:out value="${commandeItems.price}" />_euros</td>
+                        <td><c:out value="${commandeItems.quantity}" />_unite(s)</td>
+                    </tr>
+                </c:forEach>
+
+              </tr>
 
 
-    <hr class="featurette-divider">
-
-    <!-- /END THE FEATURETTES -->
-
-  </div><!-- /.container -->
-
-
-  <!-- FOOTER -->
-  <footer class="container">
-    <p class="float-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2017-2020 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-  </footer>
-</main>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-      <script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="css/bootstrap.bundle.min.js"></script>
-</html>
+        </tbody>
+      </table>
+    </div>
+  </body>
+  </html>

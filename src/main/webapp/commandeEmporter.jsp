@@ -131,7 +131,7 @@
 
 
           	 <div class="text-center mb-1">
-            		<h1>Selection Commande</h1>
+            		<h1>Commande à emporter</h1>
 
 
           	 </div>
