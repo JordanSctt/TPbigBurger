@@ -24,11 +24,7 @@ CREATE TABLE _commandeItems (
     _quantity integer
 );
 
-CREATE TABLE _cuisto (
-    _cuisto_id SERIAL NOT NULL PRIMARY KEY,
-    _name character varying(20),
-    _presence character varying(20),
-);
+
 
                   ALTER TABLE _commande
                             ADD CONSTRAINT _commande_fk__user foreign key (_user_id)  REFERENCES _user(_user_id);
@@ -50,7 +46,11 @@ CREATE TABLE _cuisto (
 
 
 //-------------------------------------------
-
+CREATE TABLE _cuisto (
+    _cuisto_id SERIAL NOT NULL PRIMARY KEY,
+    _name character varying(20),
+    _presence character varying(20)
+);
                 CREATE TABLE _livreur (
                     _livreur_id SERIAL NOT NULL PRIMARY KEY,
                     _commande_id integer,
