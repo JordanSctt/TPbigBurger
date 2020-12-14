@@ -124,7 +124,30 @@
  	 <div class="text-center mb-4">
    		<h1 class="h1 mb-3 font-weight-normal">Affichage des commandes (Admin.)</h1>
    		<a type="button" class="btn btn-outline-primary center" href="accueil.jsp">Accueil</a>
- 	 </div>
+    </div>
+    
+    <c:if test="${not empty param.errorMessage}">
+           <div class="alert alert-warning">
+              <c:choose>
+               <c:when test = "${param.errorMessage eq 'AFFECTED_ERROR'}">
+                  ERREUR - Aucun livreur n'est disponible
+               </c:when>
+               <c:otherwise>
+                  Une erreur inconnue est survenue
+               </c:otherwise>
+              </c:choose>
+           </div>
+        </c:if>
+        <c:if test="${not empty param.successMessage}">
+           <div class="alert alert-success">
+             <c:choose>
+              <c:when test = "${param.successMessage eq 'AFFECTED_CREATED'}">
+                L'affection du livreur a la commande as ete realise avec succes
+              </c:when>
+             </c:choose>
+           </div>
+        </c:if>
+
  	 <div class="text-left mb-4">
         <h2 class="h2 mb-3 font-weight-normal">
         <a type="button" class="btn btn-outline-primary center" href="affichageCommandesTermines"> COMMANDES TERMINES</a></h2>

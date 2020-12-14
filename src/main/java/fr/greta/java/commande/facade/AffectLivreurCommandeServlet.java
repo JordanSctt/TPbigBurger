@@ -42,16 +42,18 @@ public class AffectLivreurCommandeServlet extends HttpServlet {
 
                 livreurService.setCommande(livreurs.get(0), commande);
                 service.updateEtatCommande(userEnCours, commande);
+                response.sendRedirect(request.getContextPath() + "/affichageCommande?successMessage=AFFECTED_CREATED");
+            } else {
+                redirectAffectedLivreurError(request, response);
             }
-            response.sendRedirect(request.getContextPath() + "/affichageCommande");
-
-
-
 
         } catch (ServiceException | RepositoryException e) {
             e.printStackTrace();
+            redirectAffectedLivreurError(request, response);
         }
+    }
 
-
+    private void redirectAffectedLivreurError(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.sendRedirect(request.getContextPath() + "/affichageCommande?errorMessage=AFFECTED_ERROR");
     }
 }
