@@ -161,7 +161,7 @@
                               <option selected>changer presence :</option>
                               <option value="PRESENT">PRESENT</option>
                               <option value="ABSENT">ABSENT</option>
-                              <option value="EN_LIVRAISON">LIVRAISON</option>
+
                             </select>
                             <button class="btn btn-lg btn-primary btn-block" type="submit" >modifier</button>
                             </div></td>
