@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CommandeDTO {
 
-    private int id;
+    private Integer id;
     private String startDatePrep;
     private String endDatePrep;
     private String name;
@@ -61,11 +61,11 @@ public class CommandeDTO {
         this.etatCommande = etatCommande;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -24,6 +24,7 @@ public class CommandeRepository {
     private final String UPDATE_DATEDEBUT_LIVRAISON = "UPDATE _commande SET _startdatelivraison = ?, _enddatelivraison = ? WHERE _commande_id = ?";
     private final String SELECT_ALL_ENCOURS = "SELECT * FROM _commande WHERE _etatcommande != 'LIVRE' AND _etatcommande != 'PRETE' ORDER BY _commande_id";
     private final String SELECT_ALL_TERMINES = "SELECT * FROM _commande WHERE _etatcommande = 'LIVRE' OR _etatcommande = 'PRETE' ORDER BY _commande_id DESC";
+    private final String SEARCH_COMMANDEID_BY_LIVREURID = "SELECT _commande_id FROM _commande WHERE _livreur_id = ? ORDER BY _commande_id";
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
 
@@ -190,7 +191,30 @@ public class CommandeRepository {
             return list;
 
         } catch (SQLException | ClassNotFoundException e) {
-            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST, e);
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SEARCH_REQUEST_BY_USER_ID, e);
+        } finally {
+            JdbcTool.close(resultSet, stmt, conn);
+        }
+    }
+
+    public List<CommandeEntity> findAllCommandesByLivreurID(int userID) throws RepositoryException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        try {
+            conn = connectionFactory.create();
+            stmt = conn.prepareStatement(SEARCH_COMMANDEID_BY_LIVREURID);
+            stmt.setInt(1, userID);
+            resultSet = stmt.executeQuery();
+
+            List<CommandeEntity> list = new ArrayList<>();
+            while (resultSet.next()) {
+                list.add(toEntity(resultSet));
+            }
+            return list;
+
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SEARCH_COMMANDEID_BY_LIVREURID, e);
         } finally {
             JdbcTool.close(resultSet, stmt, conn);
         }
@@ -217,6 +241,7 @@ public class CommandeRepository {
             JdbcTool.close(resultSet, stmt, conn);
         }
     }
+
 
     public CommandeEntity findById(int id) throws RepositoryException {
         Connection conn = null;

@@ -1,6 +1,7 @@
 package fr.greta.java.livreur.persistence;
 
 import fr.greta.java.commande.persistence.CommandeEntity;
+import fr.greta.java.commande.persistence.CommandeRepository;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.tools.ConnectionFactory;
 import fr.greta.java.generic.tools.JdbcTool;
@@ -22,8 +23,10 @@ public class LivreurRepository {
     private final String INIT_COMMANDE = "UPDATE _livreur SET _commande_id = null WHERE _commande_id = ?";
     private final String SET_PRESENCE_LIVRAISON = "UPDATE _livreur SET _presence = 'EN_LIVRAISON' WHERE _commande_id = ?";
     private final String SET_PRESENCE_PRESENT = "UPDATE _livreur SET _presence = 'PRESENT' WHERE _livreur_id = ?";
+    
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
+    private CommandeRepository commandeRepository = new CommandeRepository();
 
     public List<LivreurEntity> findAllLivreurs() throws RepositoryException {
         Connection conn = null;
@@ -158,17 +161,13 @@ public class LivreurRepository {
         }
     }
 
-
-    private LivreurEntity toEntity(ResultSet resultSet) throws SQLException {
+  
+    private LivreurEntity toEntity(ResultSet resultSet) throws SQLException, RepositoryException {
         LivreurEntity entity = new LivreurEntity();
         entity.setId(resultSet.getInt("_livreur_id"));
-        if(resultSet.getInt("_commande_id") > 0) {
-            entity.setCommandeID(resultSet.getInt("_commande_id"));
-
-        }
+        entity.setCommandeIdEnCours(resultSet.getInt("_commande_id"));
         entity.setName(resultSet.getString("_name"));
         entity.setPresence(resultSet.getString("_presence"));
-
         return entity;
     }
 

@@ -3,22 +3,16 @@ package fr.greta.java.livreur.persistence;
 
 import fr.greta.java.livreur.domain.LivreurPresence;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LivreurEntity {
 
     private int id;
-    private Integer commandeID;
+    private Integer commandeIdEnCours;
     private String name;
     private String presence;
-
-    //-----------------------------------------
-
-
-    public LivreurEntity(int id, Integer commandeID, String name, String presence) {
-        this.id = id;
-        this.commandeID = commandeID;
-        this.name = name;
-        this.presence = presence;
-    }
+    
 
     public LivreurEntity() {
     }
@@ -30,14 +24,6 @@ public class LivreurEntity {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Integer getCommandeID() {
-        return commandeID;
-    }
-
-    public void setCommandeID(Integer commandeID) {
-        this.commandeID = commandeID;
     }
 
     public String getName() {
@@ -54,5 +40,13 @@ public class LivreurEntity {
 
     public void setPresence(String presence) {
         this.presence = presence;
+    }
+
+    public Integer getCommandeIdEnCours() {
+        return commandeIdEnCours;
+    }
+
+    public void setCommandeIdEnCours(Integer commandeIdEnCours) {
+        this.commandeIdEnCours = commandeIdEnCours;
     }
 }

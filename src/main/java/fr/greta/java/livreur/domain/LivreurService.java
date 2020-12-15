@@ -4,6 +4,7 @@ import fr.greta.java.commande.domain.Commande;
 import fr.greta.java.commande.domain.CommandeEtat;
 import fr.greta.java.commande.domain.CommandeWrapper;
 import fr.greta.java.commande.persistence.CommandeEntity;
+import fr.greta.java.commande.persistence.CommandeRepository;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
 import fr.greta.java.livreur.persistence.LivreurEntity;
@@ -17,6 +18,7 @@ public class LivreurService {
     private LivreurWrapper wrapperLivreur = new LivreurWrapper();
     private LivreurRepository repository = new LivreurRepository();
     private CommandeWrapper wrapperCommande = new CommandeWrapper();
+    
 
     public List<Livreur> findAllLivreurs() throws ServiceException {
         try {
@@ -47,6 +49,8 @@ public class LivreurService {
         }
 
     }
+    
+    
 
     public void setCommande(Livreur livreur, Commande commande) throws ServiceException, RepositoryException {
         LivreurEntity livreurEntity = wrapperLivreur.toEntity(livreur);

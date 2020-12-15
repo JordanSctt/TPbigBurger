@@ -3,21 +3,22 @@ package fr.greta.java.livreur.domain;
 import fr.greta.java.commande.domain.Commande;
 import fr.greta.java.commande.domain.CommandeEtat;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Livreur {
 
     private int id;
-    private Commande commande;
+    private List<Commande> commandes;
     private String name;
     private LivreurPresence presence;
+    private Commande commandeEnCours;
 
     //-----------------------------------------------
-    public Livreur(int id, Commande commande, String name, LivreurPresence presence) {
-        this.id = id;
-        this.commande = commande;
-        this.name = name;
-        this.presence = presence;
-    }
+
+
+  
 
     public Livreur() {
     }
@@ -31,12 +32,17 @@ public class Livreur {
         this.id = id;
     }
 
-    public Commande getCommande() {
-        return commande;
+    public List<Commande> getCommandes() {
+        if (this.commandes == null) {
+
+            this.commandes = new ArrayList<>();
+
+        }
+        return commandes;
     }
 
-    public void setCommande(Commande commande) {
-        this.commande = commande;
+    public void setCommandes(List<Commande> commandes) {
+        this.commandes = commandes;
     }
 
     public String getName() {
@@ -55,5 +61,12 @@ public class Livreur {
         this.presence = presence;
     }
 
+    public Commande getCommandeEnCours() {
+        return commandeEnCours;
     }
+
+    public void setCommandeEnCours(Commande commandeEnCours) {
+        this.commandeEnCours = commandeEnCours;
+    }
+}
 

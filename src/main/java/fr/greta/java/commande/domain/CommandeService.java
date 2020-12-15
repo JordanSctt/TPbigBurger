@@ -92,6 +92,18 @@ public class CommandeService {
         }
     }
 
+    public List<Commande> findAllCommandesByLivreurID(int livreurID) throws ServiceException {
+
+        try {
+            List<Commande> models = wrapper.fromEntities(repository.findAllCommandesByLivreurID(livreurID));
+
+            return models;
+
+        } catch (RepositoryException e) {
+            throw new ServiceException(e);
+        }
+    }
+
     public Commande findById(int id) throws ServiceException {
         try {
             return wrapper.fromEntity(repository.findById(id));

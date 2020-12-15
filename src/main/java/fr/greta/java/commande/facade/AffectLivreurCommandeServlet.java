@@ -38,8 +38,9 @@ public class AffectLivreurCommandeServlet extends HttpServlet {
             Commande commande = service.findById(Integer.parseInt(commandeId));
             List<Livreur> livreurs = livreurService.findAllLivreursAvailable();
 
-            if (livreurs.stream().count() > 0) {
+          //  if (livreurs.size() > 0 ) {
 
+            if (!livreurs.isEmpty()) {
                 livreurService.setCommande(livreurs.get(0), commande);
                 service.updateEtatCommande(userEnCours, commande);
                 response.sendRedirect(request.getContextPath() + "/affichageCommande?successMessage=AFFECTED_CREATED");

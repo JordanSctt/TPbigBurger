@@ -1,27 +1,26 @@
 package fr.greta.java.livreur.facade;
 
 import fr.greta.java.commande.domain.Commande;
+import fr.greta.java.commande.facade.CommandeDTO;
 import fr.greta.java.livreur.domain.LivreurPresence;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LivreurDTO {
 
     private int id;
     private String name;
     private String presence;
-    private int commandeID;
+    private List<CommandeDTO> commandeDTOList;
+    private CommandeDTO commandeEnCours;
 
 
     //-------------------------------------------
 
 
-    public LivreurDTO(int id, String name, String presence, int commandeID) {
-        this.id = id;
-        this.name = name;
-        this.presence = presence;
-        this.commandeID = commandeID;
-    }
+   
 
     public LivreurDTO() {
     }
@@ -51,11 +50,22 @@ public class LivreurDTO {
         this.presence = presence;
     }
 
-    public int getCommandeID() {
-        return commandeID;
+    public List<CommandeDTO> getCommandeDTOList() {
+        if (this.commandeDTOList == null) {
+            this.commandeDTOList = new ArrayList<>();
+        }
+        return commandeDTOList;
     }
 
-    public void setCommandeID(int commandeID) {
-        this.commandeID = commandeID;
+    public void setCommandeDTOList(List<CommandeDTO> commandeDTOList) {
+        this.commandeDTOList = commandeDTOList;
+    }
+
+    public CommandeDTO getCommandeEnCours() {
+        return commandeEnCours;
+    }
+
+    public void setCommandeEnCours(CommandeDTO commandeEnCours) {
+        this.commandeEnCours = commandeEnCours;
     }
 }
