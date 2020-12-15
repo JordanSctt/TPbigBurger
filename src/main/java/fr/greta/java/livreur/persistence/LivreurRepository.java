@@ -1,11 +1,9 @@
 package fr.greta.java.livreur.persistence;
 
-import fr.greta.java.burger.persistence.BurgerEntity;
 import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.tools.ConnectionFactory;
 import fr.greta.java.generic.tools.JdbcTool;
-import fr.greta.java.livreur.domain.LivreurPresence;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

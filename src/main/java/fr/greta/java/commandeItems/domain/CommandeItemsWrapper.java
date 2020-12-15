@@ -1,7 +1,6 @@
 package fr.greta.java.commandeItems.domain;
 
-import fr.greta.java.burger.domain.Burger;
-import fr.greta.java.burger.persistence.BurgerEntity;
+import fr.greta.java.burger.domain.Produit;
 import fr.greta.java.commande.domain.Commande;
 import fr.greta.java.commandeItems.persistence.CommandeItemsEntity;
 
@@ -21,14 +20,14 @@ public class CommandeItemsWrapper {
     }
 
     public CommandeItems fromEntity(CommandeItemsEntity entity) {
-        Burger burger = new Burger();
-        burger.setId(entity.getBurgerId());
+        Produit produit = new Produit();
+        produit.setId(entity.getProduitId());
 
         Commande commande = new Commande();
         commande.setId(entity.getCommandeId());
 
         CommandeItems model = new CommandeItems();
-        model.setBurger(burger);
+        model.setProduit(produit);
 
         model.setCommande(commande);
         model.setQuantity(entity.getQuantity());
@@ -38,7 +37,7 @@ public class CommandeItemsWrapper {
 
     public CommandeItemsEntity toEntity(CommandeItems model) {
         CommandeItemsEntity entity = new CommandeItemsEntity();
-        entity.setBurgerId(model.getBurger().getId());
+        entity.setProduitId(model.getProduit().getId());
         entity.setCommandeId(model.getCommande().getId());
         entity.setQuantity(model.getQuantity());
         return entity;

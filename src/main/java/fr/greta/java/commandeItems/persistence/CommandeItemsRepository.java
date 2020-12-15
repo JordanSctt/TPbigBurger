@@ -1,20 +1,13 @@
 package fr.greta.java.commandeItems.persistence;
 
-import fr.greta.java.burger.persistence.BurgerEntity;
-import fr.greta.java.commande.persistence.CommandeEntity;
-import fr.greta.java.commandeItems.domain.CommandeItems;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.tools.ConnectionFactory;
 import fr.greta.java.generic.tools.JdbcTool;
-import fr.greta.java.user.persistence.UserEntity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +16,7 @@ public class CommandeItemsRepository {
 
 
     private final String SELECT_REQUEST_ALL = "SELECT * FROM _commandeitems";
-    private final String INSERT_REQUEST = "INSERT INTO _commandeitems (_burger_id, _commande_id, _quantity) VALUES (?, ?, ?)";
+    private final String INSERT_REQUEST = "INSERT INTO _commandeitems (_produit_id, _commande_id, _quantity) VALUES (?, ?, ?)";
     private final String SELECT_REQUEST_WHERE_ID = SELECT_REQUEST_ALL + " WHERE _commande_id = ?";
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
@@ -36,7 +29,7 @@ public class CommandeItemsRepository {
         try {
             conn = connectionFactory.create();
             preparedStatement = conn.prepareStatement(INSERT_REQUEST);
-            preparedStatement.setInt(1, entity.getBurgerId());
+            preparedStatement.setInt(1, entity.getProduitId());
             preparedStatement.setInt(2, entity.getCommandeId());
             preparedStatement.setInt(3, entity.getQuantity());
             preparedStatement.executeUpdate();
@@ -119,7 +112,7 @@ public class CommandeItemsRepository {
 
     private CommandeItemsEntity toEntity(ResultSet resultSet) throws SQLException {
         CommandeItemsEntity entity = new CommandeItemsEntity();
-        entity.setBurgerId(resultSet.getInt("_burger_id"));
+        entity.setProduitId(resultSet.getInt("_produit_id"));
         entity.setCommandeId(resultSet.getInt("_commande_id"));
         entity.setQuantity(resultSet.getInt("_quantity"));
 

@@ -1,8 +1,12 @@
-package fr.greta.java.burger.persistence;
+package fr.greta.java.burger.domain;
 
-public class BurgerEntity {
+import fr.greta.java.generic.tools.StringTool;
+
+
+public class Produit {
 
     private int id;
+    private ProduitType produitType;
     private String label;
     private double price;
 
@@ -13,6 +17,14 @@ public class BurgerEntity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public ProduitType getProduitType() {
+        return produitType;
+    }
+
+    public void setProduitType(ProduitType produitType) {
+        this.produitType = produitType;
     }
 
     public String getLabel() {
@@ -29,5 +41,11 @@ public class BurgerEntity {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public boolean isValid() {
+
+        return !StringTool.isNullOrEmpty(getLabel());
+
     }
 }

@@ -1,9 +1,7 @@
 package fr.greta.java.commandeItems.facade;
 
-import fr.greta.java.burger.persistence.BurgerEntity;
-import fr.greta.java.burger.persistence.BurgerRepository;
-import fr.greta.java.commande.domain.Commande;
-import fr.greta.java.commande.facade.CommandeDTO;
+import fr.greta.java.burger.persistence.ProduitEntity;
+import fr.greta.java.burger.persistence.ProduitRepository;
 import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.commande.persistence.CommandeRepository;
 import fr.greta.java.commandeItems.domain.CommandeItems;
@@ -17,7 +15,7 @@ import java.util.List;
 
 public class CommandeItemsDTOWrapper {
 
-private BurgerRepository repositoryBurger = new BurgerRepository();
+private ProduitRepository repositoryBurger = new ProduitRepository();
 private CommandeRepository repositoryCommande = new CommandeRepository();
 
 
@@ -43,9 +41,10 @@ private CommandeRepository repositoryCommande = new CommandeRepository();
 
         CommandeItemsDTO DTO = new CommandeItemsDTO();
 
-        BurgerEntity burgerEntity = repositoryBurger.findById(commandeItemsEntity.getBurgerId());
-        DTO.setLabel(burgerEntity.getLabel());
-        DTO.setPrice(burgerEntity.getPrice());
+        ProduitEntity produitEntity = repositoryBurger.findById(commandeItemsEntity.getProduitId());
+        DTO.setLabel(produitEntity.getLabel());
+        DTO.setPrice(produitEntity.getPrice());
+        DTO.setType(produitEntity.getProduitType().name());
 
         CommandeEntity commandeEntity = repositoryCommande.findById(commandeItemsEntity.getCommandeId());
         DTO.setStartDateFormat(formatDate(commandeEntity.getStartDatePrep().toLocalDateTime()));
@@ -60,12 +59,13 @@ private CommandeRepository repositoryCommande = new CommandeRepository();
 
         CommandeItemsDTO dto = new CommandeItemsDTO();
 
-        dto.setLabel(model.getBurger().getLabel());
-        dto.setPrice(model.getBurger().getPrice());
+        dto.setLabel(model.getProduit().getLabel());
+        dto.setPrice(model.getProduit().getPrice());
+        dto.setType(model.getProduit().getProduitType().name());
         dto.setStartDateFormat(formatDate(model.getCommande().getStartDatePrep()));
         dto.setEndDateFormat(formatDate(model.getCommande().getEndDatePrep()));
         dto.setQuantity(model.getQuantity());
-        dto.setTotalPrixLigne(model.getBurger().getPrice()* model.getQuantity());
+        dto.setTotalPrixLigne(model.getProduit().getPrice()* model.getQuantity());
 
         return dto;
     }

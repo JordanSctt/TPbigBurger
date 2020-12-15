@@ -1,6 +1,6 @@
 package fr.greta.java.commande.facade;
 
-import fr.greta.java.burger.domain.Burger;
+import fr.greta.java.burger.domain.Produit;
 import fr.greta.java.commande.domain.Commande;
 import fr.greta.java.commande.domain.CommandeEtat;
 import fr.greta.java.commande.domain.CommandeService;
@@ -65,9 +65,9 @@ public class CommandeEmporterServlet extends HttpServlet {
 
             if (!(map.get(key)[0]== null || map.get(key)[0].isEmpty()) ) {
             CommandeItems commandeItems = new CommandeItems();
-            Burger burger = new Burger();
+            Produit burger = new Produit();
             burger.setId(Integer.parseInt(key));
-            commandeItems.setBurger(burger);
+            commandeItems.setProduit(burger);
 
             commandeItems.setQuantity(Integer.parseInt(map.get(key)[0]));
             commandeItems.setCommande(commande);

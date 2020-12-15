@@ -1,22 +1,22 @@
 package fr.greta.java.commandeItems.domain;
 
-import fr.greta.java.burger.domain.Burger;
+import fr.greta.java.burger.domain.Produit;
 import fr.greta.java.commande.domain.Commande;
 
 public class CommandeItems {
 
-    private Burger burger;
+    private Produit produit;
     private Commande commande;
     private int quantity;
 
 
 
-    public Burger getBurger() {
-        return burger;
+    public Produit getProduit() {
+        return produit;
     }
 
-    public void setBurger(Burger burger) {
-        this.burger = burger;
+    public void setProduit(Produit produit) {
+        this.produit = produit;
     }
 
     public Commande getCommande() {

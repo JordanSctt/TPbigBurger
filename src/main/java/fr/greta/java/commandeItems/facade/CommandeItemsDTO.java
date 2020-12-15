@@ -1,16 +1,12 @@
 package fr.greta.java.commandeItems.facade;
 
-import fr.greta.java.commande.domain.CommandeService;
-
-import java.time.LocalDateTime;
-
-
 
 public class CommandeItemsDTO {
 
 
     private String label;
     private Double price;
+    private String type;
     private String startDateFormat;
     private String endDateFormat;
     private int quantity;
@@ -54,6 +50,14 @@ public class CommandeItemsDTO {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getQuantity() {

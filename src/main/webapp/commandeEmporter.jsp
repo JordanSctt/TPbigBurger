@@ -148,15 +148,15 @@
                             </thead>
                             <tbody>
                  <form action ="actionCommanderUserEmporter" method ="post">
-                            <c:forEach items="${ requestScope.burgers}" var="burger">
+                            <c:forEach items="${ requestScope.produits}" var="produit">
 
                                 <tr>
                                 <td width = "15%">
-                                <img src="images/${ burger.label }.png"
+                                <img src="images/${ produit.label }.png"
                                  width="120" height="130"></img></td>
-                                    <td width = "15%"><c:out value="${ burger.label }" /></td>
-                                    <td width = "10%"><c:out value="${ burger.price }" /></td>
-                                    <td><input type="text" name="${burger.id}" size = "1" ></input></td>
+                                    <td width = "15%"><c:out value="${ produit.label }" /></td>
+                                    <td width = "10%"><c:out value="${ produit.price }" /></td>
+                                    <td><input type="text" name="${produit.id}" size = "1" ></input></td>
 
                                 </tr>
                             </c:forEach>

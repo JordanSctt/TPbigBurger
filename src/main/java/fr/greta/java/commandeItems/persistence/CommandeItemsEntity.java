@@ -2,18 +2,18 @@ package fr.greta.java.commandeItems.persistence;
 
 public class CommandeItemsEntity {
 
-    private int burgerId;
+    private int produitId;
     private int commandeId;
     private int quantity;
 
 
 
-    public int getBurgerId() {
-        return burgerId;
+    public int getProduitId() {
+        return produitId;
     }
 
-    public void setBurgerId(int burgerId) {
-        this.burgerId = burgerId;
+    public void setProduitId(int produitId) {
+        this.produitId = produitId;
     }
 
     public int getCommandeId() {

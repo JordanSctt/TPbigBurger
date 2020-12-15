@@ -1,8 +1,11 @@
 package fr.greta.java.burger.facade;
 
-public class BurgerDTO {
+import fr.greta.java.burger.domain.ProduitType;
+
+public class ProduitDTO {
 
     private int id;
+    private ProduitType produitType;
     private String label;
     private double price;
 
@@ -12,6 +15,14 @@ public class BurgerDTO {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public ProduitType getProduitType() {
+        return produitType;
+    }
+
+    public void setProduitType(ProduitType produitType) {
+        this.produitType = produitType;
     }
 
     public String getLabel() {

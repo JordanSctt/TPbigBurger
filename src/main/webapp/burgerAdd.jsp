@@ -35,26 +35,39 @@
   </head>
   <body>
 
-    <form class="form-signin" action="ajoutBurger" method="POST">
+    <form class="form-signin" action="ajoutProduit" method="POST">
   <div class="text-center mb-4">
 
-    <h1 class="h3 mb-3 font-weight-normal">Ajouter un burger a la carte</h1>
-    <p>Veuillez saisir un nom ainsi qu'un prix pour votre nouveau burger</p>
+    <h1 class="h3 mb-3 font-weight-normal">Ajouter un produit a la carte</h1>
+    <p>Veuillez saisir un type, un nom ainsi qu'un prix pour votre nouveau produit</p>
   </div>
 
   <!-- <div class="form-label-group">
     <input type="text" id="inputLogin" class="form-control" name="label_parameter" placeholder="Login" required autofocus>
     <label for="inputLogin">Nom :</label>
   </div> -->
+  <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="type_parameter">
+    <label class="btn btn-outline-primary" for="btncheck1">BURGER</label>
+  
+    <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="type_parameter">
+    <label class="btn btn-outline-primary" for="btncheck2">BOISSON</label>
+  
+    <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="type_parameter">
+    <label class="btn btn-outline-primary" for="btncheck3">DESSERT</label>
+  </div>
 
   <div class="form-label-group">
   <select class="form-select" aria-label="Default select example" name="label_parameter">
-    <option selected>Ouvrir pour selectionner un nouveau burger</option>
-    <option value="Fish">Fish</option>
-    <option value="Chiken">Chiken</option>
-    <option value="Swiss">Swiss</option>
-    <option value="Black">Black</option>
-    <option value="Brooklin">Brooklin</option>
+    <option selected>Ouvrir pour selectionner un nouveau produit</option>
+    <option value="Fish">burger Fish</option>
+    <option value="Chiken">burger Chiken</option>
+    <option value="Swiss">burger Swiss</option>
+    <option value="Black">burger Black</option>
+    <option value="Biere">boisson Biere</option>
+    <option value="Eauplate">boisson Eauplate</option>
+    <option value="Tarte">dessert Tarte</option>
+    <option value="Fruits">dessert Fruits</option>
   </select>
   </div>
 

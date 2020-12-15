@@ -1,7 +1,7 @@
 package fr.greta.java.commande.facade;
 
 
-import fr.greta.java.burger.domain.Burger;
+import fr.greta.java.burger.domain.Produit;
 import fr.greta.java.commande.domain.Commande;
 import fr.greta.java.commande.domain.CommandeEtat;
 import fr.greta.java.commande.domain.CommandeService;
@@ -10,7 +10,6 @@ import fr.greta.java.commandeItems.domain.CommandeItems;
 import fr.greta.java.commandeItems.domain.CommandeItemsService;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
-import fr.greta.java.livreur.domain.LivreurService;
 import fr.greta.java.user.domain.User;
 import fr.greta.java.user.facade.UserDTOWrapper;
 
@@ -63,9 +62,9 @@ public class CommandeLivraisonServlet extends HttpServlet {
 
             if (!(map.get(key)[0]== null || map.get(key)[0].isEmpty()) ) {
                 CommandeItems commandeItems = new CommandeItems();
-                Burger burger = new Burger();
-                burger.setId(Integer.parseInt(key));
-                commandeItems.setBurger(burger);
+                Produit produit = new Produit();
+                produit.setId(Integer.parseInt(key));
+                commandeItems.setProduit(produit);
                 commandeItems.setQuantity(Integer.parseInt(map.get(key)[0]));
                 commandeItems.setCommande(commande);
 

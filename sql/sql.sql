@@ -51,26 +51,37 @@ CREATE TABLE _cuisto (
     _name character varying(20),
     _presence character varying(20)
 );
-                CREATE TABLE _livreur (
-                    _livreur_id SERIAL NOT NULL PRIMARY KEY,
-                    _commande_id integer,
-                    _name character varying(20),
-                    _presence character varying(100)
-                );
 
-                ALTER TABLE _livreur
-                        ADD CONSTRAINT _livreur_fk__commande foreign key (_commande_id)  REFERENCES _commande(_commande_id);
+CREATE TABLE _livreur (
+    _livreur_id SERIAL NOT NULL PRIMARY KEY,
+    _commande_id integer,
+    _name character varying(20),
+    _presence character varying(100)
+    );
 
-                ALTER TABLE _commande
-                        ADD _startDateLivraison timestamp;
-                ALTER TABLE _commande
-                        ADD _endDateLivraison timestamp;
+    ALTER TABLE _livreur
+        ADD CONSTRAINT _livreur_fk__commande foreign key (_commande_id)  REFERENCES _commande(_commande_id);
 
-                ALTER TABLE _commande
-                        ADD _typeLivraison character varying(50);
+    ALTER TABLE _commande
+        ADD _startDateLivraison timestamp;
+    ALTER TABLE _commande
+        ADD _endDateLivraison timestamp;
 
-                ALTER TABLE _commande
-                        ADD _estimationLivraison timestamp;
+    ALTER TABLE _commande
+        ADD _typeLivraison character varying(50);
 
-                ALTER TABLE _user
-                        ADD _adresse character varying(100);
+    ALTER TABLE _commande
+        ADD _estimationLivraison timestamp;
+
+    ALTER TABLE _user
+        ADD _adresse character varying(100);
+
+-- ------------------------Modif Table burger pour produit/fct menu----------------------------
+
+    ALTER TABLE _burger RENAME TO _produit;
+
+    ALTER TABLE _produit RENAME COLUMN _burger_id TO _produit_id;
+
+    ALTER TABLE _produit ADD _type character varying(50);
+
+    ALTER TABLE _commandeitems RENAME COLUMN _burger_id TO _produit_id;

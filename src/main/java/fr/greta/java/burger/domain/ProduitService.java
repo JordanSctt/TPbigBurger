@@ -1,34 +1,33 @@
 package fr.greta.java.burger.domain;
 
-import fr.greta.java.burger.persistence.BurgerEntity;
-import fr.greta.java.burger.persistence.BurgerRepository;
+import fr.greta.java.burger.persistence.ProduitRepository;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
 
 import java.util.List;
 
-public class BurgerService {
+public class ProduitService {
 
-    private BurgerRepository repository = new BurgerRepository();
+    private ProduitRepository repository = new ProduitRepository();
 
-    private BurgerWrapper wrapper = new BurgerWrapper();
+    private ProduitWrapper wrapper = new ProduitWrapper();
 
-    public Burger create(Burger burger) throws ServiceException {
-        if(burger.isValid()) {
+    public Produit create(Produit produit) throws ServiceException {
+        if(produit.isValid()) {
             try {
-                Burger burgerCreer = wrapper.fromEntity(repository.create(wrapper.toEntity(burger)));
+                Produit burgerCreer = wrapper.fromEntity(repository.create(wrapper.toEntity(produit)));
                 return burgerCreer;
 
             } catch (RepositoryException e) {
                 throw new ServiceException(e);
             }
         }
-        throw new ServiceException("Le label et le prix du burger ne peuvent être vide.");
+        throw new ServiceException("Le label et le prix du produit ne peuvent être vide.");
     }
 
-    public List<Burger> findAllWithBurger() throws ServiceException {
+    public List<Produit> findAllWithProduit() throws ServiceException {
         try {
-            List<Burger> models = wrapper.fromEntities(repository.findAll());
+            List<Produit> models = wrapper.fromEntities(repository.findAll());
 
             return models;
         } catch (RepositoryException e) {
@@ -44,11 +43,11 @@ public class BurgerService {
                 throw new ServiceException(e);
             }
 
-        throw new ServiceException("Le label du burger ne peut être vide.");
+        throw new ServiceException("Le label du produit ne peut être vide.");
     }
 
 
-    public Burger findById(int id) throws ServiceException {
+    public Produit findById(int id) throws ServiceException {
         try {
             return wrapper.fromEntity(repository.findById(id));
         } catch (RepositoryException e) {

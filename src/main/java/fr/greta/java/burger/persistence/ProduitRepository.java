@@ -1,5 +1,6 @@
 package fr.greta.java.burger.persistence;
 
+import fr.greta.java.burger.domain.ProduitType;
 import fr.greta.java.generic.exception.RepositoryException;
 
 import fr.greta.java.generic.tools.ConnectionFactory;
@@ -9,16 +10,16 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BurgerRepository {
+public class ProduitRepository {
 
-    private final String SELECT_REQUEST = "SELECT _burger_id, _label, _price FROM _burger";
-    private final String INSERT_REQUEST = "INSERT INTO _burger (_label, _price) VALUES (?, ?)";
-    private final String SELECT_REQUEST_WHERE_ID = SELECT_REQUEST + " WHERE _burger_id = ?";
+    private final String SELECT_REQUEST = "SELECT _produit_id, _label, _price, _type FROM _produit";
+    private final String INSERT_REQUEST = "INSERT INTO _produit (_label, _price, _type) VALUES (?, ?, ?)";
+    private final String SELECT_REQUEST_WHERE_ID = SELECT_REQUEST + " WHERE _produit_id = ?";
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
 
 
-    public BurgerEntity create(BurgerEntity entity) throws RepositoryException {
+    public ProduitEntity create(ProduitEntity entity) throws RepositoryException {
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
@@ -27,6 +28,7 @@ public class BurgerRepository {
             preparedStatement = conn.prepareStatement(INSERT_REQUEST, PreparedStatement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, entity.getLabel());
             preparedStatement.setDouble(2, entity.getPrice());
+            preparedStatement.setString(3, entity.getProduitType().name());
             preparedStatement.executeUpdate();
 
             rs = preparedStatement.getGeneratedKeys();
@@ -41,7 +43,7 @@ public class BurgerRepository {
         }
     }
 
-    public List<BurgerEntity> findAll() throws RepositoryException {
+    public List<ProduitEntity> findAll() throws RepositoryException {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
@@ -50,11 +52,11 @@ public class BurgerRepository {
             stmt = conn.prepareStatement(SELECT_REQUEST);
             resultSet = stmt.executeQuery();
 
-            List<BurgerEntity> burgerList = new ArrayList<>();
+            List<ProduitEntity> produitList = new ArrayList<>();
             while (resultSet.next()) {
-                burgerList.add(toEntity(resultSet));
+                produitList.add(toEntity(resultSet));
             }
-            return burgerList;
+            return produitList;
         } catch (SQLException | ClassNotFoundException e) {
             throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST, e);
         } finally {
@@ -70,7 +72,7 @@ public class BurgerRepository {
         try {
             conn = connectionFactory.create();
             stmt = conn.createStatement();
-            rs = stmt.executeQuery("DELETE FROM _burger WHERE _burger_id = "+id+"");
+            rs = stmt.executeQuery("DELETE FROM _produit WHERE _produit_id = "+id+"");
 
         } catch (SQLException | ClassNotFoundException e) {
             throw new RepositoryException("Erreur lors de l'execution de la requête: DELETE", e);
@@ -79,7 +81,7 @@ public class BurgerRepository {
         }
     }
 
-    public BurgerEntity findById(int id) throws RepositoryException {
+    public ProduitEntity findById(int id) throws RepositoryException {
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet resultSet = null;
@@ -100,11 +102,12 @@ public class BurgerRepository {
         }
     }
 
-    private BurgerEntity toEntity(ResultSet resultSet) throws SQLException {
-        BurgerEntity entity = new BurgerEntity();
-        entity.setId(resultSet.getInt("_burger_id"));
+    private ProduitEntity toEntity(ResultSet resultSet) throws SQLException {
+        ProduitEntity entity = new ProduitEntity();
+        entity.setId(resultSet.getInt("_produit_id"));
         entity.setLabel(resultSet.getString("_label"));
         entity.setPrice(resultSet.getDouble("_price"));
+        entity.setProduitType(ProduitType.valueOf(resultSet.getString("_type")));
 
         return entity;
     }
