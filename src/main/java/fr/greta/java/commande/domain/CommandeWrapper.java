@@ -2,6 +2,8 @@ package fr.greta.java.commande.domain;
 
 import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.generic.exception.ServiceException;
+import fr.greta.java.livreur.domain.Livreur;
+import fr.greta.java.livreur.domain.LivreurService;
 import fr.greta.java.user.domain.User;
 import fr.greta.java.user.domain.UserService;
 
@@ -12,6 +14,7 @@ import java.util.List;
 public class CommandeWrapper {
 
     UserService service = new UserService();
+
 
     public List<Commande> fromEntities(List<CommandeEntity> entities) throws ServiceException {
 
@@ -24,10 +27,12 @@ public class CommandeWrapper {
 
     public Commande fromEntity(CommandeEntity entity) throws ServiceException {
         Commande model = new Commande();
-        User user = service.findById(entity.getUserID());
-
         model.setId(entity.getId());
+
+        User user = new User();
+        user.setId(entity.getUserID());
         model.setUser(user);
+
         model.setStartDatePrep(entity.getStartDatePrep().toLocalDateTime());
         model.setEndDatePrep(entity.getEndDatePrep().toLocalDateTime());
         model.setEtatCommande(CommandeEtat.valueOf(entity.getEtatCommande()));
@@ -38,7 +43,10 @@ public class CommandeWrapper {
         if (entity.getStartDateLivraison() != null && entity.getEndDateLivraison() != null) {
             model.setStartDateLivraison(entity.getStartDateLivraison().toLocalDateTime());
             model.setEndDateLivraison(entity.getEndDateLivraison().toLocalDateTime());
-
+        }
+        if (entity.getLivreurID() != null) {
+            Livreur livreur = new Livreur();
+            livreur.setId(entity.getLivreurID());
         }
         return model;
     }

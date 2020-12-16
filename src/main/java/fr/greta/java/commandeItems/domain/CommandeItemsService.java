@@ -1,11 +1,13 @@
 package fr.greta.java.commandeItems.domain;
 
 import fr.greta.java.burger.domain.ProduitService;
+import fr.greta.java.commande.domain.Commande;
 import fr.greta.java.commande.domain.CommandeService;
 import fr.greta.java.commandeItems.persistence.CommandeItemsRepository;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CommandeItemsService {
@@ -15,6 +17,7 @@ public class CommandeItemsService {
     private CommandeItemsRepository repository = new CommandeItemsRepository();
     private ProduitService produitService = new ProduitService();
     private CommandeService commandeService = new CommandeService();
+
 
         public CommandeItems create(CommandeItems commandeItems) throws ServiceException {
 
@@ -47,6 +50,21 @@ public class CommandeItemsService {
         } catch (RepositoryException e) {
             throw new ServiceException(e);
         }
+    }
+
+    public List <CommandeItems> findAllCommandeItemsByCommandeID(int commandeID) throws RepositoryException, ServiceException {
+
+
+        List <CommandeItems> commandeItemsList = wrapper.fromEntities(repository.findAllCommandeItemsByCommandeID(commandeID));
+
+
+            for (CommandeItems commandeItems : commandeItemsList) {
+
+                    commandeItems.setProduit(produitService.findById(commandeItems.getProduit().getId()));
+
+            }
+
+            return commandeItemsList;
     }
 
 }

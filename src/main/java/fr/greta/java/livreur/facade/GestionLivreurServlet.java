@@ -25,7 +25,9 @@ public class GestionLivreurServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             List<Livreur> allLivreurs = service.findAllLivreurs();
+
             request.setAttribute("livreurs", wrapper.toDTOS(allLivreurs));
+
 
             request.getRequestDispatcher("livreur.jsp").forward(request, response);
         } catch (ServiceException | RepositoryException e) {

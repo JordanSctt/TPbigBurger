@@ -15,6 +15,7 @@ public class CommandeEntity {
     private Timestamp endDateLivraison;
     private String typeLivraison;
     private Timestamp estimationLivraison;
+    private Integer livreurID;
 
     public String getEtatCommande() {
         return etatCommande;
@@ -86,5 +87,13 @@ public class CommandeEntity {
 
     public void setEstimationLivraison(Timestamp estimationLivraison) {
         this.estimationLivraison = estimationLivraison;
+    }
+
+    public Integer getLivreurID() {
+        return livreurID;
+    }
+
+    public void setLivreurID(Integer livreurID) {
+        this.livreurID = livreurID;
     }
 }

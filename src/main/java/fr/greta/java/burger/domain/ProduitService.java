@@ -15,8 +15,9 @@ public class ProduitService {
     public Produit create(Produit produit) throws ServiceException {
         if(produit.isValid()) {
             try {
-                Produit burgerCreer = wrapper.fromEntity(repository.create(wrapper.toEntity(produit)));
-                return burgerCreer;
+                Produit produitCreer = wrapper.fromEntity(repository.create(wrapper.toEntity(produit)));
+
+                return produitCreer;
 
             } catch (RepositoryException e) {
                 throw new ServiceException(e);

@@ -3,6 +3,7 @@ package fr.greta.java.burger.facade;
 import fr.greta.java.burger.domain.Produit;
 import fr.greta.java.burger.domain.ProduitService;
 import fr.greta.java.burger.domain.ProduitType;
+import fr.greta.java.burger.domain.ProduitWrapper;
 import fr.greta.java.generic.exception.ServiceException;
 
 import javax.servlet.ServletException;
@@ -20,13 +21,13 @@ public class ProduitAddServlet extends HttpServlet {
     private static final String TYPE = "TYPE_parameter";
 
     private static ProduitService produitService = new ProduitService();
+    private ProduitWrapper wrapper = new ProduitWrapper();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
             Produit produit = new Produit();
-
             produit.setLabel(request.getParameter(LABEL));
             produit.setPrice(Double.parseDouble(request.getParameter(PRICE)));
             produit.setProduitType(ProduitType.valueOf(request.getParameter(TYPE)));

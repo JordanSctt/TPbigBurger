@@ -12,6 +12,7 @@ import fr.greta.java.commandeItems.facade.CommandeItemsDTOWrapper;
 import fr.greta.java.commandeItems.persistence.CommandeItemsEntity;
 import fr.greta.java.commandeItems.persistence.CommandeItemsRepository;
 import fr.greta.java.generic.exception.RepositoryException;
+import fr.greta.java.generic.exception.ServiceException;
 import fr.greta.java.user.domain.User;
 import fr.greta.java.user.facade.UserDTO;
 
@@ -38,6 +39,9 @@ public class CommandeRecapServlet extends HttpServlet {
 
     CommandeRepository repository = new CommandeRepository();
     CommandeDTOWrapper wrapperDTO = new CommandeDTOWrapper();
+    CommandeService commandeService = new CommandeService();
+    CommandeItemsService commandeItemsService = new CommandeItemsService();
+    CommandeItemsDTOWrapper commandeItemsDTOWrapper = new CommandeItemsDTOWrapper();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,10 +50,14 @@ public class CommandeRecapServlet extends HttpServlet {
         User userEnCours = (User) session.getAttribute("userConnected");
 
 
+
         try {
-            CommandeDTO commandeDTO = wrapperDTO.toDTOByEntity(repository.findLastCommandeByUserID(userEnCours.getId()));
+            CommandeDTO commandeDTO = wrapperDTO.toDTO(commandeService.findLastCommandeByUserID(userEnCours.getId()));
+            commandeDTO.setCommandeItemsDTOList(commandeItemsDTOWrapper.toListDTOByModel(commandeItemsService.findAllCommandeItemsByCommandeID(commandeDTO.getId())));
+            commandeDTO.calculPrixTotal(commandeDTO.getCommandeItemsDTOList());
+
             request.setAttribute("commande", commandeDTO);
-        } catch (RepositoryException e) {
+        } catch (RepositoryException | ServiceException e) {
             e.printStackTrace();
         }
 

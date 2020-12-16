@@ -22,7 +22,6 @@ public class UserConnectionServlet extends HttpServlet {
 	private static final String PASSWORD = "password_parameter";
 	
 	private static UserService userService = new UserService();
-	private static UserDTOWrapper userDTOWrapper = new UserDTOWrapper();
 
 	    @Override
 	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -15,8 +15,6 @@ import java.util.List;
 
 public class CommandeItemsDTOWrapper {
 
-private ProduitRepository repositoryBurger = new ProduitRepository();
-private CommandeRepository repositoryCommande = new CommandeRepository();
 
 
     public List<CommandeItemsDTO> toListDTO (List <CommandeItemsEntity> commandeItemsEntityList) throws RepositoryException {
@@ -40,17 +38,7 @@ private CommandeRepository repositoryCommande = new CommandeRepository();
     public CommandeItemsDTO toDTO(CommandeItemsEntity commandeItemsEntity) throws RepositoryException {
 
         CommandeItemsDTO DTO = new CommandeItemsDTO();
-
-        ProduitEntity produitEntity = repositoryBurger.findById(commandeItemsEntity.getProduitId());
-        DTO.setLabel(produitEntity.getLabel());
-        DTO.setPrice(produitEntity.getPrice());
-        DTO.setType(produitEntity.getProduitType().name());
-
-        CommandeEntity commandeEntity = repositoryCommande.findById(commandeItemsEntity.getCommandeId());
-        DTO.setStartDateFormat(formatDate(commandeEntity.getStartDatePrep().toLocalDateTime()));
-        DTO.setEndDateFormat(formatDate(commandeEntity.getEndDatePrep().toLocalDateTime()));
         DTO.setQuantity(commandeItemsEntity.getQuantity());
-        DTO.setTotalPrixLigne(DTO.getPrice()*DTO.getQuantity());
 
         return DTO;
     }
@@ -62,21 +50,14 @@ private CommandeRepository repositoryCommande = new CommandeRepository();
         dto.setLabel(model.getProduit().getLabel());
         dto.setPrice(model.getProduit().getPrice());
         dto.setType(model.getProduit().getProduitType().name());
-        dto.setStartDateFormat(formatDate(model.getCommande().getStartDatePrep()));
-        dto.setEndDateFormat(formatDate(model.getCommande().getEndDatePrep()));
+        dto.setStartDateFormat(String.valueOf(model.getCommande().getStartDatePrep()));
+        dto.setEndDateFormat(String.valueOf(model.getCommande().getEndDatePrep()));
         dto.setQuantity(model.getQuantity());
         dto.setTotalPrixLigne(model.getProduit().getPrice()* model.getQuantity());
 
         return dto;
     }
 
-    public String formatDate(LocalDateTime localDate) {
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        String formatDateTime = localDate.format(formatter);
-
-        return formatDateTime;
-    }
 
 
 }

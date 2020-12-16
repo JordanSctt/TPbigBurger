@@ -1,5 +1,6 @@
 package fr.greta.java.commande.domain;
 
+import fr.greta.java.livreur.domain.Livreur;
 import fr.greta.java.user.domain.User;
 
 import java.time.LocalDateTime;
@@ -16,6 +17,7 @@ public class Commande {
     private LocalDateTime endDateLivraison;
     private LocalDateTime estimationEndDateLivraison;
     private CommandeTypeLivraison typeLivraison;
+    private Livreur livreur;
 
 
 
@@ -89,5 +91,13 @@ public class Commande {
 
     public void setEstimationEndDateLivraison(LocalDateTime estimationEndDateLivraison) {
         this.estimationEndDateLivraison = estimationEndDateLivraison;
+    }
+
+    public Livreur getLivreur() {
+        return livreur;
+    }
+
+    public void setLivreur(Livreur livreur) {
+        this.livreur = livreur;
     }
 }

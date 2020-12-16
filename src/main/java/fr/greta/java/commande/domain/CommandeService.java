@@ -12,6 +12,7 @@ import fr.greta.java.livreur.persistence.LivreurEntity;
 import fr.greta.java.livreur.persistence.LivreurRepository;
 import fr.greta.java.user.domain.User;
 import fr.greta.java.user.domain.UserService;
+import fr.greta.java.user.domain.UserWrapper;
 import fr.greta.java.user.persistence.UserEntity;
 import fr.greta.java.user.persistence.UserRepository;
 
@@ -29,16 +30,22 @@ public class CommandeService {
     private UserService userService = new UserService();
     private CuistoRepository cuistoRepository = new CuistoRepository();
    private LivreurRepository livreurRepository = new LivreurRepository();
+   private UserRepository userRepository = new UserRepository();
+   private UserWrapper userWrapper = new UserWrapper();
 
     public Commande createEmporter(Commande commande) throws ServiceException {
 
             try {
                 Commande commandeCreer = wrapper.fromEntity(repository.createEmporter(wrapper.toEntity(commande)));
+               // commandeCreer.setUser(userService.findById(commandeCreer.getUser().getId()));
+
                 return commandeCreer;
             } catch (RepositoryException e) {
                 throw new ServiceException(e);
             }
     }
+
+
     public Commande createLivraison(Commande commande) throws ServiceException {
 
         try {
@@ -110,6 +117,22 @@ public class CommandeService {
         } catch (RepositoryException e) {
             throw new ServiceException(e);
         }
+    }
+
+
+    public List <Commande> findAllCommandesByUserID (int userID) throws RepositoryException, ServiceException {
+        List <Commande> commandes = wrapper.fromEntities(repository.findAllCommandesByUserID(userID));
+        return commandes;
+
+    }
+
+    public Commande findLastCommandeByUserID(int id) throws RepositoryException, ServiceException {
+
+           Commande commande =wrapper.fromEntity(repository.findLastCommandeByUserID(id));
+           User user = userWrapper.fromEntity(userRepository.findById(commande.getUser().getId()));
+           commande.setUser(user);
+           return commande;
+
     }
 
     public Commande calculDateFinEmporter(Commande commande) throws RepositoryException {

@@ -14,7 +14,7 @@ public class LivreurDTO {
     private String name;
     private String presence;
     private List<CommandeDTO> commandeDTOList;
-    private CommandeDTO commandeEnCours;
+    private Integer commandeEnCours;
 
 
     //-------------------------------------------
@@ -61,11 +61,11 @@ public class LivreurDTO {
         this.commandeDTOList = commandeDTOList;
     }
 
-    public CommandeDTO getCommandeEnCours() {
+    public Integer getCommandeEnCours() {
         return commandeEnCours;
     }
 
-    public void setCommandeEnCours(CommandeDTO commandeEnCours) {
+    public void setCommandeEnCours(Integer commandeEnCours) {
         this.commandeEnCours = commandeEnCours;
     }
 }

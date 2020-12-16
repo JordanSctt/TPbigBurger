@@ -1,5 +1,6 @@
 package fr.greta.java.livreur.persistence;
 
+import fr.greta.java.burger.persistence.ProduitEntity;
 import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.commande.persistence.CommandeRepository;
 import fr.greta.java.generic.exception.RepositoryException;
@@ -23,10 +24,33 @@ public class LivreurRepository {
     private final String INIT_COMMANDE = "UPDATE _livreur SET _commande_id = null WHERE _commande_id = ?";
     private final String SET_PRESENCE_LIVRAISON = "UPDATE _livreur SET _presence = 'EN_LIVRAISON' WHERE _commande_id = ?";
     private final String SET_PRESENCE_PRESENT = "UPDATE _livreur SET _presence = 'PRESENT' WHERE _livreur_id = ?";
-    
+    private final String SEARCH_BYID = "SELECT * FROM _livreur WHERE _livreur_id = ?";
+
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
     private CommandeRepository commandeRepository = new CommandeRepository();
+
+
+    public LivreurEntity findById(int id) throws RepositoryException {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        try {
+            conn = connectionFactory.create();
+            stmt = conn.prepareStatement(SEARCH_BYID);
+            stmt.setInt(1, id);
+            resultSet = stmt.executeQuery();
+
+            if (resultSet.next()) {
+                return toEntity(resultSet);
+            }
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SEARCH_BYID);
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SEARCH_BYID, e);
+        } finally {
+            JdbcTool.close(resultSet, stmt, conn);
+        }
+    }
 
     public List<LivreurEntity> findAllLivreurs() throws RepositoryException {
         Connection conn = null;
@@ -160,6 +184,8 @@ public class LivreurRepository {
             JdbcTool.close(rs, preparedStatement, conn);
         }
     }
+
+
 
   
     private LivreurEntity toEntity(ResultSet resultSet) throws SQLException, RepositoryException {

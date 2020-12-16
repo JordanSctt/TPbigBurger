@@ -7,6 +7,8 @@ import fr.greta.java.commande.domain.Commande;
 import fr.greta.java.commande.domain.CommandeService;
 import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.commande.persistence.CommandeRepository;
+import fr.greta.java.commandeItems.domain.CommandeItemsService;
+import fr.greta.java.commandeItems.facade.CommandeItemsDTOWrapper;
 import fr.greta.java.cuisto.domain.CuistoService;
 import fr.greta.java.cuisto.persistence.CuistoRepository;
 import fr.greta.java.generic.exception.RepositoryException;
@@ -27,16 +29,19 @@ public class DetailCommandeUserServlet extends HttpServlet {
 
     CommandeRepository repository = new CommandeRepository();
     CommandeDTOWrapper wrapper = new CommandeDTOWrapper();
-
+    CommandeItemsService commandeItemsService = new CommandeItemsService();
+    CommandeItemsDTOWrapper commandeItemsDTOWrapper = new CommandeItemsDTOWrapper();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         int commandeId = Integer.parseInt(request.getParameter("commande_id"));
         try {
            CommandeDTO commandeDTO = wrapper.toDTOByEntity(repository.findById(commandeId));
+            commandeDTO.setCommandeItemsDTOList(commandeItemsDTOWrapper.toListDTOByModel(commandeItemsService.findAllCommandeItemsByCommandeID(commandeDTO.getId())));
+
             request.setAttribute("commande", commandeDTO);
             request.getRequestDispatcher("detailCommandeUser.jsp").forward(request, response);
-        } catch (RepositoryException e) {
+        } catch (RepositoryException | ServiceException e) {
             e.printStackTrace();
         }
 

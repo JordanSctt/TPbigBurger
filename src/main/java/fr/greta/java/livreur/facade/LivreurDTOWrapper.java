@@ -26,7 +26,9 @@ public class LivreurDTOWrapper {
         dto.setId(model.getId());
         dto.setName(model.getName());
         dto.setPresence(model.getPresence().name());
-
+        if(model.getCommandeEnCours() != null) {
+            dto.setCommandeEnCours(model.getCommandeEnCours().getId());
+        }
         return dto;
     }
 

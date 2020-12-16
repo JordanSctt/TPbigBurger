@@ -53,7 +53,6 @@ public class CommandeEmporterServlet extends HttpServlet {
         try {
             Commande commandeCreer;
             commandeCreer = serviceCommande.createEmporter(commande);
-
             commande.setId(commandeCreer.getId());
         } catch (ServiceException e) {
             e.printStackTrace();
@@ -65,10 +64,9 @@ public class CommandeEmporterServlet extends HttpServlet {
 
             if (!(map.get(key)[0]== null || map.get(key)[0].isEmpty()) ) {
             CommandeItems commandeItems = new CommandeItems();
-            Produit burger = new Produit();
-            burger.setId(Integer.parseInt(key));
-            commandeItems.setProduit(burger);
-
+            Produit produit = new Produit();
+            produit.setId(Integer.parseInt(key));
+            commandeItems.setProduit(produit);
             commandeItems.setQuantity(Integer.parseInt(map.get(key)[0]));
             commandeItems.setCommande(commande);
 

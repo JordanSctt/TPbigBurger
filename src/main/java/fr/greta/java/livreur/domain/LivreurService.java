@@ -20,6 +20,12 @@ public class LivreurService {
     private CommandeWrapper wrapperCommande = new CommandeWrapper();
     
 
+
+    public Livreur findByiD(int id) throws RepositoryException, ServiceException {
+        Livreur livreur = wrapperLivreur.fromEntity(repository.findById(id));
+
+        return livreur;
+    }
     public List<Livreur> findAllLivreurs() throws ServiceException {
         try {
             List<Livreur> models = wrapperLivreur.fromEntities(repository.findAllLivreurs());

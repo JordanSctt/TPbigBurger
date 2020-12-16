@@ -215,9 +215,9 @@
                </thead>
                <tbody>
                 <tr>
-                    <td width ="15%"><c:out value="${commande.name }" /></td>
-                    <td width ="15%"><c:out value="${commande.phone }" /></td>
-                    <td width ="15%"><c:out value="${commande.adresse }" /></td>
+                    <td width ="15%"><c:out value="${commande.userName }" /></td>
+                    <td width ="15%"><c:out value="${commande.userPhone }" /></td>
+                    <td width ="15%"><c:out value="${commande.userAdresse }" /></td>
                      </tr>
                      </tbody>
                      </table>

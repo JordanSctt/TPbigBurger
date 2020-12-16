@@ -12,9 +12,10 @@ public class CommandeDTO {
     private Integer id;
     private String startDatePrep;
     private String endDatePrep;
-    private String name;
-    private String password;
-    private String phone;
+    private String userName;
+    private String userPassword;
+    private String userPhone;
+    private String userAdresse;
     private String etatCommande;
     private String startDateLivraison;
     private String endDateLivraison;
@@ -22,7 +23,7 @@ public class CommandeDTO {
     private List<CommandeItemsDTO> commandeItemsDTOList;
     private String typeLivraison;
     private String estimationLivraison;
-    private String adresse;
+    private String livreurName;
 
     public double getPrixTotal() {
         return prixTotal;
@@ -36,7 +37,7 @@ public class CommandeDTO {
 
         for (CommandeItemsDTO commandesItems : commandeItemsDTOList) {
 
-                this.prixTotal += commandesItems.getTotalPrixLigne();
+            this.prixTotal += commandesItems.getTotalPrixLigne();
 
         }
 
@@ -93,29 +94,6 @@ public class CommandeDTO {
         this.endDatePrep = formatDate(startDatePrep);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     public String getStartDateLivraison() {
         return startDateLivraison;
@@ -160,11 +138,64 @@ public class CommandeDTO {
         this.estimationLivraison = formatDate(estimationLivraison);
     }
 
-    public String getAdresse() {
-        return adresse;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
+    }
+
+    public String getUserPhone() {
+        return userPhone;
+    }
+
+    public void setUserPhone(String userPhone) {
+        this.userPhone = userPhone;
+    }
+
+    public String getUserAdresse() {
+        return userAdresse;
+    }
+
+    public void setUserAdresse(String userAdresse) {
+        this.userAdresse = userAdresse;
+    }
+
+    public String getLivreurName() {
+        return livreurName;
+    }
+
+    public void setLivreurName(String livreurName) {
+        this.livreurName = livreurName;
+    }
+
+    @Override
+    public String toString() {
+        return "CommandeDTO{" +
+                "id=" + id +
+                ", startDatePrep='" + startDatePrep + '\'' +
+                ", endDatePrep='" + endDatePrep + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userPhone='" + userPhone + '\'' +
+                ", userAdresse='" + userAdresse + '\'' +
+                ", etatCommande='" + etatCommande + '\'' +
+                ", startDateLivraison='" + startDateLivraison + '\'' +
+                ", endDateLivraison='" + endDateLivraison + '\'' +
+                ", prixTotal=" + prixTotal +
+                ", commandeItemsDTOList=" + commandeItemsDTOList +
+                ", typeLivraison='" + typeLivraison + '\'' +
+                ", estimationLivraison='" + estimationLivraison + '\'' +
+                ", livreurName='" + livreurName + '\'' +
+                '}';
     }
 }

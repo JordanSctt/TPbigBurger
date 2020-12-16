@@ -331,6 +331,7 @@ public class CommandeRepository {
         entity.setEtatCommande(resultSet.getString("_etatcommande"));
         entity.setTypeLivraison(resultSet.getString("_typelivraison"));
         entity.setEstimationLivraison(resultSet.getTimestamp("_estimationlivraison"));
+        entity.setLivreurID(resultSet.getInt("_livreur_id"));
         return entity;
     }
 

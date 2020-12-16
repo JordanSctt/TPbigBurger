@@ -154,7 +154,7 @@
                           <td width ="10%"><c:out value="${livreur.id }" /></td>
                           <td width ="20%"><c:out value="${livreur.name}" /></td>
                           <td width ="15%" <c:if test="${livreur.presence == 'PRESENT'}"> style="color:green" </c:if> style="color:red"><c:out value="${livreur.presence}" /></td>
-                          <td width ="10%"><c:if test="${livreur.commandeID != 0}"><a href="${pageContext.request.contextPath}/DetailCommandeLivreur?commande_id=<c:out value="${livreur.commandeID}" />"/><c:out value="${livreur.commandeID}" /><a/> </c:if></td>
+                          <td width ="10%"><c:if test="${livreur.commandeEnCours != 0}"><a href="${pageContext.request.contextPath}/DetailCommandeLivreur?commande_id=<c:out value="${livreur.commandeEnCours}" />"/><c:out value="${livreur.commandeEnCours}" /><a/> </c:if></td>
                           <td width = "5%"><div class="form-label-group">
                             <form class="form-signin" action="presenceLivreur" method="POST">
                             <select class="form-select" aria-label="Default select example" name="presence_parameter">
