@@ -68,16 +68,15 @@ public class CommandeDTO {
                     break;
             }
 
-            if (nombreBurger >= 1 && nombreBoisson >= 1 && nombreDessert >= 1) {
-
-                menu = menu + 1;
-                nombreBurger = nombreBurger - 1;
-                nombreBoisson = nombreBoisson - 1;
-                nombreDessert = nombreDessert - 1;
-
-            }
-
             this.prixTotal += commandesItems.getTotalPrixLigne();
+        }
+        while (nombreBurger > 0 && nombreBoisson > 0 && nombreDessert > 0) {
+
+            menu = menu + 1;
+            nombreBurger = nombreBurger - 1;
+            nombreBoisson = nombreBoisson - 1;
+            nombreDessert = nombreDessert - 1;
+
         }
 
         this.menu = menu;
