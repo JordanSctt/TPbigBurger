@@ -54,7 +54,7 @@ public class CommandeRecapServlet extends HttpServlet {
         try {
             CommandeDTO commandeDTO = wrapperDTO.toDTO(commandeService.findLastCommandeByUserID(userEnCours.getId()));
             commandeDTO.setCommandeItemsDTOList(commandeItemsDTOWrapper.toListDTOByModel(commandeItemsService.findAllCommandeItemsByCommandeID(commandeDTO.getId())));
-            commandeDTO.calculPrixTotal(commandeDTO.getCommandeItemsDTOList());
+            commandeDTO.calculPrixTotalMenu(commandeDTO.getCommandeItemsDTOList());
 
             request.setAttribute("commande", commandeDTO);
         } catch (RepositoryException | ServiceException e) {

@@ -166,7 +166,8 @@
       </c:if>
 
 <center><p><h1>Prix Total : <c:out value = "${commande.prixTotal}"/> euros</h1></p></center>
-REDUCTION :
+<center><p><h1>Reduction : <c:out value = "${commande.menu}"/> euros</h1></p></center>
+<center><p><h1>Prix Final : <c:out value = "${commande.prixTotal - commande.menu}"/> euros</h1></p></center>
 
 <p><a type="button" class="btn btn-primary" href="accueil.jsp">Retour Accueil</a></p>
 

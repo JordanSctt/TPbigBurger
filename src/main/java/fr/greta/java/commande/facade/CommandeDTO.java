@@ -25,6 +25,7 @@ public class CommandeDTO {
     private String typeLivraison;
     private String estimationLivraison;
     private String livreurName;
+    private Integer menu;
 
     public double getPrixTotal() {
         return prixTotal;
@@ -58,10 +59,14 @@ public class CommandeDTO {
 
               case "BURGER":
                   nombreBurger += 1;
+                  break;
               case "BOISSON":
                   nombreBoisson += 1;
+                  break;
               case "DESSERT":
-                  nombreDessert +=1;
+                  nombreDessert += 1;
+                  break;
+          }
 
                   if (nombreBurger >= 1 && nombreBoisson >= 1 && nombreDessert >= 1) {
 
@@ -86,13 +91,13 @@ public class CommandeDTO {
                   this.prixTotal += commandesItems.getTotalPrixLigne();
           }
 
-           
+            this.menu = menu;
 
         }
 
 
 
-    }
+
 
 
     public String formatDate(LocalDateTime localDate) {
@@ -228,24 +233,11 @@ public class CommandeDTO {
         this.livreurName = livreurName;
     }
 
-    @Override
-    public String toString() {
-        return "CommandeDTO{" +
-                "id=" + id +
-                ", startDatePrep='" + startDatePrep + '\'' +
-                ", endDatePrep='" + endDatePrep + '\'' +
-                ", userName='" + userName + '\'' +
-                ", userPassword='" + userPassword + '\'' +
-                ", userPhone='" + userPhone + '\'' +
-                ", userAdresse='" + userAdresse + '\'' +
-                ", etatCommande='" + etatCommande + '\'' +
-                ", startDateLivraison='" + startDateLivraison + '\'' +
-                ", endDateLivraison='" + endDateLivraison + '\'' +
-                ", prixTotal=" + prixTotal +
-                ", commandeItemsDTOList=" + commandeItemsDTOList +
-                ", typeLivraison='" + typeLivraison + '\'' +
-                ", estimationLivraison='" + estimationLivraison + '\'' +
-                ", livreurName='" + livreurName + '\'' +
-                '}';
+    public Integer getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Integer menu) {
+        this.menu = menu;
     }
 }
