@@ -1,5 +1,6 @@
 package fr.greta.java.burger.domain;
 
+import fr.greta.java.burger.persistence.ProduitEntity;
 import fr.greta.java.burger.persistence.ProduitRepository;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
@@ -15,7 +16,8 @@ public class ProduitService {
     public Produit create(Produit produit) throws ServiceException {
         if(produit.isValid()) {
             try {
-                Produit produitCreer = wrapper.fromEntity(repository.create(wrapper.toEntity(produit)));
+               Produit produitCreer = wrapper.fromEntity(repository.create(wrapper.toEntity(produit)));
+
 
                 return produitCreer;
 

@@ -46,14 +46,15 @@
     <input type="text" id="inputLogin" class="form-control" name="label_parameter" placeholder="Login" required autofocus>
     <label for="inputLogin">Nom :</label>
   </div> -->
+
   <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
-    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="type_parameter">
+    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off" name="type_parameter" value="BURGER">
     <label class="btn btn-outline-primary" for="btncheck1">BURGER</label>
   
-    <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="type_parameter">
+    <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off" name="type_parameter" value ="BOISSON">
     <label class="btn btn-outline-primary" for="btncheck2">BOISSON</label>
   
-    <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="type_parameter">
+    <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off" name="type_parameter" value ="DESSERT">
     <label class="btn btn-outline-primary" for="btncheck3">DESSERT</label>
   </div>
 

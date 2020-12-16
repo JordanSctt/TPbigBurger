@@ -23,7 +23,7 @@ public class ProduitWrapper {
         model.setId(entity.getId());
         model.setLabel(entity.getLabel());
         model.setPrice(entity.getPrice());
-        model.setProduitType(ProduitType.valueOf(String.valueOf(entity.getProduitType())));
+        model.setProduitType(entity.getProduitType());
         return model;
     }
 
@@ -33,6 +33,7 @@ public class ProduitWrapper {
         entity.setId(model.getId());
         entity.setLabel(model.getLabel());
         entity.setPrice(model.getPrice());
+        entity.setProduitType(model.getProduitType());
         return entity;
     }
 

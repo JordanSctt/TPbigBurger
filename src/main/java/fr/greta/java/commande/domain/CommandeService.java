@@ -119,7 +119,6 @@ public class CommandeService {
         }
     }
 
-
     public List <Commande> findAllCommandesByUserID (int userID) throws RepositoryException, ServiceException {
         List <Commande> commandes = wrapper.fromEntities(repository.findAllCommandesByUserID(userID));
         return commandes;
@@ -224,6 +223,7 @@ public class CommandeService {
                         repository.updateEtatCommande(commandeEntity, LIVRE);
                         livreurRepository.initCommandeLivreur(commandeEntity.getId());
                         break;
+
                 }
             }
 

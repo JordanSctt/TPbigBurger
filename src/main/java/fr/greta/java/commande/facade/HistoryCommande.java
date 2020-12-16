@@ -43,7 +43,7 @@ public class HistoryCommande extends HttpServlet {
 
             for (CommandeDTO commandeDTO : commandeDTOList) {
                 commandeDTO.setCommandeItemsDTOList(commandeItemsDTOWrapper.toListDTOByModel(commandeItemsService.findAllCommandeItemsByCommandeID(commandeDTO.getId())));
-
+                commandeDTO.calculPrixTotal(commandeDTO.getCommandeItemsDTOList());
             }
 
             request.setAttribute("commande", commandeDTOList);

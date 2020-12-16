@@ -18,7 +18,7 @@ public class ProduitAddServlet extends HttpServlet {
 
     private static final String LABEL = "label_parameter";
     private static final String PRICE = "price_parameter";
-    private static final String TYPE = "TYPE_parameter";
+    private static final String TYPE = "type_parameter";
 
     private static ProduitService produitService = new ProduitService();
     private ProduitWrapper wrapper = new ProduitWrapper();
@@ -27,10 +27,15 @@ public class ProduitAddServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         try {
+
+            System.out.println(request.getParameter(LABEL));
+            System.out.println(request.getParameter(PRICE));
+            System.out.println(request.getParameter(TYPE));
             Produit produit = new Produit();
             produit.setLabel(request.getParameter(LABEL));
             produit.setPrice(Double.parseDouble(request.getParameter(PRICE)));
             produit.setProduitType(ProduitType.valueOf(request.getParameter(TYPE)));
+
             produitService.create(produit);
 
             request.getRequestDispatcher("accueil.jsp").forward(request, response);

@@ -1,5 +1,6 @@
 package fr.greta.java.commande.facade;
 
+import fr.greta.java.burger.domain.ProduitType;
 import fr.greta.java.commandeItems.facade.CommandeItemsDTO;
 
 
@@ -40,6 +41,55 @@ public class CommandeDTO {
             this.prixTotal += commandesItems.getTotalPrixLigne();
 
         }
+
+
+    }
+
+    public void calculPrixTotalMenu(List<CommandeItemsDTO> commandeItemsDTOList) {
+
+            int nombreBurger = 0;
+            int nombreBoisson = 0;
+            int nombreDessert = 0;
+            int menu = 0;
+
+        for (CommandeItemsDTO commandesItems : commandeItemsDTOList) {
+
+          switch (commandesItems.getType()) {
+
+              case "BURGER":
+                  nombreBurger += 1;
+              case "BOISSON":
+                  nombreBoisson += 1;
+              case "DESSERT":
+                  nombreDessert +=1;
+
+                  if (nombreBurger >= 1 && nombreBoisson >= 1 && nombreDessert >= 1) {
+
+                      menu += 1;
+                      nombreBurger -= 1;
+                      if (nombreBurger == -1) {
+
+                          nombreBurger = 0;
+                      }
+                      nombreBoisson -= 1;
+                      if (nombreBoisson == -1) {
+
+                          nombreBoisson = 0;
+                      }
+                      nombreDessert -= 1;
+                      if (nombreDessert == -1) {
+
+                          nombreDessert = 0;
+                      }
+
+                  }
+                  this.prixTotal += commandesItems.getTotalPrixLigne();
+          }
+
+           
+
+        }
+
 
 
     }
