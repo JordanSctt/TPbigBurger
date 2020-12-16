@@ -48,56 +48,41 @@ public class CommandeDTO {
 
     public void calculPrixTotalMenu(List<CommandeItemsDTO> commandeItemsDTOList) {
 
-            int nombreBurger = 0;
-            int nombreBoisson = 0;
-            int nombreDessert = 0;
-            int menu = 0;
+        int nombreBurger = 0;
+        int nombreBoisson = 0;
+        int nombreDessert = 0;
+        int menu = 0;
 
         for (CommandeItemsDTO commandesItems : commandeItemsDTOList) {
 
-          switch (commandesItems.getType()) {
+            switch (commandesItems.getType()) {
 
-              case "BURGER":
-                  nombreBurger += 1;
-                  break;
-              case "BOISSON":
-                  nombreBoisson += 1;
-                  break;
-              case "DESSERT":
-                  nombreDessert += 1;
-                  break;
-          }
+                case "BURGER":
+                    nombreBurger += 1 * commandesItems.getQuantity();
+                    break;
+                case "BOISSON":
+                    nombreBoisson += 1 * commandesItems.getQuantity();
+                    break;
+                case "DESSERT":
+                    nombreDessert += 1 * commandesItems.getQuantity();
+                    break;
+            }
 
-                  if (nombreBurger >= 1 && nombreBoisson >= 1 && nombreDessert >= 1) {
+            if (nombreBurger >= 1 && nombreBoisson >= 1 && nombreDessert >= 1) {
 
-                      menu += 1;
-                      nombreBurger -= 1;
-                      if (nombreBurger == -1) {
+                menu = menu + 1;
+                nombreBurger = nombreBurger - 1;
+                nombreBoisson = nombreBoisson - 1;
+                nombreDessert = nombreDessert - 1;
 
-                          nombreBurger = 0;
-                      }
-                      nombreBoisson -= 1;
-                      if (nombreBoisson == -1) {
+            }
 
-                          nombreBoisson = 0;
-                      }
-                      nombreDessert -= 1;
-                      if (nombreDessert == -1) {
-
-                          nombreDessert = 0;
-                      }
-
-                  }
-                  this.prixTotal += commandesItems.getTotalPrixLigne();
-          }
-
-            this.menu = menu;
-
+            this.prixTotal += commandesItems.getTotalPrixLigne();
         }
 
+        this.menu = menu;
 
-
-
+    }
 
 
     public String formatDate(LocalDateTime localDate) {
