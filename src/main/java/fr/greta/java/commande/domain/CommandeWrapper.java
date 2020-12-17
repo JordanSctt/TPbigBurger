@@ -13,7 +13,6 @@ import java.util.List;
 
 public class CommandeWrapper {
 
-    UserService service = new UserService();
 
 
     public List<Commande> fromEntities(List<CommandeEntity> entities) throws ServiceException {

@@ -36,4 +36,8 @@ public class CommandeItems {
         this.quantity = quantity;
     }
 
+    public Double getPrixTotalLigne() {
+        return this.quantity * produit.getPrice();
+    }
+
 }

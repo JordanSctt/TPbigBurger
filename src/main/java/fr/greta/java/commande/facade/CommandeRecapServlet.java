@@ -4,6 +4,7 @@ package fr.greta.java.commande.facade;
 
 import fr.greta.java.commande.domain.Commande;
 import fr.greta.java.commande.domain.CommandeService;
+import fr.greta.java.commande.domain.CommandeWrapper;
 import fr.greta.java.commande.persistence.CommandeRepository;
 import fr.greta.java.commandeItems.domain.CommandeItemsService;
 import fr.greta.java.commandeItems.domain.CommandeItemsWrapper;
@@ -37,11 +38,11 @@ public class CommandeRecapServlet extends HttpServlet {
     private CommandeItemsRepository repository = new CommandeItemsRepository();
     */
 
-    CommandeRepository repository = new CommandeRepository();
+
     CommandeDTOWrapper wrapperDTO = new CommandeDTOWrapper();
     CommandeService commandeService = new CommandeService();
     CommandeItemsService commandeItemsService = new CommandeItemsService();
-    CommandeItemsDTOWrapper commandeItemsDTOWrapper = new CommandeItemsDTOWrapper();
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,9 +53,14 @@ public class CommandeRecapServlet extends HttpServlet {
 
 
         try {
-            CommandeDTO commandeDTO = wrapperDTO.toDTO(commandeService.findLastCommandeByUserID(userEnCours.getId()));
-            commandeDTO.setCommandeItemsDTOList(commandeItemsDTOWrapper.toListDTOByModel(commandeItemsService.findAllCommandeItemsByCommandeID(commandeDTO.getId())));
-            commandeDTO.calculPrixTotalMenu(commandeDTO.getCommandeItemsDTOList());
+            Commande commande = commandeService.findLastCommandeByUserID(userEnCours.getId());
+            commande.setUser(userEnCours);
+            commande.setCommandeItemsList(commandeItemsService.findAllCommandeItemsByCommandeID(commande.getId()));
+            commande.calculPrixTotalMenu(commande.getCommandeItemsList());
+
+            CommandeDTO commandeDTO = wrapperDTO.toDTO(commande);
+
+
 
             request.setAttribute("commande", commandeDTO);
         } catch (RepositoryException | ServiceException e) {

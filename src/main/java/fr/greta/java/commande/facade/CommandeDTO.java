@@ -29,59 +29,6 @@ public class CommandeDTO {
 
 
 
-
-    public void calculPrixTotal(List<CommandeItemsDTO> commandeItemsDTOList) {
-
-        for (CommandeItemsDTO commandesItems : commandeItemsDTOList) {
-
-            this.prixTotal += commandesItems.getTotalPrixLigne();
-
-        }
-
-
-    }
-
-    public void calculPrixTotalMenu(List<CommandeItemsDTO> commandeItemsDTOList) {
-
-        int nombreBurger = 0;
-        int nombreBoisson = 0;
-        int nombreDessert = 0;
-        int menu = 0;
-        int reduction = 3;
-
-
-        for (CommandeItemsDTO commandesItems : commandeItemsDTOList) {
-
-            switch (commandesItems.getType()) {
-
-                case "BURGER":
-                    nombreBurger += 1 * commandesItems.getQuantity();
-                    break;
-                case "BOISSON":
-                    nombreBoisson += 1 * commandesItems.getQuantity();
-                    break;
-                case "DESSERT":
-                    nombreDessert += 1 * commandesItems.getQuantity();
-                    break;
-            }
-
-            this.prixTotal += commandesItems.getTotalPrixLigne();
-        }
-        while (nombreBurger > 0 && nombreBoisson > 0 && nombreDessert > 0) {
-
-            menu = menu + 1;
-            nombreBurger -=   1;
-            nombreBoisson -=   1;
-            nombreDessert -=  1;
-
-        }
-
-        this.menu = menu;
-        this.reductionMenu = menu * reduction;
-
-
-    }
-
     public String formatDate(LocalDateTime localDate) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -224,5 +171,13 @@ public class CommandeDTO {
 
     public void setReductionMenu(Integer reductionMenu) {
         this.reductionMenu = reductionMenu;
+    }
+
+    public double getPrixTotal() {
+        return prixTotal;
+    }
+
+    public void setPrixTotal(double prixTotal) {
+        this.prixTotal = prixTotal;
     }
 }

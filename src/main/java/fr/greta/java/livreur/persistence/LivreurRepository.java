@@ -27,7 +27,7 @@ public class LivreurRepository {
 
 
     private ConnectionFactory connectionFactory = new ConnectionFactory();
-    private CommandeRepository commandeRepository = new CommandeRepository();
+
 
 
     public LivreurEntity findById(int id) throws RepositoryException {

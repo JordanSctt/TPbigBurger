@@ -2,6 +2,7 @@ package fr.greta.java.commande.facade;
 
 import fr.greta.java.commande.domain.Commande;
 import fr.greta.java.commande.persistence.CommandeEntity;
+import fr.greta.java.commandeItems.domain.CommandeItems;
 import fr.greta.java.commandeItems.facade.CommandeItemsDTO;
 import fr.greta.java.commandeItems.facade.CommandeItemsDTOWrapper;
 import fr.greta.java.commandeItems.persistence.CommandeItemsEntity;
@@ -16,8 +17,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class CommandeDTOWrapper {
 
+    CommandeItemsDTOWrapper commandeItemsDTOWrapper = new CommandeItemsDTOWrapper();
 
 
     public List<CommandeDTO> toDTOS(List<Commande> models) throws RepositoryException {
@@ -53,9 +56,11 @@ public class CommandeDTOWrapper {
             dto.setStartDateLivraison(model.getStartDateLivraison());
             dto.setEndDateLivraison(model.getEndDateLivraison());
         }
-        List <CommandeItemsDTO> commandeItemsDTOList = new ArrayList<>();
-        dto.setCommandeItemsDTOList(commandeItemsDTOList);
-        dto.calculPrixTotal(dto.getCommandeItemsDTOList());
+       if (model.getCommandeItemsList() != null) {
+
+       dto.setCommandeItemsDTOList(commandeItemsDTOWrapper.toListDTOByModel(model.getCommandeItemsList()));
+
+       }
         dto.setTypeLivraison(model.getTypeLivraison().name());
         if (model.getEstimationEndDateLivraison() != null) {
             dto.setEstimationLivraison(model.getEstimationEndDateLivraison());
@@ -63,6 +68,9 @@ public class CommandeDTOWrapper {
         if (model.getLivreur() != null) {
             dto.setLivreurName(model.getLivreur().getName());
         }
+        dto.setPrixTotal(model.getPrixTotal());
+        dto.setMenu(model.getMenu());
+        dto.setReductionMenu(model.getReductionMenu());
 
         return dto;
     }

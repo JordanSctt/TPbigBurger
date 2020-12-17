@@ -7,7 +7,9 @@ import fr.greta.java.commandeItems.domain.CommandeItemsService;
 import fr.greta.java.commandeItems.facade.CommandeItemsDTOWrapper;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
+import fr.greta.java.livreur.domain.LivreurService;
 import fr.greta.java.user.domain.User;
+import fr.greta.java.user.persistence.UserRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,6 +30,8 @@ public class HistoryCommande extends HttpServlet {
     CommandeItemsService commandeItemsService = new CommandeItemsService();
     CommandeItemsDTOWrapper commandeItemsDTOWrapper = new CommandeItemsDTOWrapper();
     CommandeService commandeService = new CommandeService();
+    UserRepository userRepository = new UserRepository();
+    LivreurService livreurService = new LivreurService();
 
 
     @Override
@@ -39,12 +43,18 @@ public class HistoryCommande extends HttpServlet {
 
         try {
             List<Commande> commandes = commandeService.findAllCommandesByUserID(userEnCours.getId());
-            List<CommandeDTO> commandeDTOList = wrapperDTO.toDTOS(commandes);
 
-            for (CommandeDTO commandeDTO : commandeDTOList) {
-                commandeDTO.setCommandeItemsDTOList(commandeItemsDTOWrapper.toListDTOByModel(commandeItemsService.findAllCommandeItemsByCommandeID(commandeDTO.getId())));
-                commandeDTO.calculPrixTotal(commandeDTO.getCommandeItemsDTOList());
+            for (Commande commande : commandes) {
+
+                commande.setUser(userEnCours);
+                commande.setCommandeItemsList(commandeItemsService.findAllCommandeItemsByCommandeID(commande.getId()));
+                commande.calculPrixTotalMenu(commande.getCommandeItemsList());
+                if (commande.getLivreur() != null) {
+                    commande.setLivreur(livreurService.findByiD(commande.getLivreur().getId()));
+                }
             }
+
+            List <CommandeDTO> commandeDTOList = wrapperDTO.toDTOS(commandes);
 
             request.setAttribute("commande", commandeDTOList);
             request.getRequestDispatcher("historyCommande.jsp").forward(request, response);

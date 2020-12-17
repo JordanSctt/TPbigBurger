@@ -31,6 +31,7 @@ public class CommandeItemsWrapper {
 
         model.setCommande(commande);
         model.setQuantity(entity.getQuantity());
+
         return model;
     }
 

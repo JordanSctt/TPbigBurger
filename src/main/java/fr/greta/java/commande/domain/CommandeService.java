@@ -2,6 +2,7 @@ package fr.greta.java.commande.domain;
 
 import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.commande.persistence.CommandeRepository;
+import fr.greta.java.commandeItems.domain.CommandeItemsService;
 import fr.greta.java.cuisto.persistence.CuistoEntity;
 import fr.greta.java.cuisto.persistence.CuistoRepository;
 import fr.greta.java.generic.exception.RepositoryException;
@@ -27,17 +28,17 @@ public class CommandeService {
 
     private CommandeWrapper wrapper = new CommandeWrapper();
     private CommandeRepository repository = new CommandeRepository();
-    private UserService userService = new UserService();
     private CuistoRepository cuistoRepository = new CuistoRepository();
    private LivreurRepository livreurRepository = new LivreurRepository();
-   private UserRepository userRepository = new UserRepository();
-   private UserWrapper userWrapper = new UserWrapper();
+   private UserService userService = new UserService();
+
+
 
     public Commande createEmporter(Commande commande) throws ServiceException {
 
             try {
                 Commande commandeCreer = wrapper.fromEntity(repository.createEmporter(wrapper.toEntity(commande)));
-               // commandeCreer.setUser(userService.findById(commandeCreer.getUser().getId()));
+                commandeCreer.setUser(userService.findById(commandeCreer.getUser().getId()));
 
                 return commandeCreer;
             } catch (RepositoryException e) {
@@ -121,15 +122,17 @@ public class CommandeService {
 
     public List <Commande> findAllCommandesByUserID (int userID) throws RepositoryException, ServiceException {
         List <Commande> commandes = wrapper.fromEntities(repository.findAllCommandesByUserID(userID));
+
+
         return commandes;
 
     }
 
     public Commande findLastCommandeByUserID(int id) throws RepositoryException, ServiceException {
 
-           Commande commande =wrapper.fromEntity(repository.findLastCommandeByUserID(id));
-           User user = userWrapper.fromEntity(userRepository.findById(commande.getUser().getId()));
-           commande.setUser(user);
+           Commande commande = wrapper.fromEntity(repository.findLastCommandeByUserID(id));
+
+
            return commande;
 
     }

@@ -47,7 +47,7 @@ public class CommandeItemsDTOWrapper {
         dto.setStartDateFormat(String.valueOf(model.getCommande().getStartDatePrep()));
         dto.setEndDateFormat(String.valueOf(model.getCommande().getEndDatePrep()));
         dto.setQuantity(model.getQuantity());
-        dto.setTotalPrixLigne(model.getProduit().getPrice()* model.getQuantity());
+        dto.setTotalPrixLigne(model.getPrixTotalLigne());
 
         return dto;
     }

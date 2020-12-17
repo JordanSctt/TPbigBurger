@@ -27,7 +27,7 @@ public class CommandeItemsService {
             }
         }
 
-    public List<CommandeItems> findAll() throws ServiceException {
+   /* public List<CommandeItems> findAll() throws ServiceException {
         try {
             List<CommandeItems> models = wrapper.fromEntities(repository.findAll());
             for(CommandeItems commandeItems : models) {
@@ -41,7 +41,7 @@ public class CommandeItemsService {
             throw new ServiceException(e);
         }
     }
-
+*/
     public CommandeItems findById(int id) throws ServiceException {
         try {
             return wrapper.fromEntity(repository.findById(id));
@@ -59,7 +59,6 @@ public class CommandeItemsService {
             for (CommandeItems commandeItems : commandeItemsList) {
 
                     commandeItems.setProduit(produitService.findById(commandeItems.getProduit().getId()));
-
             }
 
             return commandeItemsList;
