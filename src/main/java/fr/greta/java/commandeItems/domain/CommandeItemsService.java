@@ -1,13 +1,11 @@
 package fr.greta.java.commandeItems.domain;
 
-import fr.greta.java.burger.domain.ProduitService;
-import fr.greta.java.commande.domain.Commande;
+import fr.greta.java.produit.domain.ProduitService;
 import fr.greta.java.commande.domain.CommandeService;
 import fr.greta.java.commandeItems.persistence.CommandeItemsRepository;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CommandeItemsService {

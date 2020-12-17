@@ -1,4 +1,4 @@
-package fr.greta.java.burger.domain;
+package fr.greta.java.produit.domain;
 
 import fr.greta.java.generic.tools.StringTool;
 

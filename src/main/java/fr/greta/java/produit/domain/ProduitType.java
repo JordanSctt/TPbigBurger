@@ -1,4 +1,4 @@
-package fr.greta.java.burger.domain;
+package fr.greta.java.produit.domain;
 
 public enum ProduitType {
 

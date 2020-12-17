@@ -1,6 +1,6 @@
-package fr.greta.java.burger.persistence;
+package fr.greta.java.produit.persistence;
 
-import fr.greta.java.burger.domain.ProduitType;
+import fr.greta.java.produit.domain.ProduitType;
 import fr.greta.java.generic.exception.RepositoryException;
 
 import fr.greta.java.generic.tools.ConnectionFactory;

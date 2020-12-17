@@ -1,14 +1,13 @@
-package fr.greta.java.burger.persistence;
+package fr.greta.java.produit.facade;
 
-import fr.greta.java.burger.domain.ProduitType;
+import fr.greta.java.produit.domain.ProduitType;
 
-public class ProduitEntity {
+public class ProduitDTO {
 
     private int id;
     private ProduitType produitType;
     private String label;
     private double price;
-
 
     public int getId() {
         return id;

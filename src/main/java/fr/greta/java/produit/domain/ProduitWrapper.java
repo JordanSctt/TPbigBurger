@@ -1,8 +1,7 @@
-package fr.greta.java.burger.domain;
+package fr.greta.java.produit.domain;
 
 
-import fr.greta.java.burger.persistence.ProduitEntity;
-import fr.greta.java.commande.domain.CommandeEtat;
+import fr.greta.java.produit.persistence.ProduitEntity;
 
 import java.util.ArrayList;
 import java.util.List;

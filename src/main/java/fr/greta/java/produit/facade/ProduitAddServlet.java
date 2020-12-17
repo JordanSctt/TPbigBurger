@@ -1,9 +1,9 @@
-package fr.greta.java.burger.facade;
+package fr.greta.java.produit.facade;
 
-import fr.greta.java.burger.domain.Produit;
-import fr.greta.java.burger.domain.ProduitService;
-import fr.greta.java.burger.domain.ProduitType;
-import fr.greta.java.burger.domain.ProduitWrapper;
+import fr.greta.java.produit.domain.Produit;
+import fr.greta.java.produit.domain.ProduitService;
+import fr.greta.java.produit.domain.ProduitType;
+import fr.greta.java.produit.domain.ProduitWrapper;
 import fr.greta.java.generic.exception.ServiceException;
 
 import javax.servlet.ServletException;

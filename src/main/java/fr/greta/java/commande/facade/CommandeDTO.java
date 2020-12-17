@@ -1,6 +1,5 @@
 package fr.greta.java.commande.facade;
 
-import fr.greta.java.burger.domain.ProduitType;
 import fr.greta.java.commandeItems.facade.CommandeItemsDTO;
 
 

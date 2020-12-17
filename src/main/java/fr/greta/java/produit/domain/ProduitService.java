@@ -1,7 +1,6 @@
-package fr.greta.java.burger.domain;
+package fr.greta.java.produit.domain;
 
-import fr.greta.java.burger.persistence.ProduitEntity;
-import fr.greta.java.burger.persistence.ProduitRepository;
+import fr.greta.java.produit.persistence.ProduitRepository;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
 

@@ -1,6 +1,5 @@
 package fr.greta.java.livreur.persistence;
 
-import fr.greta.java.burger.persistence.ProduitEntity;
 import fr.greta.java.commande.persistence.CommandeEntity;
 import fr.greta.java.commande.persistence.CommandeRepository;
 import fr.greta.java.generic.exception.RepositoryException;

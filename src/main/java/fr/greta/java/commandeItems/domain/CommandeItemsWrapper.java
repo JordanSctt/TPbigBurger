@@ -1,6 +1,6 @@
 package fr.greta.java.commandeItems.domain;
 
-import fr.greta.java.burger.domain.Produit;
+import fr.greta.java.produit.domain.Produit;
 import fr.greta.java.commande.domain.Commande;
 import fr.greta.java.commandeItems.persistence.CommandeItemsEntity;
 

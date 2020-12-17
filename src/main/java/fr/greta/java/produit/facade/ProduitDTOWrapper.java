@@ -1,7 +1,7 @@
-package fr.greta.java.burger.facade;
+package fr.greta.java.produit.facade;
 
-import fr.greta.java.burger.domain.Produit;
-import fr.greta.java.burger.domain.ProduitType;
+import fr.greta.java.produit.domain.Produit;
+import fr.greta.java.produit.domain.ProduitType;
 
 import java.util.ArrayList;
 import java.util.List;
