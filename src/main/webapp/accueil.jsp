@@ -51,9 +51,12 @@
         <!-- --------------- -->
         <c:choose>
 
-        <c:when test = "${empty sessionScope.userConnected}">           
+        <c:when test = "${empty sessionScope.userConnected && empty sessionScope.livreurConnected}">           
         <li class="nav-item">
           <a type="button" class="btn btn-secondary" href="connection.jsp">Se connecter</a>
+        </li>
+        <li class="nav-item">
+          <a type="button" class="btn btn-secondary" href="connectionLivreur.jsp">Se connecter Livreur</a>
         </li>
          <li class="nav-item">
           <a type="button" class="btn btn-secondary" href="inscription.jsp">S'inscrire</a>
@@ -61,6 +64,11 @@
         </c:when>
 
         <c:otherwise>
+          <c:if test="${not empty sessionScope.livreurConnected}">
+            <li class="nav-item">
+              <a type="button" class="btn btn-secondary" href="focusGestionLivreur">Commandes pour livreur(s)</a>
+            </li>  
+          </c:if>
 
         <c:if test="${userConnected.role == 'admin'}">
         <li class="nav-item">
@@ -78,7 +86,6 @@
               </div>
         </li>
         </c:if>
-
 
         <li class="nav-item">
           <div class="dropdown">

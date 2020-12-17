@@ -5,6 +5,7 @@ import fr.greta.java.commande.persistence.CommandeRepository;
 import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.tools.ConnectionFactory;
 import fr.greta.java.generic.tools.JdbcTool;
+import fr.greta.java.user.persistence.UserEntity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class LivreurRepository {
 
-
+    private final String SELECT_REQUEST_CONNECTION = "SELECT * FROM _livreur WHERE _name = ? AND _password = ?";
     private final String SELECT_REQUEST = "SELECT * FROM _livreur ORDER BY _livreur_id";
     private final String UPDATE_REQUEST = "UPDATE _livreur SET _presence = ? WHERE _livreur_id = ?";
     private final String SEARCH_AVAILABLE_LIVREUR = "SELECT * FROM _livreur WHERE _commande_id IS null AND _presence = 'PRESENT'";
@@ -29,6 +30,29 @@ public class LivreurRepository {
     private ConnectionFactory connectionFactory = new ConnectionFactory();
     private CommandeRepository commandeRepository = new CommandeRepository();
 
+    public LivreurEntity findByNameAndPassword(String name, String password) throws RepositoryException {
+
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet resultSet = null;
+        try {
+            conn = connectionFactory.create();
+            stmt = conn.prepareStatement(SELECT_REQUEST_CONNECTION);
+            stmt.setString(1, name);
+            stmt.setString(2, password);
+            resultSet = stmt.executeQuery();
+            if (resultSet.next()) {
+                return toEntity(resultSet);
+            }
+            LivreurEntity entity = new LivreurEntity();
+            return  entity;
+
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RepositoryException("Erreur lors de l'execution de la requête:" + SELECT_REQUEST_CONNECTION, e);
+        } finally {
+            JdbcTool.close(resultSet, stmt, conn);
+        }
+    }
 
     public LivreurEntity findById(int id) throws RepositoryException {
         Connection conn = null;
@@ -184,8 +208,6 @@ public class LivreurRepository {
         }
     }
 
-
-
   
     private LivreurEntity toEntity(ResultSet resultSet) throws SQLException, RepositoryException {
         LivreurEntity entity = new LivreurEntity();
@@ -193,6 +215,8 @@ public class LivreurRepository {
         entity.setCommandeIdEnCours(resultSet.getInt("_commande_id"));
         entity.setName(resultSet.getString("_name"));
         entity.setPresence(resultSet.getString("_presence"));
+        entity.setPassword(resultSet.getString("_password"));
+
         return entity;
     }
 

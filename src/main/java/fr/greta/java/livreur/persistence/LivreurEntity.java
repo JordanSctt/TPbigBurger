@@ -12,6 +12,7 @@ public class LivreurEntity {
     private Integer commandeIdEnCours;
     private String name;
     private String presence;
+    private String password;
     
 
     public LivreurEntity() {
@@ -48,5 +49,13 @@ public class LivreurEntity {
 
     public void setCommandeIdEnCours(Integer commandeIdEnCours) {
         this.commandeIdEnCours = commandeIdEnCours;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

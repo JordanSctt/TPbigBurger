@@ -33,7 +33,6 @@ public class UserConnectionServlet extends HttpServlet {
 				User user = userService.findByNameAndPassword(name, password);
 
 				if (user.getName() == null) {
-					HttpSession session = request.getSession();
 					request.getRequestDispatcher("connectionFail.jsp").forward(request, response);
 				} else {
 					HttpSession session = request.getSession();

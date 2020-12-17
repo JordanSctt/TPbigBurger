@@ -93,3 +93,7 @@ CREATE TABLE _livreur (
     ALTER TABLE _produit ADD _type character varying(50);
 
     ALTER TABLE _commandeitems RENAME COLUMN _burger_id TO _produit_id;
+
+-- -----------------------AD password/connection livreur ---------------------------------------
+
+    ALTER TABLE _livreur ADD _password character varying(10);

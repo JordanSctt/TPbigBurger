@@ -41,6 +41,7 @@ public class LivreurWrapper {
         }
         model.setName(entity.getName());
         model.setPresence(LivreurPresence.valueOf(entity.getPresence()));
+        model.setPassword(entity.getPassword());
         return model;
     }
 
@@ -52,6 +53,7 @@ public class LivreurWrapper {
         }
         entity.setName(model.getName());
         entity.setPresence(model.getPresence().name());
+        entity.setPassword(model.getPassword());
       
 
         return entity;

@@ -9,6 +9,7 @@ import fr.greta.java.generic.exception.RepositoryException;
 import fr.greta.java.generic.exception.ServiceException;
 import fr.greta.java.livreur.persistence.LivreurEntity;
 import fr.greta.java.livreur.persistence.LivreurRepository;
+import fr.greta.java.user.domain.User;
 
 import java.util.List;
 
@@ -18,14 +19,24 @@ public class LivreurService {
     private LivreurWrapper wrapperLivreur = new LivreurWrapper();
     private LivreurRepository repository = new LivreurRepository();
     private CommandeWrapper wrapperCommande = new CommandeWrapper();
-    
 
+
+    public Livreur findByNameAndPassword(String name, String password) throws ServiceException {
+        try {
+            Livreur livreurModel = wrapperLivreur.fromEntity(repository.findByNameAndPassword(name, password));
+            return livreurModel;
+
+        } catch (RepositoryException e) {
+            throw new ServiceException(e);
+        }
+    }
 
     public Livreur findByiD(int id) throws RepositoryException, ServiceException {
         Livreur livreur = wrapperLivreur.fromEntity(repository.findById(id));
 
         return livreur;
     }
+
     public List<Livreur> findAllLivreurs() throws ServiceException {
         try {
             List<Livreur> models = wrapperLivreur.fromEntities(repository.findAllLivreurs());

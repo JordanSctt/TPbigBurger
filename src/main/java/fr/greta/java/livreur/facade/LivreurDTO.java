@@ -15,6 +15,7 @@ public class LivreurDTO {
     private String presence;
     private List<CommandeDTO> commandeDTOList;
     private Integer commandeEnCours;
+    private String password;
 
 
     //-------------------------------------------
@@ -67,5 +68,13 @@ public class LivreurDTO {
 
     public void setCommandeEnCours(Integer commandeEnCours) {
         this.commandeEnCours = commandeEnCours;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

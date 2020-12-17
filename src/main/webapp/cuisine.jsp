@@ -151,7 +151,7 @@
            <div class="alert alert-success">
              <c:choose>
               <c:when test = "${param.successMessage eq 'AFFECTED_CREATED'}">
-                L'affection du livreur a la commande a ete realise avec succes
+                L'affectation du livreur a la commande a ete realise avec succes
               </c:when>
              </c:choose>
            </div>

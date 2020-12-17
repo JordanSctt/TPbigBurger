@@ -14,6 +14,7 @@ public class Livreur {
     private String name;
     private LivreurPresence presence;
     private Commande commandeEnCours;
+    private String password;
 
     //-----------------------------------------------
 
@@ -67,6 +68,14 @@ public class Livreur {
 
     public void setCommandeEnCours(Commande commandeEnCours) {
         this.commandeEnCours = commandeEnCours;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 

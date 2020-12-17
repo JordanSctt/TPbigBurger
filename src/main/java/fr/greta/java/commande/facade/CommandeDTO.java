@@ -225,4 +225,8 @@ public class CommandeDTO {
     public void setReductionMenu(Integer reductionMenu) {
         this.reductionMenu = reductionMenu;
     }
+
+    public double getPrixTotal() {
+        return prixTotal;
+    }
 }

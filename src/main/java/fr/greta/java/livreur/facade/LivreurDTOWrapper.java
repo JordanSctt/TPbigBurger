@@ -29,6 +29,7 @@ public class LivreurDTOWrapper {
         if(model.getCommandeEnCours() != null) {
             dto.setCommandeEnCours(model.getCommandeEnCours().getId());
         }
+        dto.setPassword(model.getPassword());
         return dto;
     }
 
