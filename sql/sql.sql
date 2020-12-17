@@ -80,7 +80,7 @@ CREATE TABLE _livreur (
                         ADD _livreur_id integer;
 
                 ALTER TABLE _commande
-                        ADD CONSTRAINT _commande_fk__livreur foreign key (_livreur_id) REFENRECES _livreur(_livreur_id);
+                        ADD CONSTRAINT _commande_fk__livreur foreign key (_livreur_id) REFERENCES _livreur(_livreur_id);
     ALTER TABLE _user
         ADD _adresse character varying(100);
 

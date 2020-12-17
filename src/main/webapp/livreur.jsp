@@ -163,7 +163,7 @@
                               <option value="ABSENT">ABSENT</option>
 
                             </select>
-                            <button class="btn btn-lg btn-primary btn-block" type="submit" >modifier</button>
+                            <button class="btn btn-primary" type="submit" >modifier</button>
                             </div></td>
                       </tr>
                     </form>

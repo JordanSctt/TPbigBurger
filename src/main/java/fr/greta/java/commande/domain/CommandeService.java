@@ -237,10 +237,7 @@ public class CommandeService {
                         repository.updateEtatCommande(commandeEntity, PRETE);
                         break;
                 }
-
             }
-
-
         }
     }
 

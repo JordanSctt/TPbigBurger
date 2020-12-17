@@ -28,13 +28,7 @@ public class CommandeDTO {
     private Integer reductionMenu;
 
 
-    public double getPrixTotal() {
-        return prixTotal;
-    }
 
-    public void setPrixTotal(double prixTotal) {
-        this.prixTotal = prixTotal;
-    }
 
     public void calculPrixTotal(List<CommandeItemsDTO> commandeItemsDTOList) {
 
@@ -88,7 +82,6 @@ public class CommandeDTO {
 
     }
 
-
     public String formatDate(LocalDateTime localDate) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -98,13 +91,6 @@ public class CommandeDTO {
     }
 
 
-    public String getEtatCommande() {
-        return etatCommande;
-    }
-
-    public void setEtatCommande(String etatCommande) {
-        this.etatCommande = etatCommande;
-    }
 
     public Integer getId() {
         return id;
@@ -115,20 +101,14 @@ public class CommandeDTO {
     }
 
     public String getStartDatePrep() {
-
-
         return startDatePrep;
     }
 
     public void setStartDatePrep(LocalDateTime startDatePrep) {
-
-
         this.startDatePrep = formatDate(startDatePrep);
     }
 
     public String getEndDatePrep() {
-
-
         return endDatePrep;
     }
 
@@ -138,6 +118,14 @@ public class CommandeDTO {
         this.endDatePrep = formatDate(startDatePrep);
     }
 
+
+    public String getEtatCommande() {
+        return etatCommande;
+    }
+
+    public void setEtatCommande(String etatCommande) {
+        this.etatCommande = etatCommande;
+    }
 
     public String getStartDateLivraison() {
         return startDateLivraison;
