@@ -28,9 +28,7 @@ public class ProduitAddServlet extends HttpServlet {
 
         try {
 
-            System.out.println(request.getParameter(LABEL));
-            System.out.println(request.getParameter(PRICE));
-            System.out.println(request.getParameter(TYPE));
+
             Produit produit = new Produit();
             produit.setLabel(request.getParameter(LABEL));
             produit.setPrice(Double.parseDouble(request.getParameter(PRICE)));

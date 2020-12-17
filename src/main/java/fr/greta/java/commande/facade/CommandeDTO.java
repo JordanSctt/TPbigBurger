@@ -26,6 +26,8 @@ public class CommandeDTO {
     private String estimationLivraison;
     private String livreurName;
     private Integer menu;
+    private Integer reductionMenu;
+
 
     public double getPrixTotal() {
         return prixTotal;
@@ -52,6 +54,8 @@ public class CommandeDTO {
         int nombreBoisson = 0;
         int nombreDessert = 0;
         int menu = 0;
+        int reduction = 3;
+
 
         for (CommandeItemsDTO commandesItems : commandeItemsDTOList) {
 
@@ -73,13 +77,15 @@ public class CommandeDTO {
         while (nombreBurger > 0 && nombreBoisson > 0 && nombreDessert > 0) {
 
             menu = menu + 1;
-            nombreBurger = nombreBurger - 1;
-            nombreBoisson = nombreBoisson - 1;
-            nombreDessert = nombreDessert - 1;
+            nombreBurger -=   1;
+            nombreBoisson -=   1;
+            nombreDessert -=  1;
 
         }
 
         this.menu = menu;
+        this.reductionMenu = menu * reduction;
+
 
     }
 
@@ -223,5 +229,13 @@ public class CommandeDTO {
 
     public void setMenu(Integer menu) {
         this.menu = menu;
+    }
+
+    public Integer getReductionMenu() {
+        return reductionMenu;
+    }
+
+    public void setReductionMenu(Integer reductionMenu) {
+        this.reductionMenu = reductionMenu;
     }
 }
